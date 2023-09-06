@@ -6,7 +6,7 @@ TitleScene::~TitleScene()
 void TitleScene::Initialize()
 {	
 	input = Input::GetInstance();
-	count = 0;
+	/*count = 0;*/
 
 }
 
@@ -15,12 +15,18 @@ void TitleScene::Update()
 	
 	ImGui::Begin("SceneManager");
 	ImGui::InputInt("SceneNum", &sceneNum);
-	ImGui::Text("count %d",count);
+	/*ImGui::Text("count %d",count);*/
 	ImGui::End();
+
 	if (input->PushKey(DIK_SPACE)) {
-		sceneNum += GAME_SCENE;
-		count++;
+		sceneNum = GAME_SCENE;
 	}
+
+	if (input->PushKey(DIK_1))
+	{
+		sceneNum = STAGE1_SCENE;
+	}
+
 	if (sceneNum < 0) {
 		sceneNum = 0;
 		

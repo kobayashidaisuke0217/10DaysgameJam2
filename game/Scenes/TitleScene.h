@@ -4,7 +4,7 @@
 class TitleScene:public Iscene
 {
 private:
-	int count;
+	/*int count;*/
 public:
 	~TitleScene()override;
 	 void Initialize() override;

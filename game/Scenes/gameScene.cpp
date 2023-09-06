@@ -25,16 +25,16 @@ void GameScene::Update()
 
 	ImGui::Begin("Scene");
 	ImGui::InputInt("SceneNum", &sceneNum);
-	if (sceneNum > 1) {
+	/*if (sceneNum > 1) {
 		sceneNum = 1;
-	}
+	}*/
 	ImGui::End();
 }
 
 
 void GameScene::Draw()
 {
-	
+
 	//3D描画準備
 	engine_->ModelPreDraw();
 	Draw3D();

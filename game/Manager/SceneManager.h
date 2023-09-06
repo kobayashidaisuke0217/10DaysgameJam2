@@ -1,6 +1,7 @@
 #pragma once
 #include <game/Scenes/Iscene.h>
 #include "BlueMoon.h"
+#include "stage1Scene.h"
 #include<game/Scenes/gameScene.h>
 #include <game/Scenes/TitleScene.h>
 #include "Input.h"
@@ -18,7 +19,7 @@ private:
 	WinApp* winApp_ = nullptr;
 	Input* input ;
 	Texturemanager* textureManager_;
-	std::unique_ptr<Iscene> sceneArr_[2];
+	std::unique_ptr<Iscene> sceneArr_[3];
 	int sceneNum_;
 	int preSceneNum_;
 
