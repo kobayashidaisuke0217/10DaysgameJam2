@@ -14,7 +14,7 @@ struct WorldTransform {
 	// X,Y,Z軸回りのローカル回転角
 	Vector3 rotation_ = { 0.0f, 0.0f, 0.0f };
 	// ローカル座標
-	Vector3 translation_ = { 100.0f, 0.0f, 0.0f };
+	Vector3 translation_ = { 0.0f, 0.0f, 0.0f };
 	// ローカル → ワールド変換行列
 	Matrix4x4 matWorld_;
 	// 親となるワールド変換へのポインタ

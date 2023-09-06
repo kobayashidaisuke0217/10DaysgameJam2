@@ -26,13 +26,14 @@ private:
 	BlueMoon* engine_;
 	DirectXCommon* directX_;
 	Texturemanager* textureManager_;
-	WorldTransform worldTransform_[2];
+	WorldTransform worldTransformWall_[6];
+	WorldTransform worldTransformGoal_;
 	ViewProjection viewProjection_;
 	Input* input_;
-	Sphere* sphere_[2];
+	Sphere* sphere_[7];
 	Vector4 material_ = {1.0f,1.0f,1.0f,1.0f};
 	DirectionalLight light_;
-	uint32_t textureHandle_ = 0;
+	uint32_t textureHandle_[2];
 
 	void Draw2D();
 	void Draw3D();
