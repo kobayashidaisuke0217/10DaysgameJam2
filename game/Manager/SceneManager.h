@@ -5,6 +5,7 @@
 #include <game/Scenes/TitleScene.h>
 #include "Input.h"
 #include "Texturemanager.h"
+
 class SceneManager
 {
 public:
@@ -17,6 +18,7 @@ private:
 	BlueMoon* Engine;
 	WinApp* winApp_ = nullptr;
 	Input* input ;
+	
 	Texturemanager* textureManager_;
 	std::unique_ptr<Iscene> sceneArr_[2];
 	int sceneNum_;

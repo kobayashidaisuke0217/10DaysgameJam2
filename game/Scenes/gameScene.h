@@ -11,6 +11,9 @@
 #include "ViewProjection.h"
 #include "Texturemanager.h"
 #include "Input.h"
+#include "Ground.h"
+#include "Player.h"
+#include "camera.h"
 
 class GameScene:public Iscene
 {
@@ -28,6 +31,13 @@ private:
 	Texturemanager* textureManager_;
 	ViewProjection viewProjection_;
 	Input* input_;
+	DirectionalLight directionalLight_;
+	camera* camera_;
+	
+	
+	
+	Ground* ground_;
+	Player* player_;
 	void Draw2D();
 	void Draw3D();
  

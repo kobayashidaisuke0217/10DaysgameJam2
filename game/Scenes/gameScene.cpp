@@ -13,22 +13,33 @@ void GameScene::Initialize()
 	directX_ = DirectXCommon::GetInstance();
 
 	textureManager_ = Texturemanager::GetInstance();
-
+	
+    directionalLight_ = { {1.0f,1.0f,1.0f,1.0f},{0.0f,-1.0f,0.0f},1.0f };
 	input_ = Input::GetInstance();
 	viewProjection_.Initialize();
+	ground_ = new Ground();
+	ground_->Initialize();
+	player_ = new Player();
+	player_->Initialize();
+	player_->SetTarget(&ground_->GetWorldTransform());
+	camera_ = new camera();
+	camera_->Initialize();
+	camera_->SetTarget(&ground_->GetWorldTransform());
+
 }
 
 void GameScene::Update()
 {
-
+	directionalLight_.direction = Normalise(directionalLight_.direction);
+	ground_->Update();
+	player_->Update();
+	camera_->Update();
+	viewProjection_.matView = camera_->GetViewProjection().matView;
+	viewProjection_.matProjection = camera_->GetViewProjection().matProjection;
+	viewProjection_.UpdateMatrix();
+	//viewProjection_.TransferMatrix();
 	
-
-	ImGui::Begin("Scene");
-	ImGui::InputInt("SceneNum", &sceneNum);
-	if (sceneNum > 1) {
-		sceneNum = 1;
-	}
-	ImGui::End();
+	
 }
 
 
@@ -45,9 +56,9 @@ void GameScene::Draw()
 
 void GameScene::Draw3D()
 {
+	ground_->Draw(viewProjection_, directionalLight_);
 
-
-
+	player_->Draw(viewProjection_, directionalLight_);
 
 	//ワイヤーフレーム描画準備
 	//ワイヤーフレームで描画したいものはこれより下に描画処理を書く
@@ -65,7 +76,10 @@ void GameScene::Draw2D() {
 }
 void GameScene::Finalize()
 {
-	
+	camera_->Finalize();
+	ground_->Finaleze();
+	player_->Finalize();
 	viewProjection_.constBuff_.ReleaseAndGetAddressOf();
+	
 }
 

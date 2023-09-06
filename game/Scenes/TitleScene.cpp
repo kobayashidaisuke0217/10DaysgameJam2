@@ -18,7 +18,7 @@ void TitleScene::Update()
 	ImGui::Text("count %d",count);
 	ImGui::End();
 	if (input->PushKey(DIK_SPACE)) {
-		sceneNum = STAGE_1;
+		sceneNum = GAME_SCENE;
 		count++;
 	}
 	if (sceneNum < 0) {

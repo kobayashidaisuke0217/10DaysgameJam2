@@ -60,6 +60,7 @@ void SceneManager::Init()
 	input->Initialize(winApp_);
 	textureManager_ = Texturemanager::GetInstance();
 	textureManager_->Initialize();
+	
 }
 
 
