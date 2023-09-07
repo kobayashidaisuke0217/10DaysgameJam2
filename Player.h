@@ -16,10 +16,12 @@ public:
 	void Finalize();
 
 	void SetTarget(const WorldTransform* target);
+	void SetViewProjection(const ViewProjection* view) { viewProjection_ = view; }
 	//const ViewProjection& GetViewProjection() { return viewprojection_; }
 	const WorldTransform& GetWorldTransform() { return worldTransform_; }
 private:
 	WorldTransform worldTransform_;
+	const ViewProjection* viewProjection_ = nullptr;
 	const WorldTransform* target_ = nullptr;
 	Input* input_ = nullptr;
 	Sphere* sphere_;

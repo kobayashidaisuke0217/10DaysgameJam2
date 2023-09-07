@@ -24,8 +24,8 @@ void GameScene::Initialize()
 	player_->SetTarget(&ground_->GetWorldTransform());
 	camera_ = new camera();
 	camera_->Initialize();
-	camera_->SetTarget(&ground_->GetWorldTransform());
-
+	camera_->SetTarget(&player_->GetWorldTransform());
+	player_->SetViewProjection(&camera_->GetViewProjection());
 }
 
 void GameScene::Update()
@@ -34,6 +34,8 @@ void GameScene::Update()
 	ground_->Update();
 	player_->Update();
 	camera_->Update();
+	viewProjection_.rotation_ = camera_->GetViewProjection().rotation_;
+	viewProjection_.translation_ = camera_->GetViewProjection().translation_;
 	viewProjection_.matView = camera_->GetViewProjection().matView;
 	viewProjection_.matProjection = camera_->GetViewProjection().matProjection;
 	viewProjection_.UpdateMatrix();
