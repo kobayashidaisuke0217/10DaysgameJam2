@@ -1,11 +1,13 @@
 #pragma once
 #include <game/Scenes/Iscene.h>
 #include "BlueMoon.h"
-#include "stage1Scene.h"
 #include<game/Scenes/gameScene.h>
 #include <game/Scenes/TitleScene.h>
 #include "Input.h"
 #include "Texturemanager.h"
+#include "stage1Scene.h"
+#include "stage2Scene.h"
+
 class SceneManager
 {
 public:
@@ -19,9 +21,8 @@ private:
 	WinApp* winApp_ = nullptr;
 	Input* input ;
 	Texturemanager* textureManager_;
-	std::unique_ptr<Iscene> sceneArr_[3];
+	std::unique_ptr<Iscene> sceneArr_[4];
 	int sceneNum_;
 	int preSceneNum_;
-
 };
 

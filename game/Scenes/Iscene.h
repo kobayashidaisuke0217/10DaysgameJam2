@@ -3,6 +3,7 @@ enum  Scene {
 	TITLE_SCENE,
 	GAME_SCENE,
 	STAGE1_SCENE,
+	STAGE2_SCENE,
 };
 class Iscene
 {

@@ -122,6 +122,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mymath.cpp" />
     <ClCompile Include="Stage1Scene.cpp" />
+    <ClCompile Include="Stage2Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\2d\Sprite.h" />
@@ -153,6 +154,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="game\Scenes\Iscene.h" />
     <ClInclude Include="game\Scenes\TitleScene.h" />
     <ClInclude Include="Stage1Scene.h" />
+    <ClInclude Include="Stage2Scene.h" />
     <ClInclude Include="Vector4.h" />
   </ItemGroup>
   <ItemGroup>

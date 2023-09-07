@@ -27,6 +27,11 @@ void TitleScene::Update()
 		sceneNum = STAGE1_SCENE;
 	}
 
+	if (input->PushKey(DIK_2))
+	{
+		sceneNum = STAGE2_SCENE;
+	}
+
 	if (sceneNum < 0) {
 		sceneNum = 0;
 		

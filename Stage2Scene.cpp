@@ -1,11 +1,11 @@
-#include "stage1Scene.h"
+#include "Stage2Scene.h"
 
-Stage1Scene::~Stage1Scene()
+Stage2Scene::~Stage2Scene()
 {
 
 }
 
-void Stage1Scene::Initialize()
+void Stage2Scene::Initialize()
 {
 	engine_ = BlueMoon::GetInstance();
 
@@ -29,26 +29,29 @@ void Stage1Scene::Initialize()
 		worldTransformGoal_.Initialize();
 	}
 
-	//左から順番
-	worldTransformWall_[0].translation_.x = -10.0f; 
-	worldTransformWall_[0].translation_.z = 5.0f;
+	//左の壁
+	worldTransformWall_[0].translation_.x = -11.0f;
 	worldTransformWall_[0].scale_.y = 8.0f;
+	worldTransformWall_[0].scale_.z = 8.0f;
 
-	worldTransformWall_[1].translation_.x = -5.0f;
-	worldTransformWall_[1].translation_.z = -5.0f;
+	//前の壁
+	worldTransformWall_[1].translation_.z = -11.0f;
+	worldTransformWall_[1].scale_.x = 8.0f;
 	worldTransformWall_[1].scale_.y = 8.0f;
 
-	worldTransformWall_[2].translation_.x = 5.0f;
-	worldTransformWall_[2].translation_.z = 5.0f;
+	//後ろの壁
+	worldTransformWall_[2].translation_.z = 11.0f;
+	worldTransformWall_[2].scale_.x = 8.0f;
 	worldTransformWall_[2].scale_.y = 8.0f;
 
-	worldTransformWall_[3].translation_.x = 10.0f;
-	worldTransformWall_[3].translation_.z = -5.0f;
+	//右の壁
+	worldTransformWall_[3].translation_.x = 11.0f;
 	worldTransformWall_[3].scale_.y = 8.0f;
+	worldTransformWall_[3].scale_.z = 8.0f;
 
 	//上
 	worldTransformWall_[4].translation_.y = 8.0f;
-	worldTransformWall_[4].scale_.x = 15.0f; 
+	worldTransformWall_[4].scale_.x = 15.0f;
 	worldTransformWall_[4].scale_.z = 10.0f;
 
 	//下
@@ -65,19 +68,96 @@ void Stage1Scene::Initialize()
 	light_ = { {1.0f,1.0f,1.0f,1.0f},{0.0f,-1.0f,0.0f},1.0f };
 }
 
-void Stage1Scene::Update()
+void Stage2Scene::Update()
 {
 	light_.direction = Normalise(light_.direction);
 
 	ImGui::Begin("Stage1Scene");
 	ImGui::InputInt("SceneNum", &sceneNum);
-	ImGui::Text("worldTransform_.translation_.x %f", worldTransformWall_[4].translation_.x);
+	ImGui::Text("worldTransform_.translation_.x %f", worldTransformWall_[1].translation_.x);
 	ImGui::Text("worldTransform_.translation_.y %f", worldTransformWall_[4].translation_.y);
 
 	/*if (sceneNum > 1) {
 		sceneNum = 1;
 	}*/
 	ImGui::End();
+
+	//左の壁の移動処理
+	if (moveCount_[0] == 0)
+	{
+		worldTransformWall_[0].translation_.z -= 0.3f;
+		if (worldTransformWall_[0].translation_.z <= -18)
+		{
+			moveCount_[0] = 1;
+		}
+	}
+
+	if (moveCount_[0] == 1)
+	{
+		worldTransformWall_[0].translation_.z += 0.3f;
+		if (worldTransformWall_[0].translation_.z >= 18)
+		{
+			moveCount_[0] = 0;
+		}
+	}
+
+	//前の壁の移動処理
+	if (moveCount_[1] == 0)
+	{
+		worldTransformWall_[1].translation_.x += 0.3f;
+		if (worldTransformWall_[1].translation_.x >= 18)
+		{
+			moveCount_[1] = 1;
+		}
+	}
+
+	if (moveCount_[1] == 1)
+	{
+		worldTransformWall_[1].translation_.x -= 0.3f;
+		if (worldTransformWall_[1].translation_.x <= -18)
+		{
+			moveCount_[1] = 0;
+		}
+	}
+
+	//後ろの壁の移動処理
+	if (moveCount_[2] == 0)
+	{
+		worldTransformWall_[2].translation_.x -= 0.3f;
+		if (worldTransformWall_[2].translation_.x <= -18)
+		{
+			moveCount_[2] = 1;
+		}
+	}
+
+	if (moveCount_[2] == 1)
+	{
+		worldTransformWall_[2].translation_.x += 0.3f;
+		if (worldTransformWall_[2].translation_.x >= 18)
+		{
+			moveCount_[2] = 0;
+		}
+	}
+
+	//右の壁の移動処理
+	if (moveCount_[3] == 0)
+	{
+		worldTransformWall_[3].translation_.z += 0.3f;
+		if (worldTransformWall_[3].translation_.z >= 18)
+		{
+			moveCount_[3] = 1;
+		}
+	}
+
+	if (moveCount_[3] == 1)
+	{
+		worldTransformWall_[3].translation_.z -= 0.3f;
+		if (worldTransformWall_[3].translation_.z <= -18)
+		{
+			moveCount_[3] = 0;
+		}
+	}
+
 
 	for (int i = 0; i < 6; i++)
 	{
@@ -87,7 +167,7 @@ void Stage1Scene::Update()
 }
 
 
-void Stage1Scene::Draw()
+void Stage2Scene::Draw()
 {
 
 	//3D描画準備
@@ -98,7 +178,7 @@ void Stage1Scene::Draw()
 	Draw2D();
 }
 
-void Stage1Scene::Draw3D()
+void Stage2Scene::Draw3D()
 {
 	for (int i = 0; i < 6; i++)
 	{
@@ -116,12 +196,12 @@ void Stage1Scene::Draw3D()
 
 }
 
-void Stage1Scene::Draw2D() {
+void Stage2Scene::Draw2D() {
 
 
 
 }
-void Stage1Scene::Finalize()
+void Stage2Scene::Finalize()
 {
 	for (int i = 0; i < 7; i++)
 	{
@@ -130,5 +210,3 @@ void Stage1Scene::Finalize()
 
 	viewProjection_.constBuff_.ReleaseAndGetAddressOf();
 }
-
-
