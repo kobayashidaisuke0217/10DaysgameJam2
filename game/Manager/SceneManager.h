@@ -7,6 +7,7 @@
 #include "Texturemanager.h"
 #include "stage1Scene.h"
 #include "stage2Scene.h"
+#include "stage3Scene.h"
 
 class SceneManager
 {
@@ -21,7 +22,7 @@ private:
 	WinApp* winApp_ = nullptr;
 	Input* input ;
 	Texturemanager* textureManager_;
-	std::unique_ptr<Iscene> sceneArr_[4];
+	std::unique_ptr<Iscene> sceneArr_[5];
 	int sceneNum_;
 	int preSceneNum_;
 };
