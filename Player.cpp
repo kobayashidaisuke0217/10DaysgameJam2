@@ -10,12 +10,13 @@ void Player::Initialize()
 	worldTransform_.Initialize();
 	worldTransform_.scale_ = { 2.0f,2.0f,2.0f };
 	 offset =  25.3f;
+	
 }
 
 void Player::Update()
 {
-	Move();
-	Rotate();
+	 Move();
+	
 	worldTransform_.UpdateMatrix();
 }
 
@@ -57,7 +58,7 @@ void Player::Move()
 void Player::Rotate()
 {
 
-	if (input_->PressKey(DIK_A)) {
+	/*if (input_->PressKey(DIK_A)) {
 		const float kRotateSpeed = 0.01f;
 		worldTransform_.rotation_.y +=  kRotateSpeed;
 	}
@@ -72,5 +73,5 @@ void Player::Rotate()
 	if (input_->PressKey(DIK_W)) {
 		const float kRotateSpeed = 0.01f;
 		worldTransform_.rotation_.x -= kRotateSpeed;
-	}
+	}*/
 }

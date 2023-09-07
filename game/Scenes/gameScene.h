@@ -14,7 +14,7 @@
 #include "Ground.h"
 #include "Player.h"
 #include "camera.h"
-
+#include "ObjectBale.h"
 class GameScene:public Iscene
 {
 public:
@@ -33,7 +33,7 @@ private:
 	Input* input_;
 	DirectionalLight directionalLight_;
 	camera* camera_;
-	
+	ObjectBale* Ball_;
 	
 	
 	Ground* ground_;

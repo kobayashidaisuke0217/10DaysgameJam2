@@ -26,19 +26,25 @@ void GameScene::Initialize()
 	camera_->Initialize();
 	camera_->SetTarget(&player_->GetWorldTransform());
 	player_->SetViewProjection(&camera_->GetViewProjection());
+	Ball_ = new ObjectBale();
+	Ball_->SetGround(ground_);
+	Ball_->Initialize();
 }
 
 void GameScene::Update()
 {
+	
 	directionalLight_.direction = Normalise(directionalLight_.direction);
 	ground_->Update();
 	player_->Update();
+
 	camera_->Update();
 	viewProjection_.rotation_ = camera_->GetViewProjection().rotation_;
 	viewProjection_.translation_ = camera_->GetViewProjection().translation_;
 	viewProjection_.matView = camera_->GetViewProjection().matView;
 	viewProjection_.matProjection = camera_->GetViewProjection().matProjection;
 	viewProjection_.UpdateMatrix();
+	Ball_->Update();
 	//viewProjection_.TransferMatrix();
 	
 	
@@ -58,15 +64,18 @@ void GameScene::Draw()
 
 void GameScene::Draw3D()
 {
-	ground_->Draw(viewProjection_, directionalLight_);
-
+	if (!input_->PressKey(DIK_SPACE)) {
+		ground_->Draw(viewProjection_, directionalLight_);
+	}
 	player_->Draw(viewProjection_, directionalLight_);
-
+    Ball_->Draw(viewProjection_, directionalLight_);
 	//ワイヤーフレーム描画準備
 	//ワイヤーフレームで描画したいものはこれより下に描画処理を書く
 	//これより下の3D描画は全てワイヤーフレームになるから注意してね
 	engine_->ModelPreDrawWireFrame();
-	
+	if (input_->PressKey(DIK_SPACE)) {
+		ground_->Draw(viewProjection_, directionalLight_);
+	}
 
 
 }

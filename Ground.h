@@ -4,6 +4,7 @@
 #include "WorldTransform.h"
 #include "ViewProjection.h"
 #include "Texturemanager.h"
+#include "Input.h"
 class Ground
 {
 public:
@@ -21,6 +22,7 @@ private:
 	WorldTransform worldTransform_;
 	uint32_t texturehandle_;
 	Texturemanager* textureManager_;
+	Input* input_;
 	float Scale = 1.0f;
 };
 
