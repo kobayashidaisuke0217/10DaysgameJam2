@@ -2,7 +2,7 @@
 void camera::Initialize() {
 	viewprojection_.Initialize();
 	input_ = Input::GetInstance();
-
+	viewprojection_.rotation_.y = 180.0f;
 }
 
 void camera::Update() {
@@ -26,7 +26,7 @@ void camera::SetTarget(const WorldTransform* target) {
 void camera::Move() {
 	if (target_) {
 
-		Vector3 offset = { 0.0f, 2.0f, -10.0f };
+		Vector3 offset = { 0.0f, 2.0f, -40.0f };
 		Matrix4x4 rotateMatrix = MakeRotateMatrix(viewprojection_.rotation_);
 
 		offset = TransformNormal(offset, rotateMatrix);

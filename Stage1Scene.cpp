@@ -1,20 +1,19 @@
-#include "gameScene.h"
+#include "Stage1Scene.h"
 
-
-GameScene::~GameScene()
+Stage1Scene::~Stage1Scene()
 {
-	
+
 }
 
-void GameScene::Initialize()
+void Stage1Scene::Initialize()
 {
 	engine_ = BlueMoon::GetInstance();
 
 	directX_ = DirectXCommon::GetInstance();
 
 	textureManager_ = Texturemanager::GetInstance();
-	
-    directionalLight_ = { {1.0f,1.0f,1.0f,1.0f},{0.0f,-1.0f,0.0f},1.0f };
+
+	directionalLight_ = { {1.0f,1.0f,1.0f,1.0f},{0.0f,-1.0f,0.0f},1.0f };
 	input_ = Input::GetInstance();
 	viewProjection_.Initialize();
 	ground_ = new Ground();
@@ -31,9 +30,9 @@ void GameScene::Initialize()
 	stage1Object_->Initialize();
 }
 
-void GameScene::Update()
+void Stage1Scene::Update()
 {
-	
+
 	directionalLight_.direction = Normalise(directionalLight_.direction);
 	ground_->Update();
 	player_->Update();
@@ -46,16 +45,16 @@ void GameScene::Update()
 	viewProjection_.UpdateMatrix();
 	stage1Object_->Update();
 	//viewProjection_.TransferMatrix();
-	
+
 	ImGui::Begin("Scene");
 	ImGui::InputInt("SceneNum", &sceneNum);
 	ImGui::End();
 }
 
 
-void GameScene::Draw()
+void Stage1Scene::Draw()
 {
-	
+
 	//3D描画準備
 	engine_->ModelPreDraw();
 	Draw3D();
@@ -64,7 +63,7 @@ void GameScene::Draw()
 	Draw2D();
 }
 
-void GameScene::Draw3D()
+void Stage1Scene::Draw3D()
 {
 	if (!input_->PressKey(DIK_SPACE)) {
 		ground_->Draw(viewProjection_, directionalLight_);
@@ -82,18 +81,20 @@ void GameScene::Draw3D()
 
 }
 
-void GameScene::Draw2D() {
+void Stage1Scene::Draw2D() {
 
-	
+
 
 }
-void GameScene::Finalize()
+void Stage1Scene::Finalize()
 {
 	camera_->Finalize();
 	ground_->Finaleze();
 	player_->Finalize();
 	stage1Object_->Finalize();
-	viewProjection_.constBuff_.ReleaseAndGetAddressOf();
 	
+	viewProjection_.constBuff_.ReleaseAndGetAddressOf();
+
 }
+
 

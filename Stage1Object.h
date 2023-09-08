@@ -5,17 +5,20 @@
 #include "ViewProjection.h"
 #include "Texturemanager.h"
 #include "Ground.h"
-class ObjectBale
+
+class Stage1Object
 {
 public:
 	void Initialize();
 	void Update();
 	void Draw(const ViewProjection& viewprojection,  const DirectionalLight& light);
+	void Finalize();
 	void SetGround( Ground* ground) { ground_ = ground; }
 private:
-	WorldTransform worldtransform_;
-	Sphere* sphere_;
-	uint32_t texturehandle_;
+	WorldTransform worldTransformWall_[6];
+	WorldTransform worldTransformGoal_;
+	Sphere* sphere_[7];
+	uint32_t textureHandle_[2];
 	Texturemanager* textureManager_;
 	Ground* ground_;
 private:
