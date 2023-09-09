@@ -6,6 +6,7 @@
 #include "Texturemanager.h"
 #include "Input.h"
 #include "ShadowPlane.h"
+#include <optional>
 class Player
 {
 public:

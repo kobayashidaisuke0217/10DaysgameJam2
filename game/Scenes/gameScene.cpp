@@ -27,7 +27,7 @@ void GameScene::Initialize()
 	FlytargetCamera_ = new FlytargetCamera();
 	FlytargetCamera_->Initialize();
 	FlytargetCamera_->Setplayer(player_);
-	player_->SetViewProjection(&camera_->GetViewProjection());
+	player_->SetViewProjection(&FlytargetCamera_->GetViewProjection());
 	Ball_ = new ObjectBale();
 	Ball_->SetGround(ground_);
 	Ball_->Initialize();
