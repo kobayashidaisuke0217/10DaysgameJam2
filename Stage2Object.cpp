@@ -50,6 +50,13 @@ void Stage2Object::Initialize()
 
 void Stage2Object::Update()
 {
+
+	for (int i = 0; i < 6; i++) {
+		obb_[i].center = worldTransformWall_[i].GetWorldPos();
+
+		GetOrientations(MakeRotateXYZMatrix(worldTransformWall_[i].rotation_), obb_[i].orientation);
+		obb_[i].size = worldTransformWall_[i].scale_ * 100.0f;
+	}
 	//壁の移動処理
 	if (moveCount_[0] == 0)
 	{

@@ -31,11 +31,24 @@ void Stage2Scene::Initialize()
 	stage2Object_ = new Stage2Object();
 	stage2Object_->SetGround(ground_);
 	stage2Object_->Initialize();
+	DrawFlag = true;
 }
 
 void Stage2Scene::Update()
 {
+	int hitCount = 0;
+	for (int i = 0; i < 6; i++) {
+		if (IsCollision(stage2Object_->GetObb(i), player_->GetStructSphere())) {
+			hitCount++;
+		}
 
+	}
+	if (hitCount != 0) {
+		DrawFlag = false;
+	}
+	else {
+		DrawFlag = true;
+	}
 	directionalLight_.direction = Normalise(directionalLight_.direction);
 	ground_->Update();
 	player_->Update();
@@ -77,15 +90,16 @@ void Stage2Scene::Draw()
 
 void Stage2Scene::Draw3D()
 {
-	if (!input_->PressKey(DIK_SPACE)) {
+	/*if (!input_->PressKey(DIK_SPACE)) {
 		ground_->Draw(viewProjection_, directionalLight_);
 	}
-	
+	*/
 	if (player_->GetCameraFlag() == false) {
 		player_->Draw(viewProjection_, directionalLight_);
 	}
-
-	stage2Object_->Draw(viewProjection_, directionalLight_);
+	if (DrawFlag == true) {
+		stage2Object_->Draw(viewProjection_, directionalLight_);
+	}
 	//ワイヤーフレーム描画準備
 	//ワイヤーフレームで描画したいものはこれより下に描画処理を書く
 	//これより下の3D描画は全てワイヤーフレームになるから注意してね
@@ -108,7 +122,7 @@ void Stage2Scene::Finalize()
 	ground_->Finaleze();
 	player_->Finalize();
 	stage2Object_->Finalize();
-
+	FlytargetCamera_->Finalize();
 	viewProjection_.constBuff_.ReleaseAndGetAddressOf();
 
 }
