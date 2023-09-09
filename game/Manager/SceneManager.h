@@ -1,8 +1,8 @@
 #pragma once
-#include <game/Scenes/Iscene.h>
+#include "Iscene.h"
 #include "BlueMoon.h"
-#include<game/Scenes/gameScene.h>
-#include <game/Scenes/TitleScene.h>
+#include "gameScene.h"
+#include "TitleScene.h"
 #include "Input.h"
 #include "Texturemanager.h"
 #include "Stage1Scene.h"
