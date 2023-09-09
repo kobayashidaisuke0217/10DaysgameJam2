@@ -6,6 +6,7 @@
 #include <string>
 #include <cmath>
 #define _USE_MATH_DEFINES
+#include <algorithm>
 struct Vector4 {
 	float x;
 	float y;

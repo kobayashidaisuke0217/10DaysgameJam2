@@ -19,6 +19,8 @@ void Player::Initialize()
 
 void Player::Update()
 {
+	structSphere_.center = worldTransform_.GetWorldPos();
+	structSphere_.radius = 1.6f;
 	if (input_->PressKey(DIK_RETURN)) {
 		cameraChangeFlag = true;
 	}
@@ -52,19 +54,19 @@ void Player::SetTarget(const WorldTransform* target)
 void Player::Move()
 {
 	
-	if (target_) {
+	/*if (target_) {
 		Vector3 VecOffset = { offset,offset,offset };
-		
+
 
 		Matrix4x4 rotateMatrix = MakeRotateMatrix(worldTransform_.rotation_);
 
-		VecOffset = TransformNormal(VecOffset, rotateMatrix);
-		worldTransform_.translation_ = Add(target_->translation_, VecOffset);
-		ImGui::Begin("player");
-		ImGui::DragFloat3("pos", &worldTransform_.translation_.x, 0.1f);
-		ImGui::DragFloat3("rot", &worldTransform_.rotation_.x, 0.1f);
-		ImGui::End();
-	}
+		VecOffset = TransformNormal(VecOffset, rotateMatrix);*/
+		//worldTransform_.translation_ = Add(target_->translation_, VecOffset);
+	ImGui::Begin("player");
+	ImGui::DragFloat3("pos", &worldTransform_.translation_.x, 0.1f);
+	ImGui::DragFloat3("rot", &worldTransform_.rotation_.x, 0.1f);
+	ImGui::End();
+	//}
 }
 
 

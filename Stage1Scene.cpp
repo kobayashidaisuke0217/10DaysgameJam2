@@ -26,16 +26,29 @@ void Stage1Scene::Initialize()
 	FlytargetCamera_->Setplayer(player_);
 	camera_ = new camera();
 	camera_->Initialize();
-	camera_->SetTarget(&player_->GetWorldTransform());
+	camera_->SetTarget(&ground_->GetWorldTransform());
 	player_->SetViewProjection(&camera_->GetViewProjection());
 	stage1Object_ = new Stage1Object();
 	stage1Object_->SetGround(ground_);
 	stage1Object_->Initialize();
+	DrawFlag = true;
 }
 
 void Stage1Scene::Update()
 {
+	int hitCount = 0;
+	for (int i = 0; i < 6; i++) {
+		if (IsCollision(stage1Object_->GetObb(i), player_->GetStructSphere())) {
+			hitCount++;
+		}
 
+	}
+	if (hitCount != 0) {
+		DrawFlag = false;
+	}
+	else {
+		DrawFlag = true;
+	}
 	directionalLight_.direction = Normalise(directionalLight_.direction);
 	ground_->Update();
 	player_->Update();
@@ -78,15 +91,17 @@ void Stage1Scene::Draw()
 
 void Stage1Scene::Draw3D()
 {
-	if (!input_->PressKey(DIK_SPACE)) {
+	/*if (!input_->PressKey(DIK_SPACE)) {
 		ground_->Draw(viewProjection_, directionalLight_);
-	}
+	}*/
 
 	if (player_->GetCameraFlag() == false) {
 		player_->Draw(viewProjection_, directionalLight_);
 	}
 	
-	stage1Object_->Draw(viewProjection_, directionalLight_);
+	if (DrawFlag == true) {
+		stage1Object_->Draw(viewProjection_, directionalLight_);
+	}
 	//ワイヤーフレーム描画準備
 	//ワイヤーフレームで描画したいものはこれより下に描画処理を書く
 	//これより下の3D描画は全てワイヤーフレームになるから注意してね
@@ -109,7 +124,7 @@ void Stage1Scene::Finalize()
 	ground_->Finaleze();
 	player_->Finalize();
 	stage1Object_->Finalize();
-
+	FlytargetCamera_->Finalize();
 	viewProjection_.constBuff_.ReleaseAndGetAddressOf();
 
 }

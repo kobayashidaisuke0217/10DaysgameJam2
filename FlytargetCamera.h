@@ -10,6 +10,7 @@ public:
 	void Initialize();
 	void Update();
 	//void Draw();
+	void Finalize();
 	void Setplayer( Player* player) { player_ = player; }
 	const ViewProjection& GetViewProjection() { return viewProjection_; }
 private:

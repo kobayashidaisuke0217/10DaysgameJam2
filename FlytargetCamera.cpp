@@ -28,3 +28,8 @@ void FlytargetCamera::Update()
 	}
 	viewProjection_.UpdateMatrix();
 }
+
+void FlytargetCamera::Finalize()
+{
+	viewProjection_.constBuff_.ReleaseAndGetAddressOf();
+}

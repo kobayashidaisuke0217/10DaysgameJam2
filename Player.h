@@ -22,6 +22,7 @@ public:
 	const WorldTransform& GetWorldTransform() { return worldTransform_; }
 	Vector3 GetWorldPos();
 	bool GetCameraFlag() { return cameraChangeFlag; }
+	StructSphere GetStructSphere() { return structSphere_; }
 private:
 	WorldTransform worldTransform_;
 	const ViewProjection* viewProjection_ = nullptr;
@@ -33,6 +34,7 @@ private:
 	float offset;
 	ShadowPlane* shadowPlane_;
 	bool cameraChangeFlag;
+	StructSphere structSphere_;
 private:
 	void Move();
 	void Rotate();
