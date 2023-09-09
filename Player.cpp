@@ -25,8 +25,29 @@ void Player::Update()
 	else {
 		cameraChangeFlag = false;
 	}
-	 Move();
-	
+
+	Move();
+
+	if (input_->PressKey(DIK_R)) {
+		behaviorRequest_ = Behavior::kFly;
+	}
+
+	if (behaviorRequest_) {
+		behavior_ = behaviorRequest_.value();
+
+		switch (behavior_) {
+		case Behavior::kMove:
+		default:
+			BehaviorRootInitialize();
+			break;
+		
+		case Behavior::kFly:
+			BehaviorRootUpdate();
+			break;
+		}
+		behaviorRequest_ = std::nullopt;
+	}
+
 	worldTransform_.UpdateMatrix();
 	shadowPlane_->Update();
 }
@@ -54,11 +75,11 @@ void Player::Move()
 	
 	if (target_) {
 		Vector3 VecOffset = { offset,offset,offset };
-		
+		Length(VecOffset);
 
-		Matrix4x4 rotateMatrix = MakeRotateMatrix(worldTransform_.rotation_);
+		/*Matrix4x4 rotateMatrix = MakeRotateMatrix(worldTransform_.rotation_);
 
-		VecOffset = TransformNormal(VecOffset, rotateMatrix);
+		VecOffset = TransformNormal(VecOffset, rotateMatrix);*/
 		worldTransform_.translation_ = Add(target_->translation_, VecOffset);
 		ImGui::Begin("player");
 		ImGui::DragFloat3("pos", &worldTransform_.translation_.x, 0.1f);
@@ -81,4 +102,22 @@ Vector3 Player::GetWorldPos()
 	worldPos.y = worldTransform_.matWorld_.m[3][1];
 	worldPos.z = worldTransform_.matWorld_.m[3][2];
 	return worldPos;
+}
+
+void Player::BehaviorRootInitialize() {
+	worldTransform_.Initialize();
+}
+
+void Player::BehaviorRootUpdate() {
+	Vector3 VecOffset = { -122, -122, -122 };
+
+
+	Matrix4x4 rotateMatrix = MakeRotateMatrix(worldTransform_.rotation_);
+
+	VecOffset = TransformNormal(VecOffset, rotateMatrix);
+
+	
+	worldTransform_.translation_ = Add(worldTransform_.translation_, VecOffset);
+
+	behaviorRequest_ = Behavior::kMove;
 }

@@ -22,7 +22,19 @@ public:
 	const WorldTransform& GetWorldTransform() { return worldTransform_; }
 	Vector3 GetWorldPos();
 	bool GetCameraFlag() { return cameraChangeFlag; }
+
+	void BehaviorRootInitialize();
+	void BehaviorRootUpdate();
+
 private:
+	enum class Behavior {
+		kMove,
+		kFly
+	};
+
+	Behavior behavior_ = Behavior::kMove;
+	std::optional<Behavior> behaviorRequest_ = std::nullopt;
+
 	WorldTransform worldTransform_;
 	const ViewProjection* viewProjection_ = nullptr;
 	const WorldTransform* target_ = nullptr;

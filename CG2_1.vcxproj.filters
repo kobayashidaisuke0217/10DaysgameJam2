@@ -206,9 +206,6 @@
     <ClInclude Include="game\Scenes\TitleScene.h">
       <Filter>ヘッダー ファイル\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="game\Manager\SceneManager.h">
-      <Filter>ヘッダー ファイル\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\2d\Sprite.h">
       <Filter>ヘッダー ファイル\2d</Filter>
     </ClInclude>
@@ -280,6 +277,9 @@
     </ClInclude>
     <ClInclude Include="FlytargetCamera.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="game\Manager\SceneManager.h">
+      <Filter>ヘッダー ファイル\Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
