@@ -110,6 +110,7 @@ void GameScene::Finalize()
 	ground_->Finaleze();
 	Ball_->Finalize();
 	player_->Finalize();
+	FlytargetCamera_->Finalize();
 	viewProjection_.constBuff_.ReleaseAndGetAddressOf();
 	
 }
