@@ -24,6 +24,9 @@ void GameScene::Initialize()
 	camera_ = new camera();
 	camera_->Initialize();
 	camera_->SetTarget(&ground_->GetWorldTransform());
+	FlytargetCamera_ = new FlytargetCamera();
+	FlytargetCamera_->Initialize();
+	FlytargetCamera_->Setplayer(player_);
 	player_->SetViewProjection(&camera_->GetViewProjection());
 	Ball_ = new ObjectBale();
 	Ball_->SetGround(ground_);
@@ -38,15 +41,24 @@ void GameScene::Update()
 	if (input_->PushKey(DIK_1)) {
 		sceneNum = TITLE_SCENE;
 	}
+	
 	directionalLight_.direction = Normalise(directionalLight_.direction);
 	ground_->Update();
 	player_->Update();
-
-	camera_->Update();
-	viewProjection_.rotation_ = camera_->GetViewProjection().rotation_;
-	viewProjection_.translation_ = camera_->GetViewProjection().translation_;
-	viewProjection_.matView = camera_->GetViewProjection().matView;
-	viewProjection_.matProjection = camera_->GetViewProjection().matProjection;
+	if (player_->GetCameraFlag()==false) {
+		camera_->Update();
+		viewProjection_.rotation_ = camera_->GetViewProjection().rotation_;
+		viewProjection_.translation_ = camera_->GetViewProjection().translation_;
+		viewProjection_.matView = camera_->GetViewProjection().matView;
+		viewProjection_.matProjection = camera_->GetViewProjection().matProjection;
+	}
+	else {
+		FlytargetCamera_->Update();
+		viewProjection_.rotation_ = FlytargetCamera_->GetViewProjection().rotation_;
+		viewProjection_.translation_ = FlytargetCamera_->GetViewProjection().translation_;
+		viewProjection_.matView = FlytargetCamera_->GetViewProjection().matView;
+		viewProjection_.matProjection = FlytargetCamera_->GetViewProjection().matProjection;
+	}
 	viewProjection_.UpdateMatrix();
 	Ball_->Update();
 	//viewProjection_.TransferMatrix();
@@ -70,7 +82,9 @@ void GameScene::Draw3D()
 	if (!input_->PressKey(DIK_SPACE)) {
 		ground_->Draw(viewProjection_, directionalLight_);
 	}
-	player_->Draw(viewProjection_, directionalLight_);
+	if (player_->GetCameraFlag() == false) {
+		player_->Draw(viewProjection_, directionalLight_);
+	}
    // Ball_->Draw(viewProjection_, directionalLight_);
 	
 	//ワイヤーフレーム描画準備

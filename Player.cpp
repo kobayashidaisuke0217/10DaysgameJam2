@@ -14,10 +14,17 @@ void Player::Initialize()
 	 shadowPlane_ = new ShadowPlane();
 	 shadowPlane_->Initialize();
 	 shadowPlane_->SetPlayer(this);
+	 cameraChangeFlag = false;
 }
 
 void Player::Update()
 {
+	if (input_->PressKey(DIK_RETURN)) {
+		cameraChangeFlag = true;
+	}
+	else {
+		cameraChangeFlag = false;
+	}
 	 Move();
 	
 	worldTransform_.UpdateMatrix();

@@ -20,6 +20,7 @@ public:
 	//const ViewProjection& GetViewProjection() { return viewprojection_; }
 	const WorldTransform& GetWorldTransform() { return worldTransform_; }
 	Vector3 GetWorldPos();
+	bool GetCameraFlag() { return cameraChangeFlag; }
 private:
 	WorldTransform worldTransform_;
 	const ViewProjection* viewProjection_ = nullptr;
@@ -30,6 +31,7 @@ private:
 	uint32_t texturehandle_;
 	float offset;
 	ShadowPlane* shadowPlane_;
+	bool cameraChangeFlag;
 private:
 	void Move();
 	void Rotate();

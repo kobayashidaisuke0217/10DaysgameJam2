@@ -16,6 +16,7 @@
 #include "camera.h"
 #include "ObjectBale.h"
 #include "Plane.h"
+#include "FlytargetCamera.h"
 class GameScene:public Iscene
 {
 public:
@@ -34,12 +35,14 @@ private:
 	Input* input_;
 	DirectionalLight directionalLight_;
 	camera* camera_;
+	FlytargetCamera* FlytargetCamera_;
 	ObjectBale* Ball_;
 	Plane* plane_;
 	WorldTransform worldtransformPlane_;
 	Ground* ground_;
 	Player* player_;
 	uint32_t textureHandle_;
+	bool cameraChangeFlag;
 	void Draw2D();
 	void Draw3D();
  
