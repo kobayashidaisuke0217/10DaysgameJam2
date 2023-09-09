@@ -15,6 +15,7 @@
 #include "Player.h"
 #include "camera.h"
 #include "ObjectBale.h"
+#include "Plane.h"
 class GameScene:public Iscene
 {
 public:
@@ -34,10 +35,11 @@ private:
 	DirectionalLight directionalLight_;
 	camera* camera_;
 	ObjectBale* Ball_;
-	
-	
+	Plane* plane_;
+	WorldTransform worldtransformPlane_;
 	Ground* ground_;
 	Player* player_;
+	uint32_t textureHandle_;
 	void Draw2D();
 	void Draw3D();
  

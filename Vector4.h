@@ -104,3 +104,4 @@ Vector3 Lerp(float t, const Vector3& s, const Vector3& e);
 
 Matrix4x4 MakeRotateMatrix(Vector3 theta);
 Vector3 TransformNormal(const Vector3& v, const Matrix4x4& m);
+Vector3 Cross(const Vector3& v1, const Vector3& v2);

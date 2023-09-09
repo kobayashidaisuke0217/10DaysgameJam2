@@ -13,7 +13,6 @@ void GameScene::Initialize()
 	directX_ = DirectXCommon::GetInstance();
 
 	textureManager_ = Texturemanager::GetInstance();
-	
     directionalLight_ = { {1.0f,1.0f,1.0f,1.0f},{0.0f,-1.0f,0.0f},1.0f };
 	input_ = Input::GetInstance();
 	viewProjection_.Initialize();
@@ -24,16 +23,21 @@ void GameScene::Initialize()
 	player_->SetTarget(&ground_->GetWorldTransform());
 	camera_ = new camera();
 	camera_->Initialize();
-	camera_->SetTarget(&player_->GetWorldTransform());
+	camera_->SetTarget(&ground_->GetWorldTransform());
 	player_->SetViewProjection(&camera_->GetViewProjection());
 	Ball_ = new ObjectBale();
 	Ball_->SetGround(ground_);
 	Ball_->Initialize();
+	ground_->SetViewProjection(&camera_->GetViewProjection());
+	
 }
+	
 
 void GameScene::Update()
 {
-	
+	if (input_->PushKey(DIK_1)) {
+		sceneNum = TITLE_SCENE;
+	}
 	directionalLight_.direction = Normalise(directionalLight_.direction);
 	ground_->Update();
 	player_->Update();
@@ -46,7 +50,6 @@ void GameScene::Update()
 	viewProjection_.UpdateMatrix();
 	Ball_->Update();
 	//viewProjection_.TransferMatrix();
-	
 	
 }
 
@@ -68,12 +71,14 @@ void GameScene::Draw3D()
 		ground_->Draw(viewProjection_, directionalLight_);
 	}
 	player_->Draw(viewProjection_, directionalLight_);
-    Ball_->Draw(viewProjection_, directionalLight_);
+   // Ball_->Draw(viewProjection_, directionalLight_);
+	
 	//ワイヤーフレーム描画準備
 	//ワイヤーフレームで描画したいものはこれより下に描画処理を書く
 	//これより下の3D描画は全てワイヤーフレームになるから注意してね
 	engine_->ModelPreDrawWireFrame();
 	if (input_->PressKey(DIK_SPACE)) {
+		
 		ground_->Draw(viewProjection_, directionalLight_);
 	}
 
@@ -89,6 +94,7 @@ void GameScene::Finalize()
 {
 	camera_->Finalize();
 	ground_->Finaleze();
+	Ball_->Finalize();
 	player_->Finalize();
 	viewProjection_.constBuff_.ReleaseAndGetAddressOf();
 	

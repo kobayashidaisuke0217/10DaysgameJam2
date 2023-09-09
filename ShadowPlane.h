@@ -1,12 +1,12 @@
 #pragma once
 #include "Model.h"
-#include "Sphere.h"
+#include "Plane.h"
 #include "WorldTransform.h"
 #include "ViewProjection.h"
 #include "Texturemanager.h"
 #include "Input.h"
-#include "ShadowPlane.h"
-class Player
+class Player;
+class ShadowPlane
 {
 public:
 	void Initialize();
@@ -15,24 +15,21 @@ public:
 	void Draw(const ViewProjection& viewprojection, const DirectionalLight& light);
 	void Finalize();
 
-	void SetTarget(const WorldTransform* target);
+	void SetPlayer( Player* player);
 	void SetViewProjection(const ViewProjection* view) { viewProjection_ = view; }
-	//const ViewProjection& GetViewProjection() { return viewprojection_; }
-	const WorldTransform& GetWorldTransform() { return worldTransform_; }
-	Vector3 GetWorldPos();
 private:
 	WorldTransform worldTransform_;
 	const ViewProjection* viewProjection_ = nullptr;
 	const WorldTransform* target_ = nullptr;
 	Input* input_ = nullptr;
-	Sphere* sphere_;
+	Plane* plane_;
 	Texturemanager* textureManager_;
 	uint32_t texturehandle_;
 	float offset;
-	ShadowPlane* shadowPlane_;
+	Player* player_;
 private:
 	void Move();
 	void Rotate();
-	
+	Vector3 GetWorldPos();
 };
 

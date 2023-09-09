@@ -26,7 +26,7 @@ void camera::SetTarget(const WorldTransform* target) {
 void camera::Move() {
 	if (target_) {
 
-		Vector3 offset = { 0.0f, 2.0f, -10.0f };
+		Vector3 offset = { 0.0f, 2.0f, -280.0f };
 		Matrix4x4 rotateMatrix = MakeRotateMatrix(viewprojection_.rotation_);
 
 		offset = TransformNormal(offset, rotateMatrix);
@@ -41,17 +41,17 @@ void camera::Rotate() {
 		const float kRotateSpeed = 0.01f;
 		viewprojection_.rotation_.x += kRotateSpeed;
 	}
-	if (input_->PressKey(DIK_DOWN)) {
+	 if (input_->PressKey(DIK_DOWN)) {
 		const float kRotateSpeed = 0.01f;
 		viewprojection_.rotation_.x -= kRotateSpeed;
 	}
-	if (input_->PressKey(DIK_LEFT)) {
+	 if (input_->PressKey(DIK_LEFT)) {
 		const float kRotateSpeed = 0.01f;
-		viewprojection_.rotation_.y += kRotateSpeed;
+		viewprojection_.rotation_.z += kRotateSpeed;
 	}
-	if (input_->PressKey(DIK_RIGHT)) {
+	 if (input_->PressKey(DIK_RIGHT)) {
 		const float kRotateSpeed = 0.01f;
-		viewprojection_.rotation_.y -= kRotateSpeed;
+		viewprojection_.rotation_.z -= kRotateSpeed;
 	}
 	
 	

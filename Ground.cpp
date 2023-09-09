@@ -17,7 +17,7 @@ void Ground::Initialize()
 	input_ = Input::GetInstance();
 	textureManager_ = Texturemanager::GetInstance();
 	texturehandle_ =textureManager_ ->Load("Resource/uvChecker.png");
-	worldTransform_.scale_ = { 42.0f,42.0f,42.0f };
+	worldTransform_.scale_ = /*{42.0f,42.0f,42.0f}; */{ 100.0f,100.0f,100.0f };
 }
 
 void Ground::Update()
@@ -31,19 +31,19 @@ void Ground::Update()
 	worldTransform_.scale_ = Multiply(Scale, worldTransform_.scale_);
 	if (input_->PressKey(DIK_A)) {
 		const float kRotateSpeed = 0.01f;
-		worldTransform_.rotation_.y +=  kRotateSpeed;
+		worldTransform_.rotation_.z +=  kRotateSpeed;
 	}
 	else if (input_->PressKey(DIK_D)) {
 		const float kRotateSpeed = 0.01f;
-		worldTransform_.rotation_.y -= kRotateSpeed;
+		worldTransform_.rotation_.z -= kRotateSpeed;
 	}
 	else if (input_->PressKey(DIK_S)) {
 		const float kRotateSpeed = 0.01f;
-		worldTransform_.rotation_.x += kRotateSpeed;
+		worldTransform_.rotation_.x -= kRotateSpeed;
 	}
 	else if (input_->PressKey(DIK_W)) {
 		const float kRotateSpeed = 0.01f;
-		worldTransform_.rotation_.x -= kRotateSpeed;
+		worldTransform_.rotation_.x += kRotateSpeed;
 	}
 	worldTransform_.UpdateMatrix();
 }

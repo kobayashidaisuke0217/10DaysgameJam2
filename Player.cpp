@@ -6,11 +6,14 @@ void Player::Initialize()
 	sphere_ = new Sphere();
 	sphere_->Initialize();
 	textureManager_ = Texturemanager::GetInstance();
-	texturehandle_ = textureManager_->Load("Resource/Black.png");
+	texturehandle_ = textureManager_->Load("Resource/wi.png");
 	worldTransform_.Initialize();
-	worldTransform_.scale_ = { 2.0f,2.0f,2.0f };
-	 offset =  25.3f;
-	
+	worldTransform_.scale_ = { 4.0f,4.0f,4.0f };
+	 //offset =  25.3f;
+	offset = 61.0f;
+	 shadowPlane_ = new ShadowPlane();
+	 shadowPlane_->Initialize();
+	 shadowPlane_->SetPlayer(this);
 }
 
 void Player::Update()
@@ -18,15 +21,18 @@ void Player::Update()
 	 Move();
 	
 	worldTransform_.UpdateMatrix();
+	shadowPlane_->Update();
 }
 
 void Player::Draw(const ViewProjection& viewprojection, const DirectionalLight& light)
 {
 	sphere_->Draw({ 1.0f,1.0f,1.0f,1.0f }, worldTransform_, texturehandle_, viewprojection, light);
+	shadowPlane_->Draw(viewprojection, light);
 }
 
 void Player::Finalize()
 {
+	shadowPlane_->Finalize();
 	delete sphere_;
 	worldTransform_.constBuff_.ReleaseAndGetAddressOf();
 }
@@ -58,20 +64,14 @@ void Player::Move()
 void Player::Rotate()
 {
 
-	/*if (input_->PressKey(DIK_A)) {
-		const float kRotateSpeed = 0.01f;
-		worldTransform_.rotation_.y +=  kRotateSpeed;
-	}
-	if (input_->PressKey(DIK_D)) {
-		const float kRotateSpeed = 0.01f;
-		worldTransform_.rotation_.y -= kRotateSpeed;
-	}
-	if (input_->PressKey(DIK_S)) {
-		const float kRotateSpeed = 0.01f;
-		worldTransform_.rotation_.x += kRotateSpeed;
-	}
-	if (input_->PressKey(DIK_W)) {
-		const float kRotateSpeed = 0.01f;
-		worldTransform_.rotation_.x -= kRotateSpeed;
-	}*/
+	
+}
+
+Vector3 Player::GetWorldPos()
+{
+	Vector3 worldPos;
+	worldPos.x = worldTransform_.matWorld_.m[3][0];
+	worldPos.y = worldTransform_.matWorld_.m[3][1];
+	worldPos.z = worldTransform_.matWorld_.m[3][2];
+	return worldPos;
 }

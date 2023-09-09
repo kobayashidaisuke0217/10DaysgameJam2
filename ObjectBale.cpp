@@ -24,8 +24,14 @@ void ObjectBale::Draw(const ViewProjection& viewprojection, const DirectionalLig
 	sphere_->Draw({ 1.0f,1.0f,1.0f,1.0f }, worldtransform_, texturehandle_, viewprojection, light);
 }
 
+void ObjectBale::Finalize()
+{
+	delete sphere_;
+	worldtransform_.constBuff_.ReleaseAndGetAddressOf();
+}
+
 void ObjectBale::SetParent(const WorldTransform* parent)
 {
 	worldtransform_.parent_ = parent;
-
+	
 }

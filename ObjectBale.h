@@ -11,6 +11,7 @@ public:
 	void Initialize();
 	void Update();
 	void Draw(const ViewProjection& viewprojection,  const DirectionalLight& light);
+	void Finalize();
 	void SetGround( Ground* ground) { ground_ = ground; }
 private:
 	WorldTransform worldtransform_;

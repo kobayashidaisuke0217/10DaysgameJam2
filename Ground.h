@@ -17,9 +17,11 @@ public:
 	void Finaleze();
 	 
 	const WorldTransform& GetWorldTransform() { return worldTransform_; }
+	void SetViewProjection(const ViewProjection* view) { viewProjection_ = view; }
 private:
 	Sphere* sphere_;
 	WorldTransform worldTransform_;
+	const ViewProjection* viewProjection_ = nullptr;
 	uint32_t texturehandle_;
 	Texturemanager* textureManager_;
 	Input* input_;

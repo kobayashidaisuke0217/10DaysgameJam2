@@ -29,10 +29,6 @@ const D3D12_GPU_DESCRIPTOR_HANDLE Texturemanager::GetGPUHandle(uint32_t textureH
 	return GPUHandle;
 }
 
-
-
-
-
 //テクスチャデータを読み込む
 DirectX::ScratchImage Texturemanager::LoadTexture(const std::string& filePath)
 {
