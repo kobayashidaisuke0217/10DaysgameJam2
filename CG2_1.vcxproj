@@ -133,6 +133,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Stage1Scene.cpp" />
     <ClCompile Include="Stage2Object.cpp" />
     <ClCompile Include="Stage2Scene.cpp" />
+    <ClCompile Include="Stage3Object.cpp" />
+    <ClCompile Include="Stage3Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Audio.h" />
@@ -175,6 +177,8 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Stage1Scene.h" />
     <ClInclude Include="Stage2Object.h" />
     <ClInclude Include="Stage2Scene.h" />
+    <ClInclude Include="Stage3Object.h" />
+    <ClInclude Include="Stage3Scene.h" />
     <ClInclude Include="Vector4.h" />
   </ItemGroup>
   <ItemGroup>
