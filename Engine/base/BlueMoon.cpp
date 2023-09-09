@@ -203,7 +203,7 @@ void BlueMoon::SettingRasterizerState3D() {
 	//三角形の中を塗りつぶす
 	rasterizerDesc3D_.FillMode = D3D12_FILL_MODE_SOLID;
 	//裏面（時計回り）を表示しない
-	rasterizerDesc3DWireFrame_.CullMode = D3D12_CULL_MODE_BACK;
+	rasterizerDesc3DWireFrame_.CullMode = D3D12_CULL_MODE_NONE;
 	//三角形の中を塗りつぶす
 	rasterizerDesc3DWireFrame_.FillMode = D3D12_FILL_MODE_WIREFRAME;
 

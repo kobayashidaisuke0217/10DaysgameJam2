@@ -3,7 +3,7 @@
 #include "triangle.h"
 #include "BlueMoon.h"
 
-#include "Iscene.h"
+#include "game/Scenes/Iscene.h"
 #include "Sprite.h"
 #include "Sphere.h"
 #include "model.h"
@@ -14,16 +14,16 @@
 #include "Ground.h"
 #include "Player.h"
 #include "camera.h"
-#include "ObjectBale.h"
-#include "Plane.h"
+#include "Stage1Object.h"
 #include "FlytargetCamera.h"
-class GameScene:public Iscene
+
+class Stage1Scene : public Iscene
 {
 public:
-	~GameScene();
+	~Stage1Scene();
 	void Initialize()override;
 	void Update()override;
-	
+
 	void Draw()override;
 	void Finalize()override;
 private:
@@ -36,15 +36,13 @@ private:
 	DirectionalLight directionalLight_;
 	camera* camera_;
 	FlytargetCamera* FlytargetCamera_;
-	ObjectBale* Ball_;
-	Plane* plane_;
-	WorldTransform worldtransformPlane_;
+	Stage1Object* stage1Object_;
+
 	Ground* ground_;
 	Player* player_;
-	uint32_t textureHandle_;
+	bool DrawFlag = true;
 	bool cameraChangeFlag;
 	void Draw2D();
 	void Draw3D();
- 
 };
 

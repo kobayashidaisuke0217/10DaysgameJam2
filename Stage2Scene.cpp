@@ -1,19 +1,19 @@
-#include "gameScene.h"
+#include "Stage2Scene.h"
 
-
-GameScene::~GameScene()
+Stage2Scene::~Stage2Scene()
 {
-	
+
 }
 
-void GameScene::Initialize()
+void Stage2Scene::Initialize()
 {
 	engine_ = BlueMoon::GetInstance();
 
 	directX_ = DirectXCommon::GetInstance();
 
 	textureManager_ = Texturemanager::GetInstance();
-    directionalLight_ = { {1.0f,1.0f,1.0f,1.0f},{0.0f,-1.0f,0.0f},1.0f };
+
+	directionalLight_ = { {1.0f,1.0f,1.0f,1.0f},{0.0f,-1.0f,0.0f},1.0f };
 	input_ = Input::GetInstance();
 	viewProjection_.Initialize();
 	ground_ = new Ground();
@@ -21,31 +21,39 @@ void GameScene::Initialize()
 	player_ = new Player();
 	player_->Initialize();
 	player_->SetTarget(&ground_->GetWorldTransform());
-	camera_ = new camera();
-	camera_->Initialize();
-	camera_->SetTarget(&ground_->GetWorldTransform());
 	FlytargetCamera_ = new FlytargetCamera();
 	FlytargetCamera_->Initialize();
 	FlytargetCamera_->Setplayer(player_);
-	player_->SetViewProjection(&FlytargetCamera_->GetViewProjection());
-	Ball_ = new ObjectBale();
-	Ball_->SetGround(ground_);
-	Ball_->Initialize();
-	ground_->SetViewProjection(&camera_->GetViewProjection());
-	
+	camera_ = new camera();
+	camera_->Initialize();
+	camera_->SetTarget(&player_->GetWorldTransform());
+	player_->SetViewProjection(&camera_->GetViewProjection());
+	stage2Object_ = new Stage2Object();
+	stage2Object_->SetGround(ground_);
+	stage2Object_->Initialize();
+	DrawFlag = true;
 }
-	
 
-void GameScene::Update()
+void Stage2Scene::Update()
 {
-	if (input_->PushKey(DIK_1)) {
-		sceneNum = TITLE_SCENE;
+	int hitCount = 0;
+	for (int i = 0; i < 6; i++) {
+		if (IsCollision(stage2Object_->GetObb(i), player_->GetStructSphere())) {
+			hitCount++;
+		}
+
 	}
-	
+	if (hitCount != 0) {
+		DrawFlag = false;
+	}
+	else {
+		DrawFlag = true;
+	}
 	directionalLight_.direction = Normalise(directionalLight_.direction);
 	ground_->Update();
 	player_->Update();
-	if (player_->GetCameraFlag()==false) {
+
+	if (player_->GetCameraFlag() == false) {
 		camera_->Update();
 		viewProjection_.rotation_ = camera_->GetViewProjection().rotation_;
 		viewProjection_.translation_ = camera_->GetViewProjection().translation_;
@@ -60,15 +68,18 @@ void GameScene::Update()
 		viewProjection_.matProjection = FlytargetCamera_->GetViewProjection().matProjection;
 	}
 	viewProjection_.UpdateMatrix();
-	Ball_->Update();
+	stage2Object_->Update();
 	//viewProjection_.TransferMatrix();
-	
+
+	ImGui::Begin("Scene");
+	ImGui::InputInt("SceneNum", &sceneNum);
+	ImGui::End();
 }
 
 
-void GameScene::Draw()
+void Stage2Scene::Draw()
 {
-	
+
 	//3D描画準備
 	engine_->ModelPreDraw();
 	Draw3D();
@@ -77,40 +88,41 @@ void GameScene::Draw()
 	Draw2D();
 }
 
-void GameScene::Draw3D()
+void Stage2Scene::Draw3D()
 {
-	if (!input_->PressKey(DIK_SPACE)) {
+	/*if (!input_->PressKey(DIK_SPACE)) {
 		ground_->Draw(viewProjection_, directionalLight_);
 	}
+	*/
 	if (player_->GetCameraFlag() == false) {
 		player_->Draw(viewProjection_, directionalLight_);
 	}
-   // Ball_->Draw(viewProjection_, directionalLight_);
-	
+	if (DrawFlag == true) {
+		stage2Object_->Draw(viewProjection_, directionalLight_);
+	}
 	//ワイヤーフレーム描画準備
 	//ワイヤーフレームで描画したいものはこれより下に描画処理を書く
 	//これより下の3D描画は全てワイヤーフレームになるから注意してね
 	engine_->ModelPreDrawWireFrame();
 	if (input_->PressKey(DIK_SPACE)) {
-		
 		ground_->Draw(viewProjection_, directionalLight_);
 	}
 
 
 }
 
-void GameScene::Draw2D() {
+void Stage2Scene::Draw2D() {
 
-	
+
 
 }
-void GameScene::Finalize()
+void Stage2Scene::Finalize()
 {
 	camera_->Finalize();
 	ground_->Finaleze();
-	Ball_->Finalize();
 	player_->Finalize();
+	stage2Object_->Finalize();
+	FlytargetCamera_->Finalize();
 	viewProjection_.constBuff_.ReleaseAndGetAddressOf();
-	
-}
 
+}

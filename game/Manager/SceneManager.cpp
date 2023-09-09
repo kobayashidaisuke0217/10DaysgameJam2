@@ -54,12 +54,15 @@ void SceneManager::Init()
 
 	sceneArr_[TITLE_SCENE] = std::make_unique <TitleScene>();
 	sceneArr_[GAME_SCENE] = std::make_unique <GameScene>();
+	sceneArr_[STAGE1_SCENE] = std::make_unique <Stage1Scene>();
+	sceneArr_[STAGE2_SCENE] = std::make_unique <Stage2Scene>();
 	sceneNum_ = TITLE_SCENE;
 	sceneArr_[sceneNum_]->Initialize();
 	input=Input::GetInstance();
 	input->Initialize(winApp_);
 	textureManager_ = Texturemanager::GetInstance();
 	textureManager_->Initialize();
+	
 }
 
 
