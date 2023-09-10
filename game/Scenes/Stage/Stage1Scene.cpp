@@ -34,27 +34,20 @@ void Stage1Scene::Initialize()
 	stage1Object_->SetGround(ground_);
 	stage1Object_->Initialize();
 	DrawFlag = true;
+	count = 0;
 }
 
 void Stage1Scene::Update()
 {
 	int hitCount = 0;
-	for (int i = 0; i < 6; i++) {
-		if (IsCollision(stage1Object_->GetObb(i), player_->GetStructSphere())) {
-			hitCount++;
-		}
-
-	}
-	if (hitCount != 0) {
-		DrawFlag = false;
-	}
-	else {
-		DrawFlag = true;
-	}
+	count++;
+	
+	
 	directionalLight_.direction = Normalise(directionalLight_.direction);
 	ground_->Update();
 	player_->Update();
-
+	stage1Object_->Update();
+	
 	if (player_->GetCameraFlag() == false) {
 		camera_->Update();
 		viewProjection_.rotation_ = camera_->GetViewProjection().rotation_;
@@ -70,8 +63,27 @@ void Stage1Scene::Update()
 		viewProjection_.matProjection = FlytargetCamera_->GetViewProjection().matProjection;
 	}
 	ground_->SetPlayerMoveFlag(player_->GetCameraFlag());
+	if (count >= 10) {
+		if (IsCollision(stage1Object_->GetObbGoal(), player_->GetStructSphere())) {
+			sceneNum = CLEAR_SCENE;
+		}
+		for (int i = 0; i < 6; i++) {
+
+			if (IsCollision(stage1Object_->GetObb(i), player_->GetStructSphere())) {
+				hitCount++;
+			}
+
+		}
+	}
+	if (hitCount != 0) {
+		sceneNum = TITLE_SCENE;
+	}
+	else {
+		DrawFlag = true;
+	}
+	
 	viewProjection_.UpdateMatrix();
-	stage1Object_->Update();
+	
 	//viewProjection_.TransferMatrix();
 
 	ImGui::Begin("Scene");
@@ -93,12 +105,13 @@ void Stage1Scene::Draw()
 
 void Stage1Scene::Draw3D()
 {
-	/*if (!input_->PressKey(DIK_SPACE)) {
+	if (!input_->PressKey(DIK_SPACE)) {
 		ground_->Draw(viewProjection_, directionalLight_);
-	}*/
+	}
 
 	
 	player_->Draw(viewProjection_, directionalLight_);
+
 	if (DrawFlag == true) {
 		stage1Object_->Draw(viewProjection_, directionalLight_);
 	}

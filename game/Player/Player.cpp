@@ -65,10 +65,13 @@ void Player::Draw(const ViewProjection& viewprojection, const DirectionalLight& 
 {
 	if (cameraChangeFlag == false) {
 		sphere_->Draw({ 1.0f,1.0f,1.0f,1.0f }, worldTransform_, texturehandle_, viewprojection, light);
-		shadowPlane_->Draw(viewprojection, light);
+		
 	}
 	else {
 		targetSphere_->Draw({ 1.0f,1.0f,1.0f,1.0f }, targetWorldTransform_, texturehandle_, viewprojection, light);
+	}
+	if (flayFlag == false) {
+		//shadowPlane_->Draw(viewprojection, light);
 	}
 }
 

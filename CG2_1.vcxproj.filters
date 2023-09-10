@@ -198,6 +198,9 @@
     <ClCompile Include="game\Camera\FlytargetCamera.cpp">
       <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
+    <ClCompile Include="game\Scenes\ClearScene.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector4.h">
@@ -322,6 +325,9 @@
     </ClInclude>
     <ClInclude Include="game\Player\ShadowPlane.h">
       <Filter>ヘッダー ファイル\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="game\Scenes\ClearScene.h">
+      <Filter>ヘッダー ファイル\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

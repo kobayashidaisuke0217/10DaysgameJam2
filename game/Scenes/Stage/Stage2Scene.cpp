@@ -23,7 +23,8 @@ void Stage2Scene::Initialize()
 	player_->SetTarget(&ground_->GetWorldTransform());
 	FlytargetCamera_ = new FlytargetCamera();
 	FlytargetCamera_->Initialize();
-	
+	FlytargetCamera_->SetTarget(&player_->GetWorldTransform());
+	player_->SetCamera(FlytargetCamera_);
 	camera_ = new camera();
 	camera_->Initialize();
 	camera_->SetTarget(&player_->GetWorldTransform());
@@ -67,6 +68,7 @@ void Stage2Scene::Update()
 		viewProjection_.matView = FlytargetCamera_->GetViewProjection().matView;
 		viewProjection_.matProjection = FlytargetCamera_->GetViewProjection().matProjection;
 	}
+	ground_->SetPlayerMoveFlag(player_->GetCameraFlag());
 	viewProjection_.UpdateMatrix();
 	stage2Object_->Update();
 	//viewProjection_.TransferMatrix();
