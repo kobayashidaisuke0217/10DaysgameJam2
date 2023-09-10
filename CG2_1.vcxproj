@@ -123,6 +123,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="game\Manager\SceneManager.cpp" />
     <ClCompile Include="game\Player\Player.cpp" />
     <ClCompile Include="game\Player\ShadowPlane.cpp" />
+    <ClCompile Include="game\Scenes\ClearScene.cpp" />
     <ClCompile Include="game\Scenes\gameScene.cpp" />
     <ClCompile Include="game\Scenes\Iscene.cpp" />
     <ClCompile Include="game\Scenes\Stage\Stage1Scene.cpp" />
@@ -167,6 +168,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="game\Manager\SceneManager.h" />
     <ClInclude Include="game\Player\Player.h" />
     <ClInclude Include="game\Player\ShadowPlane.h" />
+    <ClInclude Include="game\Scenes\ClearScene.h" />
     <ClInclude Include="game\Scenes\gameScene.h" />
     <ClInclude Include="game\Scenes\Iscene.h" />
     <ClInclude Include="game\Scenes\Stage\Stage1Scene.h" />

@@ -4,28 +4,13 @@ void FlytargetCamera::Initialize()
 {
 	input_ = Input::GetInstance();
 	viewProjection_.Initialize();
+	viewProjection_.rotation_ = { -4.08f,0.0f,-0.8f };
+	viewProjection_.translation_ = { 66.786f,67.120f,66.911f };
 }
 
 void FlytargetCamera::Update()
 {
-	/*viewProjection_.translation_ = player_->GetWorldTransform().translation_;
-	viewProjection_.translation_.z = player_->GetWorldTransform().translation_.z - 5.0f;
 	if (input_->PressKey(DIK_UP)) {
-		const float kRotateSpeed = 0.01f;
-		viewProjection_.rotation_.x += kRotateSpeed;
-	}
-	if (input_->PressKey(DIK_DOWN)) {
-		const float kRotateSpeed = 0.01f;
-		viewProjection_.rotation_.x -= kRotateSpeed;
-	}
-	if (input_->PressKey(DIK_LEFT)) {
-		const float kRotateSpeed = 0.01f;
-		viewProjection_.rotation_.z += kRotateSpeed;
-	}
-	if (input_->PressKey(DIK_RIGHT)) {
-		const float kRotateSpeed = 0.01f;
-		viewProjection_.rotation_.z -= kRotateSpeed;
-	}*/if (input_->PressKey(DIK_UP)) {
 		const float kRotateSpeed = 0.01f;
 		viewProjection_.rotation_.x += kRotateSpeed;
 	}
@@ -52,6 +37,10 @@ void FlytargetCamera::Update()
 		viewProjection_.translation_ = Add(target_->translation_, offset);
 		viewProjection_.translation_.y += 0.5f;
 	}
+	ImGui::Begin("camera");
+	ImGui::DragFloat3("rot", &viewProjection_.rotation_.x, 0.1f);
+	ImGui::DragFloat3("rot", &viewProjection_.translation_.x, 0.1f);
+	ImGui::End();
 	viewProjection_.UpdateMatrix();
 }
 

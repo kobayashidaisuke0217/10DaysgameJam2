@@ -106,7 +106,7 @@ void Sprite::CreateVartexData(const Vector4& a, const Vector4& b)
 		vertexData_[i].normal = { 0.0f,0.0f,-1.0f };
 	}
 
-}
+  }
 
 void Sprite::CreateTransform()
 {
