@@ -493,6 +493,12 @@ Vector3 Lerp(float t, const Vector3& s, const Vector3& e) {
 	result = Add(s, Multiply(t, es));
 	return result;
 }
+Vector3 Distance(const Vector3& v1, const Vector3& v2)
+{
+	return {
+		(v2.x - v1.x) * (v2.x - v1.x), (v2.y - v1.y) * (v2.y - v1.y),
+		(v2.z - v1.z) * (v2.z - v1.z) };
+}
 Vector3 Slerp(float t, const Vector3& s, const Vector3& e) {
 	float dot = Dot(Normalise(s), Normalise(e));
 	if (std::abs(dot) > 0.999f) {
