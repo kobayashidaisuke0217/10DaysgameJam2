@@ -21,7 +21,7 @@ void Player::Initialize()
 	 velocity = { 0.0f,0.0f,0.0f };
 	 flayFlag = false;
 	 targetWorldTransform_.Initialize();
-	 targetWorldTransform_.scale_ = worldTransform_.scale_;
+	 targetWorldTransform_.scale_ = {2.0f,2.0f,2.0f};
 }
 
 void Player::Update()
@@ -29,9 +29,7 @@ void Player::Update()
 	structSphere_.center = worldTransform_.GetWorldPos();
 	structSphere_.radius = 3.6f;
 	
-	/*if (input_->PushKey(DIK_R)) {
-		behaviorRequest_ = Behavior::kFly;
-	}*/
+	
 
 	if (behaviorRequest_) {
 		behavior_ = behaviorRequest_.value();
@@ -58,7 +56,7 @@ void Player::Update()
 		break;
 	}
 	
-	
+	targetWorldTransform_.UpdateMatrix();
 	worldTransform_.UpdateMatrix();
 	shadowPlane_->Update();
 }
@@ -69,7 +67,9 @@ void Player::Draw(const ViewProjection& viewprojection, const DirectionalLight& 
 		sphere_->Draw({ 1.0f,1.0f,1.0f,1.0f }, worldTransform_, texturehandle_, viewprojection, light);
 		shadowPlane_->Draw(viewprojection, light);
 	}
-	targetSphere_->Draw({ 1.0f,1.0f,1.0f,1.0f }, targetWorldTransform_, texturehandle_, viewprojection, light);
+	else {
+		targetSphere_->Draw({ 1.0f,1.0f,1.0f,1.0f }, targetWorldTransform_, texturehandle_, viewprojection, light);
+	}
 }
 
 void Player::Finalize()
@@ -146,15 +146,17 @@ void Player::BehaviorFlyUpdate()
 	if (flayFlag == true) {
 		worldTransform_.translation_ = Add(worldTransform_.translation_, velocity);
 	}
-	else {
-		const float KBulletSped = 10.0f;
+	
+		const float KBulletSped = 30.0f;
 		Vector3  velocitytarget = { 0.0f, 0.0f, KBulletSped };
 
-		velocitytarget = Subtract(GetWorldPos(),
+		velocitytarget = Subtract( GetWorldPos(),
 			camera_->GetViewProjection().translation_);
 		velocitytarget = Multiply(KBulletSped, Normalise(velocitytarget));
 		targetWorldTransform_.translation_ = Add(worldTransform_.translation_, velocitytarget);
-	}
+		ImGui::Begin("ret");
+		ImGui::DragFloat3("", &targetWorldTransform_.translation_.x);
+		ImGui::End();
 }
 
 Vector3 Player::GetWorldPos()

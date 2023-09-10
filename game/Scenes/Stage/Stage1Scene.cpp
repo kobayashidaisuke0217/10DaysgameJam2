@@ -97,9 +97,7 @@ void Stage1Scene::Draw3D()
 		ground_->Draw(viewProjection_, directionalLight_);
 	}*/
 
-	if (player_->GetCameraFlag() == false) {
-		
-	}
+	
 	player_->Draw(viewProjection_, directionalLight_);
 	if (DrawFlag == true) {
 		stage1Object_->Draw(viewProjection_, directionalLight_);
