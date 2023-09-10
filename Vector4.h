@@ -133,6 +133,8 @@ Vector3 Add(const Vector3& a, const Vector3& b);
 
 Vector3 Subtract(const Vector3& v1, const Vector3& v2);
 Vector3 Multiply(float scalar, const Vector3& v);
+Vector3 Multiply( const Vector3& v1, const Vector3& v2);
+
 float Dot(const Vector3& v1, const Vector3& v2);
 float Length(const Vector3& v);
 Vector3 vectorTransform(const Vector3& vector, const Matrix4x4& matrix);

@@ -26,8 +26,7 @@ void GameScene::Initialize()
 	camera_->SetTarget(&ground_->GetWorldTransform());
 	FlytargetCamera_ = new FlytargetCamera();
 	FlytargetCamera_->Initialize();
-	FlytargetCamera_->Setplayer(player_);
-	player_->SetViewProjection(&FlytargetCamera_->GetViewProjection());
+
 	Ball_ = new ObjectBale();
 	Ball_->SetGround(ground_);
 	Ball_->Initialize();
@@ -83,7 +82,7 @@ void GameScene::Draw3D()
 		ground_->Draw(viewProjection_, directionalLight_);
 	}
 	if (player_->GetCameraFlag() == false) {
-		player_->Draw(viewProjection_, directionalLight_);
+		
 	}
    // Ball_->Draw(viewProjection_, directionalLight_);
 	
@@ -95,7 +94,7 @@ void GameScene::Draw3D()
 		
 		ground_->Draw(viewProjection_, directionalLight_);
 	}
-
+player_->Draw(viewProjection_, directionalLight_);
 
 }
 
