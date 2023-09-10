@@ -23,11 +23,13 @@ void Stage1Scene::Initialize()
 	player_->SetTarget(&ground_->GetWorldTransform());
 	FlytargetCamera_ = new FlytargetCamera();
 	FlytargetCamera_->Initialize();
-	FlytargetCamera_->Setplayer(player_);
+	
+	FlytargetCamera_->SetTarget(&player_->GetWorldTransform());
+	player_->SetCamera(FlytargetCamera_);
 	camera_ = new camera();
 	camera_->Initialize();
 	camera_->SetTarget(&ground_->GetWorldTransform());
-	player_->SetViewProjection(&camera_->GetViewProjection());
+
 	stage1Object_ = new Stage1Object();
 	stage1Object_->SetGround(ground_);
 	stage1Object_->Initialize();
@@ -67,7 +69,7 @@ void Stage1Scene::Update()
 		viewProjection_.matView = FlytargetCamera_->GetViewProjection().matView;
 		viewProjection_.matProjection = FlytargetCamera_->GetViewProjection().matProjection;
 	}
-
+	ground_->SetPlayerMoveFlag(player_->GetCameraFlag());
 	viewProjection_.UpdateMatrix();
 	stage1Object_->Update();
 	//viewProjection_.TransferMatrix();
@@ -96,9 +98,9 @@ void Stage1Scene::Draw3D()
 	}*/
 
 	if (player_->GetCameraFlag() == false) {
-		player_->Draw(viewProjection_, directionalLight_);
+		
 	}
-	
+	player_->Draw(viewProjection_, directionalLight_);
 	if (DrawFlag == true) {
 		stage1Object_->Draw(viewProjection_, directionalLight_);
 	}

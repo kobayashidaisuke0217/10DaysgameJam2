@@ -192,11 +192,11 @@
     <ClCompile Include="game\Camera\camera.cpp">
       <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
-    <ClCompile Include="game\Camera\FlytargetCamera.cpp">
-      <Filter>ソース ファイル\Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="game\Scenes\Stage\Stage2Scene.cpp">
       <Filter>ソース ファイル\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="game\Camera\FlytargetCamera.cpp">
+      <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

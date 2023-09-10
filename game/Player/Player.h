@@ -7,6 +7,7 @@
 #include "Input.h"
 #include "ShadowPlane.h"
 #include <optional>
+#include "FlytargetCamera.h"
 class Player
 {
 public:
@@ -17,27 +18,43 @@ public:
 	void Finalize();
 
 	void SetTarget(const WorldTransform* target);
-	void SetViewProjection(const ViewProjection* view) { viewProjection_ = view; }
+	
 	//const ViewProjection& GetViewProjection() { return viewprojection_; }
 	const WorldTransform& GetWorldTransform() { return worldTransform_; }
 	Vector3 GetWorldPos();
 	bool GetCameraFlag() { return cameraChangeFlag; }
 	StructSphere GetStructSphere() { return structSphere_; }
+	void  SetCamera(FlytargetCamera* camera) { camera_ = camera; }
 private:
+	enum class Behavior {
+		kMove,
+		kFly
+	};
 	WorldTransform worldTransform_;
-	const ViewProjection* viewProjection_ = nullptr;
+	//const ViewProjection* viewProjection_ = nullptr;
 	const WorldTransform* target_ = nullptr;
 	Input* input_ = nullptr;
 	Sphere* sphere_;
+	Sphere* targetSphere_;
 	Texturemanager* textureManager_;
 	uint32_t texturehandle_;
 	float offset;
 	ShadowPlane* shadowPlane_;
 	bool cameraChangeFlag;
 	StructSphere structSphere_;
+	Behavior behavior_ = Behavior::kMove;
+	std::optional<Behavior> behaviorRequest_ = std::nullopt;
+	FlytargetCamera* camera_;
+	Vector3 velocity;
+	bool flayFlag;
+	WorldTransform targetWorldTransform_;
 private:
 	void Move();
-	void Rotate();
+	void Fly();
+	void BehaviorMoveInitialize();
+	void BehaviorMoveUpdate();
+	void BehaviorFlyInitialize();
+	void BehaviorFlyUpdate();
 	
 };
 

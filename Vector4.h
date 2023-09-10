@@ -133,12 +133,14 @@ Vector3 Add(const Vector3& a, const Vector3& b);
 
 Vector3 Subtract(const Vector3& v1, const Vector3& v2);
 Vector3 Multiply(float scalar, const Vector3& v);
+Vector3 Multiply( const Vector3& v1, const Vector3& v2);
+
 float Dot(const Vector3& v1, const Vector3& v2);
 float Length(const Vector3& v);
 Vector3 vectorTransform(const Vector3& vector, const Matrix4x4& matrix);
 Vector3 Slerp(float t, const Vector3& s, const Vector3& e);
 Vector3 Lerp(float t, const Vector3& s, const Vector3& e);
-
+Vector3 Distance(const Vector3& v1, const Vector3& v2);
 Matrix4x4 MakeRotateMatrix(Vector3 theta);
 Vector3 TransformNormal(const Vector3& v, const Matrix4x4& m);
 Vector3 Cross(const Vector3& v1, const Vector3& v2);

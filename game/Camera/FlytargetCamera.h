@@ -1,7 +1,7 @@
 #include "ViewProjection.h"
 #include "WorldTransform.h"
 #include "Input.h"
-#include "Player.h"
+
 #pragma once
 
 class FlytargetCamera
@@ -11,11 +11,16 @@ public:
 	void Update();
 	//void Draw();
 	void Finalize();
-	void Setplayer( Player* player) { player_ = player; }
+	
+	inline void SetTarget(const WorldTransform* target) {
+
+		target_ = target;
+	}
 	const ViewProjection& GetViewProjection() { return viewProjection_; }
 private:
 	Input* input_;
 	ViewProjection viewProjection_;
-	Player* player_;
+	
+	const WorldTransform* target_ = nullptr;
 };
 
