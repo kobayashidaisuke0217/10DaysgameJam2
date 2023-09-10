@@ -5,6 +5,7 @@
 #include "ViewProjection.h"
 #include "Texturemanager.h"
 #include "Ground.h"
+#include "Plane.h"
 
 class Stage3Object
 {
@@ -16,12 +17,15 @@ public:
 	void SetGround(Ground* ground) { ground_ = ground; }
 
 private:
-	WorldTransform worldTransformWall_[6];
+	WorldTransform worldTransformWall_[8];
+	WorldTransform worldTransformPlane_[2];
 	WorldTransform worldTransformGoal_;
-	Sphere* sphere_[7];
-	uint32_t textureHandle_[2];
+	Sphere* sphere_[9];
+	Plane* plane_[2];
+	uint32_t textureHandle_[3];
 	Texturemanager* textureManager_;
 	Ground* ground_;
+	int moveCount_[4];
 
 private:
 	void SetParent(const WorldTransform* parent);
