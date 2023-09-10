@@ -5,7 +5,7 @@ enum  Scene {
 	STAGE1_SCENE,
 	STAGE2_SCENE,
 	STAGE3_SCENE,
-
+	STAGE4_SCENE,
 };
 class Iscene
 {

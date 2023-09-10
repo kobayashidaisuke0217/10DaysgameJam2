@@ -8,6 +8,7 @@
 #include "Stage1Scene.h"
 #include "Stage2Scene.h"
 #include "Stage3Scene.h"
+#include "Stage4Scene.h"
 
 class SceneManager
 {
@@ -23,7 +24,7 @@ private:
 	Input* input ;
 	
 	Texturemanager* textureManager_;
-	std::unique_ptr<Iscene> sceneArr_[5];
+	std::unique_ptr<Iscene> sceneArr_[6];
 	int sceneNum_;
 	int preSceneNum_;
 

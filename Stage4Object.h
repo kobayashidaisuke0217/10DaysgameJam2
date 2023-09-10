@@ -7,7 +7,7 @@
 #include "Ground.h"
 #include "Plane.h"
 
-class Stage3Object
+class Stage4Object
 {
 public:
 	void Initialize();
@@ -18,10 +18,10 @@ public:
 
 private:
 	WorldTransform worldTransformWall_[8];
-	WorldTransform worldTransformPlane_[2];
+	WorldTransform worldTransformPlane_;
 	WorldTransform worldTransformGoal_;
 	Sphere* sphere_[9];
-	Plane* plane_[2];
+	Plane* plane_;
 	uint32_t textureHandle_[3];
 	Texturemanager* textureManager_;
 	Ground* ground_;
