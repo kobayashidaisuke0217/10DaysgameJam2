@@ -69,7 +69,7 @@ void Player::Move()
 	Vector3 velocity = Subtract(worldTransform_.GetWorldPos(), {0.0f,0.0f,0.0f});
 
 	velocity = Normalise(velocity);
-	worldTransform_.translation_ = Multiply(offset, velocity);
+	worldTransform_.translation_ = Multiply(offset*2, velocity);
 	ImGui::Begin("player");
 	ImGui::DragFloat3("pos", &worldTransform_.translation_.x, 0.1f);
 	ImGui::DragFloat3("rot", &worldTransform_.rotation_.x, 0.1f);
