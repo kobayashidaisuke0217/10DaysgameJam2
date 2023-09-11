@@ -77,6 +77,16 @@ void Stage3Object::Initialize()
 
 void Stage3Object::Update()
 {
+	for (int i = 0; i < 8; i++) {
+		obb_[i].center = worldTransformWall_[i].GetWorldPos();
+
+		GetOrientations(MakeRotateXYZMatrix(worldTransformWall_[i].rotation_), obb_[i].orientation);
+		obb_[i].size = worldTransformWall_[i].scale_ * 100.0f;
+	}
+	obbGoal_.center = worldTransformGoal_.GetWorldPos();
+	GetOrientations(MakeRotateXYZMatrix(worldTransformGoal_.rotation_), obbGoal_.orientation);
+	obbGoal_.size = worldTransformGoal_.scale_ * 100.0f;
+	for (int i = 0; i < 8; i++) { GetOrientations(MakeRotateXYZMatrix(ground_->GetWorldTransform().rotation_), obb_[i].orientation); }
 	for (int i = 0; i < 2; i++)
 	{
 		worldTransformPlane_[i].UpdateMatrix();

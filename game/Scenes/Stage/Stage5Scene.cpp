@@ -23,23 +23,27 @@ void Stage5Scene::Initialize()
 	player_->SetTarget(&ground_->GetWorldTransform());
 	FlytargetCamera_ = new FlytargetCamera();
 	FlytargetCamera_->Initialize();
-	//FlytargetCamera_->Setplayer(player_);
+
+	FlytargetCamera_->SetTarget(&player_->GetWorldTransform());
+	player_->SetCamera(FlytargetCamera_);
 	camera_ = new camera();
 	camera_->Initialize();
-	camera_->SetTarget(&player_->GetWorldTransform());
-	//player_->SetViewProjection(&camera_->GetViewProjection());
+	camera_->SetTarget(&ground_->GetWorldTransform());
 	stage5Object_ = new Stage5Object();
 	stage5Object_->SetGround(ground_);
 	stage5Object_->Initialize();
+	DrawFlag = true;
+	count = 0;
 }
 
 void Stage5Scene::Update()
 {
-
+	int hitCount = 0;
+	count++;
 	directionalLight_.direction = Normalise(directionalLight_.direction);
 	ground_->Update();
 	player_->Update();
-
+	stage5Object_->Update();
 	if (player_->GetCameraFlag() == false) {
 		camera_->Update();
 		viewProjection_.rotation_ = camera_->GetViewProjection().rotation_;
@@ -54,9 +58,36 @@ void Stage5Scene::Update()
 		viewProjection_.matView = FlytargetCamera_->GetViewProjection().matView;
 		viewProjection_.matProjection = FlytargetCamera_->GetViewProjection().matProjection;
 	}
+
+	ground_->SetPlayerMoveFlag(player_->GetCameraFlag());
+	if (count >= 10) {
+		if (IsCollision(stage5Object_->GetObbGoal(), player_->GetStructSphere())) {
+			sceneNum = CLEAR_SCENE;
+
+			return;
+		}
+		else {
+			for (int i = 0; i < 6; i++) {
+
+				if (IsCollision(stage5Object_->GetObb(i), player_->GetStructSphere())) {
+					hitCount++;
+				}
+
+			}
+		}
+	}
+	if (hitCount != 0) {
+		sceneNum = TITLE_SCENE;
+		DrawFlag = false;
+	}
+	else {
+		DrawFlag = true;
+	}
+
+
 	viewProjection_.UpdateMatrix();
-	stage5Object_->Update();
-	//viewProjection_.TransferMatrix();
+
+
 
 	ImGui::Begin("Scene");
 	ImGui::InputInt("SceneNum", &sceneNum);
@@ -77,13 +108,13 @@ void Stage5Scene::Draw()
 
 void Stage5Scene::Draw3D()
 {
-	if (!input_->PressKey(DIK_SPACE)) {
-		ground_->Draw(viewProjection_, directionalLight_);
-	}
+	//if (!input_->PressKey(DIK_SPACE)) {
+	//	ground_->Draw(viewProjection_, directionalLight_);
+	//}
 
-	if (player_->GetCameraFlag() == false) {
-		player_->Draw(viewProjection_, directionalLight_);
-	}
+	
+	player_->Draw(viewProjection_, directionalLight_);
+	
 
 	stage5Object_->Draw(viewProjection_, directionalLight_);
 	//ワイヤーフレーム描画準備
