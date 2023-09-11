@@ -147,6 +147,11 @@ void Player::BehaviorFlyUpdate()
 		Fly();
 	}
 	if (flayFlag == true) {
+		if (isHit_ == true) {
+			velocity = -velocity;
+			isHit_ = false;
+		}
+
 		worldTransform_.translation_ = Add(worldTransform_.translation_, velocity);
 	}
 	
@@ -156,9 +161,12 @@ void Player::BehaviorFlyUpdate()
 		velocitytarget = Subtract( GetWorldPos(),
 			camera_->GetViewProjection().translation_);
 		velocitytarget = Multiply(KBulletSped, Normalise(velocitytarget));
+		
 		targetWorldTransform_.translation_ = Add(worldTransform_.translation_, velocitytarget);
+		
 		ImGui::Begin("ret");
 		ImGui::DragFloat3("", &targetWorldTransform_.translation_.x);
+		ImGui::DragFloat3("rotate", &wallRotate_.x, 0.01f);
 		ImGui::End();
 }
 

@@ -70,11 +70,20 @@ void Stage1Scene::Update()
 		for (int i = 0; i < 6; i++) {
 
 			if (IsCollision(stage1Object_->GetObb(i), player_->GetStructSphere())) {
-				hitCount++;
-			}
+				//hitCount++;
 
+				player_->SetFalg(true);
+
+				/*Vector3 v1 = Multiply(stage1Object_->GetWorldTransform(i).translation_, stage1Object_->GetWorldTransform(i).rotation_);
+				Vector3 v2 = Multiply(stage1Object_->GetWorldTransform(i).translation_, -stage1Object_->GetWorldTransform(i).rotation_);
+
+				Vector3 cross = Cross(v1, v2);
+
+				player_->SetRotate(cross);*/
+			}
 		}
 	}
+	
 	if (hitCount != 0) {
 		sceneNum = TITLE_SCENE;
 	}
