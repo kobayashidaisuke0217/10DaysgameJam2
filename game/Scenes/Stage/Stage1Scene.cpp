@@ -65,19 +65,20 @@ void Stage1Scene::Update()
 	ground_->SetPlayerMoveFlag(player_->GetCameraFlag());
 	if (count >= 10) {
 		if (IsCollision(stage1Object_->GetObbGoal(), player_->GetStructSphere())) {
-			sceneNum = CLEAR_SCENE;
+   			sceneNum = CLEAR_SCENE;
+			return;
 		}
 		for (int i = 0; i < 6; i++) {
 
 			if (IsCollision(stage1Object_->GetObb(i), player_->GetStructSphere())) {
-				hitCount++;
+  				hitCount++;
 			}
 
 		}
 	}
-	if (hitCount != 0) {
+	/*if (hitCount != 0) {
 		sceneNum = TITLE_SCENE;
-	}
+	}*/
 	else {
 		DrawFlag = true;
 	}
