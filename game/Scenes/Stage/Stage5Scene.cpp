@@ -69,7 +69,7 @@ void Stage5Scene::Update()
 			return;
 		}
 		else {
-			for (int i = 0; i < 8; i++) {
+			for (int i = 0; i < 6; i++) {
 
 				if (IsCollision(stage5Object_->GetObb(i), player_->GetStructSphere())) {
 					if (isPlayerHit == false) {
@@ -83,13 +83,18 @@ void Stage5Scene::Update()
 				}
 
 			}
+			for (int i = 6; i < 8; i++) {
+				if (IsCollision(stage5Object_->GetObb(i), player_->GetStructSphere())) {
+					sceneNum = TITLE_SCENE;
+				}
+			}
 		}
 	}
 	
 	if (isPlayerHit == true) {
 		playerHitCount++;
 	}
-	if (playerHitCount >= 10) {
+	if (playerHitCount >= 3) {
 		isPlayerHit = false;
 	}
 
