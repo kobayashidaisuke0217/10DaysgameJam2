@@ -26,7 +26,7 @@ public:
 	StructSphere GetStructSphere() { return structSphere_; }
 	void  SetCamera(FlytargetCamera* camera) { camera_ = camera; }
 
-	void SetFalg(bool isHit) { isHit_ = isHit; }
+	void SetFlag(bool isHit) { isHit_ = isHit; }
 	void SetRotate(Vector3 wallRotate) { wallRotate_ = wallRotate; }
 
 private:

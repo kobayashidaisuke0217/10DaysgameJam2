@@ -71,16 +71,34 @@ void Stage1Scene::Update()
 
 			if (IsCollision(stage1Object_->GetObb(i), player_->GetStructSphere())) {
 				//hitCount++;
+				
+				if (isCount == false) {
+					isCount = true;
 
-				player_->SetFalg(true);
+					player_->SetFlag(true);
 
-				/*Vector3 v1 = Multiply(stage1Object_->GetWorldTransform(i).translation_, stage1Object_->GetWorldTransform(i).rotation_);
-				Vector3 v2 = Multiply(stage1Object_->GetWorldTransform(i).translation_, -stage1Object_->GetWorldTransform(i).rotation_);
+					Vector3 v1 = Add(stage1Object_->GetWorldTransform(i).translation_, ground_->GetWorldTransform().rotation_);
+					v1 = Multiply(100.0f, v1);
+					Vector3 v2 = Add(stage1Object_->GetWorldTransform(i).translation_, ground_->GetWorldTransform().rotation_);
+					v2 = Multiply(-100.0f, v2);
 
-				Vector3 cross = Cross(v1, v2);
+   					v1 = Normalise(v1);
+					v2 = Normalise(v2);
 
-				player_->SetRotate(cross);*/
+					const Vector3 cross = Cross(v1, v2);
+
+					player_->SetRotate(cross);
+				}
 			}
+		}
+
+		if (isCount == true) {
+			testCount++;
+		}
+
+		if (testCount == 10) {
+			isCount = false;
+			testCount = 0;
 		}
 	}
 	
@@ -97,6 +115,7 @@ void Stage1Scene::Update()
 
 	ImGui::Begin("Scene");
 	ImGui::InputInt("SceneNum", &sceneNum);
+	ImGui::InputInt("count", &testCount);
 	ImGui::End();
 }
 

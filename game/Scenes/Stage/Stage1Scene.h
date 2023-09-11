@@ -38,6 +38,9 @@ private:
 	FlytargetCamera* FlytargetCamera_;
 	Stage1Object* stage1Object_;
 
+	int testCount;
+	bool isCount;
+
 	Ground* ground_;
 	Player* player_;
 	int count = 0;

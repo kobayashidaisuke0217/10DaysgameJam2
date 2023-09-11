@@ -148,8 +148,7 @@ void Player::BehaviorFlyUpdate()
 	}
 	if (flayFlag == true) {
 		if (isHit_ == true) {
-			velocity = -velocity;
-			isHit_ = false;
+			velocity = Reflect(velocity, wallRotate_);
 		}
 
 		worldTransform_.translation_ = Add(worldTransform_.translation_, velocity);
