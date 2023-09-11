@@ -79,11 +79,33 @@ void Stage4Object::Update()
 		worldTransformPlane_.UpdateMatrix();
 		worldTransformGoal_.UpdateMatrix();
 	}
+	for (int i = 0; i < 8; i++) {
+		obb_[i].center = worldTransformWall_[i].GetWorldPos();
+
+		GetOrientations(MakeRotateXYZMatrix(worldTransformWall_[i].rotation_), obb_[i].orientation);
+		obb_[i].size = worldTransformWall_[i].scale_ * 100.0f;
+	}
+	obbGoal_.center = worldTransformGoal_.GetWorldPos();
+	GetOrientations(MakeRotateXYZMatrix(worldTransformGoal_.rotation_), obbGoal_.orientation);
+	obbGoal_.size = worldTransformGoal_.scale_ * 100.0f;
+	Vector3 ObjRotate[8]{};
+	
+	for (int i = 0; i < 8; i++)
+	{ 
+		/*ObjRotate[i] = Multiply(worldTransformWall_[i].rotation_ , ground_->GetWorldTransform().rotation_);
+		GetOrientations(MakeRotateXYZMatrix(ObjRotate[i]), obb_[i].orientation); */
+	     
+		GetOrientations(MakeRotateXYZMatrix(ground_->GetWorldTransform().rotation_), obb_[i].orientation);
+	}
+	
 
 	float inputFloat3[3] = { worldTransformWall_[1].translation_.x + 1, worldTransformWall_[1].translation_.y + 1, worldTransformWall_[1].translation_.z + 1 };
 
 	ImGui::Begin("Goal");
-	ImGui::SliderFloat3("GoalPos", inputFloat3, -10.0f, 10.0f);
+	ImGui::SliderFloat3("obbrotate", &obb_[2].orientation[0].x, -3.0f, 3.0f);
+	ImGui::SliderFloat3("obbrotate", &obb_[2].orientation[1].x, -3.0f, 3.0f);
+	ImGui::SliderFloat3("obbrotate", &obb_[2].orientation[2].x, -3.0f, 3.0f);
+	//ImGui::SliderFloat3("rotate", &ground_->GetWorldTransform().rotation_.x, -3.0f, 3.0f);
 	ImGui::End();
 
 	worldTransformWall_[1].translation_.x = inputFloat3[0] - 1;
@@ -98,12 +120,16 @@ void Stage4Object::Draw(const ViewProjection& viewprojection, const DirectionalL
 
 	for (int i = 0; i < 5; i++)
 	{
-		sphere_[i]->Draw({ 1.0f,1.0f,1.0f,1.0f }, worldTransformWall_[i], textureHandle_[0], viewprojection, light);
+		if (!ishit_[i]) {
+			sphere_[i]->Draw({ 1.0f,1.0f,1.0f,1.0f }, worldTransformWall_[i], textureHandle_[0], viewprojection, light);
+		}
 	}
 
 	for (int i = 5; i < 8; i++)
 	{
-		sphere_[i]->Draw({ 1.0f,1.0f,1.0f,1.0f }, worldTransformWall_[i], textureHandle_[2], viewprojection, light);
+		if (!ishit_[i]) {
+			sphere_[i]->Draw({ 1.0f,1.0f,1.0f,1.0f }, worldTransformWall_[i], textureHandle_[2], viewprojection, light);
+		}
 	}
 
 	sphere_[8]->Draw({ 1.0f,1.0f,1.0f,1.0f }, worldTransformGoal_, textureHandle_[1], viewprojection, light);
@@ -122,8 +148,8 @@ void Stage4Object::Finalize()
 	{
 		worldTransformWall_[i].constBuff_.ReleaseAndGetAddressOf();
 		worldTransformPlane_.constBuff_.ReleaseAndGetAddressOf();
-		worldTransformGoal_.constBuff_.ReleaseAndGetAddressOf();
-	}
+		
+	}worldTransformGoal_.constBuff_.ReleaseAndGetAddressOf();
 }
 
 void Stage4Object::SetParent(const WorldTransform* parent)

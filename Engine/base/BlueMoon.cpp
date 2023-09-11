@@ -329,7 +329,8 @@ void BlueMoon::EndFrame() {
 #ifdef DEBUG
 
 #endif // DEBUG
-	imguiManager_->Draw();
+
+imguiManager_->Draw();
 	
 	direct_->PostDraw();
 }
