@@ -115,14 +115,10 @@ void Stage5Object::Draw(const ViewProjection& viewprojection, const DirectionalL
 		sphere_[i]->Draw({ 1.0f,1.0f,1.0f,1.0f }, worldTransformWall_[i], textureHandle_[0], viewprojection, light);
 	}
 
-	sphere_[6]->Draw({ 1.0f,1.0f,1.0f,1.0f }, worldTransformWall_[6], textureHandle_[2], viewprojection, light);
-	sphere_[7]->Draw({ 1.0f,1.0f,1.0f,1.0f }, worldTransformWall_[7], textureHandle_[2], viewprojection, light);
-
-
-	/*for (int i = 5; i < 8; i++)
+	for (int i = 6; i < 8; i++)
 	{
 		sphere_[i]->Draw({ 1.0f,1.0f,1.0f,1.0f }, worldTransformWall_[i], textureHandle_[2], viewprojection, light);
-	}*/
+	}
 
 	sphere_[8]->Draw({ 1.0f,1.0f,1.0f,1.0f }, worldTransformGoal_, textureHandle_[1], viewprojection, light);
 }
