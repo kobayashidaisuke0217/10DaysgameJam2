@@ -92,8 +92,9 @@ void Stage4Object::Update()
 	
 	for (int i = 0; i < 8; i++)
 	{ 
-	/*	ObjRotate[i] = Multiply(worldTransformWall_[i].rotation_ , ground_->GetWorldTransform().rotation_);
-		GetOrientations(MakeRotateXYZMatrix(ObjRotate[i]), obb_[i].orientation);*/ 
+		/*ObjRotate[i] = Multiply(worldTransformWall_[i].rotation_ , ground_->GetWorldTransform().rotation_);
+		GetOrientations(MakeRotateXYZMatrix(ObjRotate[i]), obb_[i].orientation); */
+	     
 		GetOrientations(MakeRotateXYZMatrix(ground_->GetWorldTransform().rotation_), obb_[i].orientation);
 	}
 	
@@ -101,9 +102,9 @@ void Stage4Object::Update()
 	float inputFloat3[3] = { worldTransformWall_[1].translation_.x + 1, worldTransformWall_[1].translation_.y + 1, worldTransformWall_[1].translation_.z + 1 };
 
 	ImGui::Begin("Goal");
-	ImGui::SliderFloat3("obbrotate", &obb_[4].orientation[0].x, -3.0f, 3.0f);
-	ImGui::SliderFloat3("obbrotate", &obb_[4].orientation[1].x, -3.0f, 3.0f);
-	ImGui::SliderFloat3("obbrotate", &obb_[4].orientation[2].x, -3.0f, 3.0f);
+	ImGui::SliderFloat3("obbrotate", &obb_[2].orientation[0].x, -3.0f, 3.0f);
+	ImGui::SliderFloat3("obbrotate", &obb_[2].orientation[1].x, -3.0f, 3.0f);
+	ImGui::SliderFloat3("obbrotate", &obb_[2].orientation[2].x, -3.0f, 3.0f);
 	//ImGui::SliderFloat3("rotate", &ground_->GetWorldTransform().rotation_.x, -3.0f, 3.0f);
 	ImGui::End();
 
@@ -147,8 +148,8 @@ void Stage4Object::Finalize()
 	{
 		worldTransformWall_[i].constBuff_.ReleaseAndGetAddressOf();
 		worldTransformPlane_.constBuff_.ReleaseAndGetAddressOf();
-		worldTransformGoal_.constBuff_.ReleaseAndGetAddressOf();
-	}
+		
+	}worldTransformGoal_.constBuff_.ReleaseAndGetAddressOf();
 }
 
 void Stage4Object::SetParent(const WorldTransform* parent)
