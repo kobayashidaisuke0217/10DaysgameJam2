@@ -33,23 +33,13 @@ void Stage2Scene::Initialize()
 	stage2Object_->SetGround(ground_);
 	stage2Object_->Initialize();
 	DrawFlag = true;
+	count = 0;
 }
 
 void Stage2Scene::Update()
 {
 	int hitCount = 0;
-	for (int i = 0; i < 6; i++) {
-		if (IsCollision(stage2Object_->GetObb(i), player_->GetStructSphere())) {
-			hitCount++;
-		}
-
-	}
-	if (hitCount != 0) {
-		DrawFlag = false;
-	}
-	else {
-		DrawFlag = true;
-	}
+	count++;
 	directionalLight_.direction = Normalise(directionalLight_.direction);
 	ground_->Update();
 	player_->Update();
@@ -72,7 +62,29 @@ void Stage2Scene::Update()
 	viewProjection_.UpdateMatrix();
 	stage2Object_->Update();
 	//viewProjection_.TransferMatrix();
+if (count >= 10) {
+		if (IsCollision(stage2Object_->GetObbGoal(), player_->GetStructSphere())) {
+			sceneNum = CLEAR_SCENE;
 
+			return;
+		}
+		else {
+			for (int i = 0; i < 6; i++) {
+
+				if (IsCollision(stage2Object_->GetObb(i), player_->GetStructSphere())) {
+					hitCount++;
+				}
+
+			}
+		}
+	}
+if (hitCount != 0) {
+	sceneNum = TITLE_SCENE;
+	DrawFlag = false;
+}
+else {
+	DrawFlag = true;
+}
 	ImGui::Begin("Scene");
 	ImGui::InputInt("SceneNum", &sceneNum);
 	ImGui::End();
@@ -96,9 +108,9 @@ void Stage2Scene::Draw3D()
 		ground_->Draw(viewProjection_, directionalLight_);
 	}
 	*/
-	if (player_->GetCameraFlag() == false) {
+	
 		player_->Draw(viewProjection_, directionalLight_);
-	}
+	
 	if (DrawFlag == true) {
 		stage2Object_->Draw(viewProjection_, directionalLight_);
 	}
