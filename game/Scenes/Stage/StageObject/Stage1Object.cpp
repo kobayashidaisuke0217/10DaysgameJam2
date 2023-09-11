@@ -44,6 +44,7 @@ void Stage1Object::Initialize()
 		worldTransformWall_[i].Initialize();
 		worldTransformGoal_.Initialize();
 	}
+	
 }
 
 void Stage1Object::Update()
@@ -57,6 +58,7 @@ void Stage1Object::Update()
 	obbGoal_.center = worldTransformGoal_.GetWorldPos();
 	GetOrientations(MakeRotateXYZMatrix(worldTransformGoal_.rotation_), obbGoal_.orientation);
 	obbGoal_.size = worldTransformGoal_.scale_ * 100.0f;
+	for (int i = 0; i < 6; i++) { GetOrientations(MakeRotateXYZMatrix(ground_->GetWorldTransform().rotation_), obb_[i].orientation); }
 	for (int i = 0; i < 6; i++)
 	{
 		worldTransformWall_[i].UpdateMatrix();
@@ -66,7 +68,8 @@ void Stage1Object::Update()
 	float inputFloat3[3] = { worldTransformWall_[5].translation_.x + 1, worldTransformWall_[5].translation_.y + 1, worldTransformWall_[5].translation_.z + 1 };
 
 	ImGui::Begin("Goal");
-	ImGui::SliderFloat3("GoalPos", inputFloat3, -3.0f, 3.0f);
+	ImGui::SliderFloat3("obbrotate", &obb_[0].orientation[0].x, -3.0f, 3.0f);
+	//ImGui::SliderFloat3("rotate", &ground_->GetWorldTransform().rotation_.x, -3.0f, 3.0f);
 	ImGui::End();
 
 	worldTransformWall_[5].translation_.x = inputFloat3[0] - 1;
