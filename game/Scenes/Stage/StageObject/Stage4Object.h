@@ -18,6 +18,7 @@ public:
 	OBB GetObb(int num) { return obb_[num]; }
 	OBB GetObbGoal() { return obbGoal_; }
 	void ishit(int num) { ishit_[num] = true; }
+	WorldTransform GetWorldTransform(int num) { return worldTransformWall_[num]; }
 private:
 	WorldTransform worldTransformWall_[8];
 	WorldTransform worldTransformPlane_;

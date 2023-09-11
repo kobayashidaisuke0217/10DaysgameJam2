@@ -76,7 +76,7 @@ void Stage5Scene::Update()
 						hitCount++;
 						player_->isHit();
 						isPlayerHit = true;
-						Vector3 v1 = Subtract(stage5Object_->GetWorldTransform(i).translation_, { 0.0f,0.0f,0.0f });
+						Vector3 v1 = Subtract( { 0.0f,0.0f,0.0f }, stage5Object_->GetWorldTransform(i).translation_);
 						v1 = Normalise(v1);
 						player_->SetReflectRotate(v1);
 					}
@@ -90,7 +90,12 @@ void Stage5Scene::Update()
 			}
 		}
 	}
-	
+	if (hitCount == 0) {
+		DrawFlag = true;
+	}
+	else {
+		DrawFlag = false;
+	}
 	if (isPlayerHit == true) {
 		playerHitCount++;
 	}
@@ -128,8 +133,9 @@ void Stage5Scene::Draw3D()
 	
 	player_->Draw(viewProjection_, directionalLight_);
 	
-
-	stage5Object_->Draw(viewProjection_, directionalLight_);
+	
+		stage5Object_->Draw(viewProjection_, directionalLight_);
+	
 	//ワイヤーフレーム描画準備
 	//ワイヤーフレームで描画したいものはこれより下に描画処理を書く
 	//これより下の3D描画は全てワイヤーフレームになるから注意してね

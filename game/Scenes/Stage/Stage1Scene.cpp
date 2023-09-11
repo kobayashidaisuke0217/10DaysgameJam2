@@ -79,8 +79,10 @@ void Stage1Scene::Update()
 						hitCount++;
 						player_->isHit();
 						isPlayerHit = true;
-						Vector3 v1 = Subtract(stage1Object_->GetWorldTransform(i).translation_, { 0.0f,0.0f,0.0f });
+						Vector3 v1 = Subtract(  stage1Object_->GetWorldTransform(i).translation_, { 0.0f,0.0f,0.0f });
+						
 						v1 = Normalise(v1);
+						
 						player_->SetReflectRotate(v1);
 					}
 				}

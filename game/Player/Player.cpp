@@ -28,7 +28,7 @@ void Player::Initialize()
 void Player::Update()
 {
 	structSphere_.center = worldTransform_.GetWorldPos();
-	structSphere_.radius = 4.0f;
+	structSphere_.radius = 5.0f;
 	
 	
 
