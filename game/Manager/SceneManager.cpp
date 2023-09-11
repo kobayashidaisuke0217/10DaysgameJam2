@@ -56,7 +56,12 @@ void SceneManager::Init()
 	sceneArr_[GAME_SCENE] = std::make_unique <GameScene>();
 	sceneArr_[STAGE1_SCENE] = std::make_unique <Stage1Scene>();
 	sceneArr_[STAGE2_SCENE] = std::make_unique <Stage2Scene>();
+
+	sceneArr_[STAGE3_SCENE] = std::make_unique <Stage3Scene>();
+	sceneArr_[STAGE4_SCENE] = std::make_unique <Stage4Scene>();
+
 	sceneArr_[CLEAR_SCENE] = std::make_unique <ClearScene>();
+
 	sceneNum_ = TITLE_SCENE;
 	sceneArr_[sceneNum_]->Initialize();
 	input=Input::GetInstance();
