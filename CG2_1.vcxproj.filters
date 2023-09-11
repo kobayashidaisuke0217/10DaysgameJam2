@@ -201,17 +201,17 @@
     <ClCompile Include="game\Scenes\ClearScene.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Stage3Scene.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="game\Scenes\Stage\StageObject\Stage3Object.cpp">
+      <Filter>ソース ファイル\Scenes\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Stage3Object.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="game\Scenes\Stage\StageObject\Stage4Object.cpp">
+      <Filter>ソース ファイル\Scenes\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Stage4Scene.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="game\Scenes\Stage\Stage3Scene.cpp">
+      <Filter>ソース ファイル\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Stage4Object.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="game\Scenes\Stage\Stage4Scene.cpp">
+      <Filter>ソース ファイル\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -341,17 +341,17 @@
     <ClInclude Include="game\Scenes\ClearScene.h">
       <Filter>ヘッダー ファイル\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Stage3Scene.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="game\Scenes\Stage\Stage4Scene.h">
+      <Filter>ヘッダー ファイル\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Stage3Object.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="game\Scenes\Stage\Stage3Scene.h">
+      <Filter>ヘッダー ファイル\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Stage4Scene.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="game\Scenes\Stage\StageObject\Stage3Object.h">
+      <Filter>ヘッダー ファイル\Scenes\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Stage4Object.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="game\Scenes\Stage\StageObject\Stage4Object.h">
+      <Filter>ヘッダー ファイル\Scenes\Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
