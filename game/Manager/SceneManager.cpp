@@ -59,6 +59,7 @@ void SceneManager::Init()
 
 	sceneArr_[STAGE3_SCENE] = std::make_unique <Stage3Scene>();
 	sceneArr_[STAGE4_SCENE] = std::make_unique <Stage4Scene>();
+	sceneArr_[STAGE5_SCENE] = std::make_unique <Stage5Scene>();
 
 	sceneArr_[CLEAR_SCENE] = std::make_unique <ClearScene>();
 

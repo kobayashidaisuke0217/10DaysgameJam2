@@ -7,11 +7,9 @@
 #include "Texturemanager.h"
 #include "Stage1Scene.h"
 #include "Stage2Scene.h"
-
 #include "Stage3Scene.h"
 #include "Stage4Scene.h"
-
-
+#include "Stage5Scene.h"
 #include "ClearScene.h"
 
 class SceneManager
@@ -29,7 +27,7 @@ private:
 	
 	Texturemanager* textureManager_;
 
-	std::unique_ptr<Iscene> sceneArr_[7];
+	std::unique_ptr<Iscene> sceneArr_[8];
 
 
 

@@ -213,6 +213,12 @@
     <ClCompile Include="game\Scenes\Stage\Stage4Scene.cpp">
       <Filter>ソース ファイル\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="game\Scenes\Stage\Stage5Scene.cpp">
+      <Filter>ソース ファイル\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="game\Scenes\Stage\StageObject\Stage5Object.cpp">
+      <Filter>ソース ファイル\Scenes\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector4.h">
@@ -351,6 +357,12 @@
       <Filter>ヘッダー ファイル\Scenes\Objects</Filter>
     </ClInclude>
     <ClInclude Include="game\Scenes\Stage\StageObject\Stage4Object.h">
+      <Filter>ヘッダー ファイル\Scenes\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="game\Scenes\Stage\Stage5Scene.h">
+      <Filter>ヘッダー ファイル\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="game\Scenes\Stage\StageObject\Stage5Object.h">
       <Filter>ヘッダー ファイル\Scenes\Objects</Filter>
     </ClInclude>
   </ItemGroup>
