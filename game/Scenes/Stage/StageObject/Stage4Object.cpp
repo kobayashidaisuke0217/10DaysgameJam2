@@ -41,13 +41,13 @@ void Stage4Object::Initialize()
 	worldTransformWall_[2].scale_ = { 0.03f,0.05f,0.4f };
 
 	worldTransformWall_[3].translation_ = { -0.1f,0.0030f,-0.27f };
-	worldTransformWall_[3].scale_ = { 0.03f,0.05f,0.4f };
-	worldTransformWall_[3].rotation_.y = 30.0f;
+	worldTransformWall_[3].scale_ = { 0.4f,0.05f,0.03f };
+	/*worldTransformWall_[3].rotation_.y = 30.0f;*/
 
 	//反射する壁
 	worldTransformWall_[4].translation_ = { -0.35f,0.0030f,0.40f };
 	worldTransformWall_[4].scale_ = { 0.01f,0.8f,0.65f };
-	worldTransformWall_[4].rotation_.y = 7.2f;
+	//worldTransformWall_[4].rotation_.y = 7.2f;
 
 	//敵
 	worldTransformWall_[5].translation_ = { 0.12f,0.0030f,0.20f };
