@@ -35,6 +35,8 @@ void Stage1Scene::Initialize()
 	stage1Object_->Initialize();
 	DrawFlag = true;
 	count = 0;
+	playerHitCount = 0;
+	isPlayerHit = false;
 }
 
 void Stage1Scene::Update()
@@ -73,21 +75,26 @@ void Stage1Scene::Update()
 			for (int i = 0; i < 6; i++) {
 
 				if (IsCollision(stage1Object_->GetObb(i), player_->GetStructSphere())) {
-					hitCount++;
+					if (isPlayerHit == false) {
+						hitCount++;
+						player_->isHit();
+						isPlayerHit = true;
+						Vector3 v1 = Subtract(stage1Object_->GetWorldTransform(i).translation_, { 0.0f,0.0f,0.0f });
+						v1 = Normalise(v1);
+						player_->SetReflectRotate(v1);
+					}
 				}
 
 			}
 		}
 	}
-	if (hitCount != 0) {    
-
-	/*	sceneNum = TITLE_SCENE;*/
-		DrawFlag = false;
-	}
-	else {
-		DrawFlag = true;
-	}
 	
+	if (isPlayerHit==true) {
+		playerHitCount++;
+	}
+	if (playerHitCount >= 10) {
+		isPlayerHit = false;
+	}
 	viewProjection_.UpdateMatrix();
 	
 	//viewProjection_.TransferMatrix();

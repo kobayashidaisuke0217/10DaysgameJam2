@@ -25,6 +25,8 @@ public:
 	bool GetCameraFlag() { return cameraChangeFlag; }
 	StructSphere GetStructSphere() { return structSphere_; }
 	void  SetCamera(FlytargetCamera* camera) { camera_ = camera; }
+	void isHit() { isHit_ = true; }
+	void SetReflectRotate(Vector3 rotate) { ReflectRotate_ = rotate; };
 private:
 	enum class Behavior {
 		kMove,
@@ -48,6 +50,8 @@ private:
 	Vector3 velocity;
 	bool flayFlag;
 	WorldTransform targetWorldTransform_;
+	bool isHit_;
+	Vector3 ReflectRotate_;
 private:
 	void Move();
 	void Fly();

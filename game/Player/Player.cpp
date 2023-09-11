@@ -157,7 +157,14 @@ void Player::BehaviorFlyUpdate()
 		Fly();
 	}
 	if (flayFlag == true) {
+		if (isHit_ == true) {
+			//velocity = Multiply(-1.0f, velocity);
+			velocity = Reflect(velocity, ReflectRotate_);
+			velocity = Normalise(velocity);
+			isHit_ = false;
+		}
 		worldTransform_.translation_ = Add(worldTransform_.translation_, velocity);
+		
 	}
 	
 		const float KBulletSped = 50.0f;

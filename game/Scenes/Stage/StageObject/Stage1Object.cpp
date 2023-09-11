@@ -68,7 +68,7 @@ void Stage1Object::Update()
 	float inputFloat3[3] = { worldTransformWall_[5].translation_.x + 1, worldTransformWall_[5].translation_.y + 1, worldTransformWall_[5].translation_.z + 1 };
 
 	ImGui::Begin("Goal");
-	ImGui::SliderFloat3("obbrotate", &obb_[0].orientation[0].x, -3.0f, 3.0f);
+	ImGui::SliderFloat3("obbrotate", &worldTransformWall_[0].rotation_.x, -3.0f, 3.0f);
 	//ImGui::SliderFloat3("rotate", &ground_->GetWorldTransform().rotation_.x, -3.0f, 3.0f);
 	ImGui::End();
 
