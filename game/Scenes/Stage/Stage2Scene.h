@@ -42,6 +42,8 @@ private:
 	Ground* ground_;
 	Player* player_;
 	bool DrawFlag = true;
+	bool cameraChangeFlag;
+	int count = 0;
 	void Draw2D();
 	void Draw3D();
 };

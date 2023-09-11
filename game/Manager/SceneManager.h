@@ -9,7 +9,7 @@
 #include "Stage2Scene.h"
 #include "Stage3Scene.h"
 #include "Stage4Scene.h"
-#include "Stage5Scene.h"
+#include "stage5Scene.h"
 #include "ClearScene.h"
 
 class SceneManager

@@ -15,6 +15,7 @@ public:
 	void Finalize();
 	void SetGround(Ground* ground) { ground_ = ground; }
 	OBB GetObb(int num) { return obb_[num]; }
+	OBB GetObbGoal() { return obbGoal_; }
 private:
 	WorldTransform worldTransformWall_[6];
 	WorldTransform worldTransformGoal_;
@@ -24,6 +25,7 @@ private:
 	Ground* ground_;
 	int moveCount_[4];
 	OBB obb_[6];
+	OBB obbGoal_;
 private:
 	void SetParent(const WorldTransform* parent);
 
