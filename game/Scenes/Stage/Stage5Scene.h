@@ -37,6 +37,9 @@ private:
 
 	Ground* ground_;
 	Player* player_;
+	int count = 0;
+	bool DrawFlag = true;
+	bool cameraChangeFlag;
 	void Draw2D();
 	void Draw3D();
 

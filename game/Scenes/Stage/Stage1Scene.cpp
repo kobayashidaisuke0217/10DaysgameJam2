@@ -80,7 +80,8 @@ void Stage1Scene::Update()
 		}
 	}
 	if (hitCount != 0) {    
-		sceneNum = TITLE_SCENE;
+
+	/*	sceneNum = TITLE_SCENE;*/
 		DrawFlag = false;
 	}
 	else {

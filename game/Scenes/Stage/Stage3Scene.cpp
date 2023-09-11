@@ -23,23 +23,30 @@ void Stage3Scene::Initialize()
 	player_->SetTarget(&ground_->GetWorldTransform());
 	FlytargetCamera_ = new FlytargetCamera();
 	FlytargetCamera_->Initialize();
-	//FlytargetCamera_->Setplayer(player_);
+
+	FlytargetCamera_->SetTarget(&player_->GetWorldTransform());
+	player_->SetCamera(FlytargetCamera_);
 	camera_ = new camera();
 	camera_->Initialize();
-	camera_->SetTarget(&player_->GetWorldTransform());
-	//player_->SetViewProjection(&camera_->GetViewProjection());
+	camera_->SetTarget(&ground_->GetWorldTransform());
+
 	stage3Object_ = new Stage3Object();
 	stage3Object_->SetGround(ground_);
 	stage3Object_->Initialize();
+	DrawFlag = true;
+	count = 0;
 }
 
 void Stage3Scene::Update()
 {
 
+	int hitCount = 0;
+	count++;
+
 	directionalLight_.direction = Normalise(directionalLight_.direction);
 	ground_->Update();
 	player_->Update();
-
+    stage3Object_->Update();
 	if (player_->GetCameraFlag() == false) {
 		camera_->Update();
 		viewProjection_.rotation_ = camera_->GetViewProjection().rotation_;
@@ -54,9 +61,35 @@ void Stage3Scene::Update()
 		viewProjection_.matView = FlytargetCamera_->GetViewProjection().matView;
 		viewProjection_.matProjection = FlytargetCamera_->GetViewProjection().matProjection;
 	}
+	ground_->SetPlayerMoveFlag(player_->GetCameraFlag());
+
+	if (count >= 10) {
+		if (IsCollision(stage3Object_->GetObbGoal(), player_->GetStructSphere())) {
+			sceneNum = CLEAR_SCENE;
+
+			return;
+		}
+		else {
+			for (int i = 0; i < 6; i++) {
+
+				if (IsCollision(stage3Object_->GetObb(i), player_->GetStructSphere())) {
+					hitCount++;
+				}
+
+			}
+		}
+	}
+	if (hitCount != 0) {
+		sceneNum = TITLE_SCENE;
+		DrawFlag = false;
+	}
+	else {
+		DrawFlag = true;
+	}
+
 	viewProjection_.UpdateMatrix();
-	stage3Object_->Update();
-	//viewProjection_.TransferMatrix();
+	
+	
 
 	ImGui::Begin("Scene");
 	ImGui::InputInt("SceneNum", &sceneNum);
@@ -81,9 +114,9 @@ void Stage3Scene::Draw3D()
 		ground_->Draw(viewProjection_, directionalLight_);
 	}
 
-	if (player_->GetCameraFlag() == false) {
+	
 		player_->Draw(viewProjection_, directionalLight_);
-	}
+	
 
 	stage3Object_->Draw(viewProjection_, directionalLight_);
 	//ワイヤーフレーム描画準備
