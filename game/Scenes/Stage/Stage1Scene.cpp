@@ -85,7 +85,7 @@ void Stage1Scene::Update()
    					v1 = Normalise(v1);
 					v2 = Normalise(v2);
 
-					const Vector3 cross = Cross(v1, v2);
+					Vector3 cross = Cross(v1, v2);
 
 					player_->SetRotate(cross);
 				}
