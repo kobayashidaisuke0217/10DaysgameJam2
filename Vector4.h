@@ -202,3 +202,9 @@ inline Matrix4x4 MakeRotateXYZMatrix(const Vector3& rotate) {
 		c.x * s.y * c.z + s.x * s.z,	c.x * s.y * s.z - s.x * c.z,	c.x * c.y,	0.0f,
 		0.0f,	0.0f,	0.0f,	1.0f };
 }
+inline Vector3 Reflect(const Vector3& input, const Vector3& normal) {
+	Vector3 r;
+	r = input - 2 * Dot(input, normal) * normal;
+
+	return r;
+}

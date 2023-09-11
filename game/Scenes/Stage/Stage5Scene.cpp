@@ -34,6 +34,8 @@ void Stage5Scene::Initialize()
 	stage5Object_->Initialize();
 	DrawFlag = true;
 	count = 0;
+	playerHitCount = 0;
+	isPlayerHit = false;
 }
 
 void Stage5Scene::Update()
@@ -67,23 +69,29 @@ void Stage5Scene::Update()
 			return;
 		}
 		else {
-			for (int i = 0; i < 6; i++) {
+			for (int i = 0; i < 8; i++) {
 
 				if (IsCollision(stage5Object_->GetObb(i), player_->GetStructSphere())) {
-					hitCount++;
+					if (isPlayerHit == false) {
+						hitCount++;
+						player_->isHit();
+						isPlayerHit = true;
+						Vector3 v1 = Subtract(stage5Object_->GetWorldTransform(i).translation_, { 0.0f,0.0f,0.0f });
+						v1 = Normalise(v1);
+						player_->SetReflectRotate(v1);
+					}
 				}
 
 			}
 		}
 	}
-	if (hitCount != 0) {
-		sceneNum = TITLE_SCENE;
-		DrawFlag = false;
+	
+	if (isPlayerHit == true) {
+		playerHitCount++;
 	}
-	else {
-		DrawFlag = true;
+	if (playerHitCount >= 10) {
+		isPlayerHit = false;
 	}
-
 
 	viewProjection_.UpdateMatrix();
 

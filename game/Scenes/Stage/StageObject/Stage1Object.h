@@ -16,6 +16,7 @@ public:
 	void SetGround(Ground* ground) { ground_ = ground; }
 	OBB GetObb(int num) { return obb_[num]; }
 	OBB GetObbGoal() { return obbGoal_; }
+	WorldTransform GetWorldTransform(int num) { return worldTransformWall_[num]; }
 private:
 	WorldTransform worldTransformWall_[6];
 	WorldTransform worldTransformGoal_;

@@ -39,6 +39,8 @@ private:
 	Player* player_;
 	int count = 0;
 	bool DrawFlag = true;
+	int playerHitCount;
+	bool isPlayerHit;
 	bool cameraChangeFlag;
 	void Draw2D();
 	void Draw3D();
