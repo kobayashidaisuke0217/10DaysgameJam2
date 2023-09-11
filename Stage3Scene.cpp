@@ -23,11 +23,11 @@ void Stage3Scene::Initialize()
 	player_->SetTarget(&ground_->GetWorldTransform());
 	FlytargetCamera_ = new FlytargetCamera();
 	FlytargetCamera_->Initialize();
-	FlytargetCamera_->Setplayer(player_);
+	//FlytargetCamera_->Setplayer(player_);
 	camera_ = new camera();
 	camera_->Initialize();
 	camera_->SetTarget(&player_->GetWorldTransform());
-	player_->SetViewProjection(&camera_->GetViewProjection());
+	//player_->SetViewProjection(&camera_->GetViewProjection());
 	stage3Object_ = new Stage3Object();
 	stage3Object_->SetGround(ground_);
 	stage3Object_->Initialize();
