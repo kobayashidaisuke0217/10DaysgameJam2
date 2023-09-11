@@ -61,6 +61,24 @@
     <Filter Include="ヘッダー ファイル\Manager\collision">
       <UniqueIdentifier>{a12b9879-93c4-4971-8946-dfa1d654bf69}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Scenes\Objects">
+      <UniqueIdentifier>{f5ff4640-a4ce-4ab5-8aa3-c1b8ed497c5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Player">
+      <UniqueIdentifier>{840f27f4-2885-4237-9f4e-9abd8b601643}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\camera">
+      <UniqueIdentifier>{34c38657-468b-4f4b-b700-1c357d099999}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Scenes\Objects">
+      <UniqueIdentifier>{45992a44-2a3a-484d-8182-bfc7a121c285}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Utility\camera">
+      <UniqueIdentifier>{bc7f154a-2a0c-49a9-8999-59c7dc03cc51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Player">
+      <UniqueIdentifier>{2a94538a-9373-493d-af5b-2c02c1306f7a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -141,43 +159,46 @@
     <ClCompile Include="Engine\Manager\Collider\CollisionManager.cpp">
       <Filter>ソース ファイル\Manager\collision</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Manager\Input\Input.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Ground.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="camera.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Audio.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="ObjectBale.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Plane.cpp">
+    <ClCompile Include="Engine\3d\Plane.cpp">
+      <Filter>ソース ファイル\3d</Filter>
+    </ClCompile>
+    <ClCompile Include="game\Ground\Ground.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="ShadowPlane.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="game\Scenes\Stage\StageObject\Stage2Object.cpp">
+      <Filter>ソース ファイル\Scenes\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="FlytargetCamera.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="game\Scenes\Stage\StageObject\Stage1Object.cpp">
+      <Filter>ソース ファイル\Scenes\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Stage1Scene.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="game\Scenes\Stage\Stage1Scene.cpp">
+      <Filter>ソース ファイル\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Stage1Object.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="game\Player\Player.cpp">
+      <Filter>ソース ファイル\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Stage2Scene.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="game\Player\ShadowPlane.cpp">
+      <Filter>ソース ファイル\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Stage2Object.cpp">
+    <ClCompile Include="Engine\Manager\Input\Input.cpp">
+      <Filter>ソース ファイル\base</Filter>
+    </ClCompile>
+    <ClCompile Include="Audio.cpp">
+      <Filter>ソース ファイル\base</Filter>
+    </ClCompile>
+    <ClCompile Include="game\Camera\camera.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="game\Scenes\Stage\Stage2Scene.cpp">
+      <Filter>ソース ファイル\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="game\Camera\FlytargetCamera.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="game\Scenes\ClearScene.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Stage3Scene.cpp">
@@ -278,44 +299,47 @@
     <ClInclude Include="Engine\Manager\Collider\Collider.h">
       <Filter>ヘッダー ファイル\Manager\collision</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Manager\Input\Input.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Ground.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="camera.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Audio.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="ObjectBale.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Plane.h">
+    <ClInclude Include="Engine\3d\Plane.h">
+      <Filter>ヘッダー ファイル\3d</Filter>
+    </ClInclude>
+    <ClInclude Include="game\Ground\Ground.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ShadowPlane.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="game\Scenes\Stage\StageObject\Stage2Object.h">
+      <Filter>ヘッダー ファイル\Scenes\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="FlytargetCamera.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="game\Scenes\Stage\Stage2Scene.h">
+      <Filter>ヘッダー ファイル\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Stage1Scene.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="game\Scenes\Stage\Stage1Scene.h">
+      <Filter>ヘッダー ファイル\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Stage1Object.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="game\Scenes\Stage\StageObject\Stage1Object.h">
+      <Filter>ヘッダー ファイル\Scenes\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Stage2Scene.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Audio.h">
+      <Filter>ヘッダー ファイル\base</Filter>
     </ClInclude>
-    <ClInclude Include="Stage2Object.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Engine\Manager\Input\Input.h">
+      <Filter>ヘッダー ファイル\base</Filter>
+    </ClInclude>
+    <ClInclude Include="game\Camera\camera.h">
+      <Filter>ヘッダー ファイル\Utility\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="game\Camera\FlytargetCamera.h">
+      <Filter>ヘッダー ファイル\Utility\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="game\Player\Player.h">
+      <Filter>ヘッダー ファイル\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="game\Player\ShadowPlane.h">
+      <Filter>ヘッダー ファイル\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="game\Scenes\ClearScene.h">
+      <Filter>ヘッダー ファイル\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Stage3Scene.h">
       <Filter>ヘッダー ファイル</Filter>

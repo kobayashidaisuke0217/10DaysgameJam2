@@ -44,10 +44,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)/;$(ProjectDir)/Engine/3d;$(ProjectDir)/Engine/base;$(ProjectDir)/Engine/2d;$(ProjectDir)/Engine/MyUtility;$(ProjectDir)/Engine/Manager/Texture;$(ProjectDir)/Engine/Manager/Input;$(ProjectDir)/Engine/Manager/Collider;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)/;$(ProjectDir)/Engine/3d;$(ProjectDir)/Engine/base;$(ProjectDir)/Engine/2d;$(ProjectDir)/Engine/MyUtility;$(ProjectDir)/Engine/Manager/Texture;$(ProjectDir)/Engine/Manager/Input;$(ProjectDir)/Engine/Manager/Collider;$(ProjectDir)/game/Camera;$(ProjectDir)/game/Ground;$(ProjectDir)/game/Scenes;$(ProjectDir)/game/Scenes/Stage;$(ProjectDir)/game/Scenes/Stage/StageObject;$(ProjectDir)/game/Player;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)/;$(ProjectDir)/Engine/3d;$(ProjectDir)/Engine/base;$(ProjectDir)/Engine/2d;$(ProjectDir)/Engine/MyUtility;$(ProjectDir)/Engine/Manager/Texture;$(ProjectDir)/Engine/Manager/Input;$(ProjectDir)/Engine/Manager/Collider;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)/;$(ProjectDir)/Engine/3d;$(ProjectDir)/Engine/base;$(ProjectDir)/Engine/2d;$(ProjectDir)/Engine/MyUtility;$(ProjectDir)/Engine/Manager/Texture;$(ProjectDir)/Engine/Manager/Input;$(ProjectDir)/Engine/Manager/Collider;$(ProjectDir)/game/Camera;$(ProjectDir)/game/Ground;$(ProjectDir)/game/Scenes;$(ProjectDir)/game/Scenes/Stage;$(ProjectDir)/game/Scenes/Stage/StageObject;$(ProjectDir)/game/Player;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -95,10 +95,10 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Audio.cpp" />
-    <ClCompile Include="camera.cpp" />
     <ClCompile Include="Engine\2d\Sprite.cpp" />
     <ClCompile Include="Engine\2d\Triangle.cpp" />
     <ClCompile Include="Engine\3d\Model.cpp" />
+    <ClCompile Include="Engine\3d\Plane.cpp" />
     <ClCompile Include="Engine\3d\Sphere.cpp" />
     <ClCompile Include="Engine\3d\ViewProjection.cpp" />
     <ClCompile Include="Engine\3d\worldTransform.cpp" />
@@ -117,15 +117,24 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="externals\imgui\imgui_impl_win32.cpp" />
     <ClCompile Include="externals\imgui\imgui_tables.cpp" />
     <ClCompile Include="externals\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="FlytargetCamera.cpp" />
+    <ClCompile Include="game\Camera\camera.cpp" />
+    <ClCompile Include="game\Camera\FlytargetCamera.cpp" />
+    <ClCompile Include="game\Ground\Ground.cpp" />
     <ClCompile Include="game\Manager\SceneManager.cpp" />
+    <ClCompile Include="game\Player\Player.cpp" />
+    <ClCompile Include="game\Player\ShadowPlane.cpp" />
+    <ClCompile Include="game\Scenes\ClearScene.cpp" />
     <ClCompile Include="game\Scenes\gameScene.cpp" />
     <ClCompile Include="game\Scenes\Iscene.cpp" />
+    <ClCompile Include="game\Scenes\Stage\Stage1Scene.cpp" />
+    <ClCompile Include="game\Scenes\Stage\Stage2Scene.cpp" />
+    <ClCompile Include="game\Scenes\Stage\StageObject\Stage1Object.cpp" />
+    <ClCompile Include="game\Scenes\Stage\StageObject\Stage2Object.cpp" />
     <ClCompile Include="game\Scenes\TitleScene.cpp" />
-    <ClCompile Include="Ground.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mymath.cpp" />
     <ClCompile Include="ObjectBale.cpp" />
+
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="ShadowPlane.cpp" />
@@ -137,13 +146,14 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Stage3Scene.cpp" />
     <ClCompile Include="Stage4Object.cpp" />
     <ClCompile Include="Stage4Scene.cpp" />
+
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Audio.h" />
-    <ClInclude Include="camera.h" />
     <ClInclude Include="Engine\2d\Sprite.h" />
     <ClInclude Include="Engine\2d\Triangle.h" />
     <ClInclude Include="Engine\3d\Model.h" />
+    <ClInclude Include="Engine\3d\Plane.h" />
     <ClInclude Include="Engine\3d\Sphere.h" />
     <ClInclude Include="Engine\3d\ViewProjection.h" />
     <ClInclude Include="Engine\3d\worldTransform.h" />
@@ -165,13 +175,22 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="externals\imgui\imstb_rectpack.h" />
     <ClInclude Include="externals\imgui\imstb_textedit.h" />
     <ClInclude Include="externals\imgui\imstb_truetype.h" />
-    <ClInclude Include="FlytargetCamera.h" />
+    <ClInclude Include="game\Camera\camera.h" />
+    <ClInclude Include="game\Camera\FlytargetCamera.h" />
+    <ClInclude Include="game\Ground\Ground.h" />
     <ClInclude Include="game\Manager\SceneManager.h" />
+    <ClInclude Include="game\Player\Player.h" />
+    <ClInclude Include="game\Player\ShadowPlane.h" />
+    <ClInclude Include="game\Scenes\ClearScene.h" />
     <ClInclude Include="game\Scenes\gameScene.h" />
     <ClInclude Include="game\Scenes\Iscene.h" />
+    <ClInclude Include="game\Scenes\Stage\Stage1Scene.h" />
+    <ClInclude Include="game\Scenes\Stage\Stage2Scene.h" />
+    <ClInclude Include="game\Scenes\Stage\StageObject\Stage1Object.h" />
+    <ClInclude Include="game\Scenes\Stage\StageObject\Stage2Object.h" />
     <ClInclude Include="game\Scenes\TitleScene.h" />
-    <ClInclude Include="Ground.h" />
     <ClInclude Include="ObjectBale.h" />
+
     <ClInclude Include="Plane.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="ShadowPlane.h" />
@@ -183,6 +202,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Stage3Scene.h" />
     <ClInclude Include="Stage4Object.h" />
     <ClInclude Include="Stage4Scene.h" />
+
     <ClInclude Include="Vector4.h" />
   </ItemGroup>
   <ItemGroup>

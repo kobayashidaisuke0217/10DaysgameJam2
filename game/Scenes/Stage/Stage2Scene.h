@@ -41,6 +41,7 @@ private:
 
 	Ground* ground_;
 	Player* player_;
+	bool DrawFlag = true;
 	void Draw2D();
 	void Draw3D();
 };

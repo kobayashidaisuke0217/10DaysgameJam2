@@ -18,6 +18,7 @@ public:
 	 
 	const WorldTransform& GetWorldTransform() { return worldTransform_; }
 	void SetViewProjection(const ViewProjection* view) { viewProjection_ = view; }
+	void SetPlayerMoveFlag(const bool& Flag) { moveFlag = Flag; }
 private:
 	Sphere* sphere_;
 	WorldTransform worldTransform_;
@@ -26,5 +27,6 @@ private:
 	Texturemanager* textureManager_;
 	Input* input_;
 	float Scale = 1.0f;
+	bool moveFlag;
 };
 

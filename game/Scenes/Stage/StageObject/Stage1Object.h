@@ -14,6 +14,8 @@ public:
 	void Draw(const ViewProjection& viewprojection, const DirectionalLight& light);
 	void Finalize();
 	void SetGround(Ground* ground) { ground_ = ground; }
+	OBB GetObb(int num) { return obb_[num]; }
+	OBB GetObbGoal() { return obbGoal_; }
 private:
 	WorldTransform worldTransformWall_[6];
 	WorldTransform worldTransformGoal_;
@@ -21,6 +23,8 @@ private:
 	uint32_t textureHandle_[2];
 	Texturemanager* textureManager_;
 	Ground* ground_;
+	OBB obb_[6];
+	OBB obbGoal_;
 private:
 	void SetParent(const WorldTransform* parent);
 };

@@ -4,8 +4,12 @@ enum  Scene {
 	GAME_SCENE,
 	STAGE1_SCENE,
 	STAGE2_SCENE,
+
 	STAGE3_SCENE,
 	STAGE4_SCENE,
+
+	CLEAR_SCENE
+
 };
 class Iscene
 {
