@@ -65,7 +65,8 @@ void Stage1Scene::Update()
 	ground_->SetPlayerMoveFlag(player_->GetCameraFlag());
 	if (count >= 10) {
 		if (IsCollision(stage1Object_->GetObbGoal(), player_->GetStructSphere())) {
-   			sceneNum = CLEAR_SCENE;
+   			//sceneNum = CLEAR_SCENE;
+			hitCount++;
 			return;
 		}
 		for (int i = 0; i < 6; i++) {
@@ -76,9 +77,10 @@ void Stage1Scene::Update()
 
 		}
 	}
-	/*if (hitCount != 0) {
-		sceneNum = TITLE_SCENE;
-	}*/
+	if (hitCount != 0) {    
+		//sceneNum = TITLE_SCENE;
+		DrawFlag = false;
+	}
 	else {
 		DrawFlag = true;
 	}
@@ -106,9 +108,9 @@ void Stage1Scene::Draw()
 
 void Stage1Scene::Draw3D()
 {
-	if (!input_->PressKey(DIK_SPACE)) {
+	/*if (!input_->PressKey(DIK_SPACE)) {
 		ground_->Draw(viewProjection_, directionalLight_);
-	}
+	}*/
 
 	
 	player_->Draw(viewProjection_, directionalLight_);

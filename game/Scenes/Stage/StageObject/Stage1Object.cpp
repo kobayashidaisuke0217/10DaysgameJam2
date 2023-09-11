@@ -52,7 +52,7 @@ void Stage1Object::Update()
 		obb_[i].center = worldTransformWall_[i].GetWorldPos();
 
 		GetOrientations(MakeRotateXYZMatrix(worldTransformWall_[i].rotation_), obb_[i].orientation);
-		obb_[i].size = worldTransformWall_[i].scale_ * 90.0f;
+		obb_[i].size = worldTransformWall_[i].scale_ * 100.0f;
 	}
 	obbGoal_.center = worldTransformGoal_.GetWorldPos();
 	GetOrientations(MakeRotateXYZMatrix(worldTransformGoal_.rotation_), obbGoal_.orientation);

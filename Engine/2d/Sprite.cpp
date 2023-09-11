@@ -1,6 +1,6 @@
 #include "Sprite.h"
 
-void Sprite::Initialize( const Vector4& a, const Vector4& b, const DirectionalLight& light)
+void Sprite::Initialize( const Vector4& a, const Vector4& b)
 {
 	dxCommon_ = DirectXCommon::GetInstance();
 	engine_ = BlueMoon::GetInstance();
@@ -8,7 +8,7 @@ void Sprite::Initialize( const Vector4& a, const Vector4& b, const DirectionalLi
 	CreateVartexData(a,b);
 	SetColor();
 	CreateTransform();
-	/*CreateDictionalLight(light);*/
+	
 }
 void Sprite::SetColor() {
 	materialResource_ = DirectXCommon::CreateBufferResource(dxCommon_->GetDevice().Get(), sizeof(Material));

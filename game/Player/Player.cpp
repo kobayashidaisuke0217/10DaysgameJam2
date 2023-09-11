@@ -21,13 +21,14 @@ void Player::Initialize()
 	 velocity = { 0.0f,0.0f,0.0f };
 	 flayFlag = false;
 	 targetWorldTransform_.Initialize();
-	 targetWorldTransform_.scale_ = {2.0f,2.0f,2.0f};
+	 targetWorldTransform_.scale_ = {4.0f,4.0f,4.0f};
+	 BehaviorMoveInitialize();
 }
 
 void Player::Update()
 {
 	structSphere_.center = worldTransform_.GetWorldPos();
-	structSphere_.radius = 2.0f;
+	structSphere_.radius = 4.0f;
 	
 	
 
@@ -70,13 +71,22 @@ void Player::Draw(const ViewProjection& viewprojection, const DirectionalLight& 
 	else {
 		targetSphere_->Draw({ 1.0f,1.0f,1.0f,1.0f }, targetWorldTransform_, texturehandle_, viewprojection, light);
 	}
-	if (flayFlag == false) {
-		//shadowPlane_->Draw(viewprojection, light);
+	/*if (flayFlag == false) {
+		shadowPlane_->Draw(viewprojection, light);
+	}*/
+	switch (behavior_) {
+	case Behavior::kMove:
+		shadowPlane_->Draw(viewprojection, light);
+		break;
+	case Behavior::kFly:
+		
+		break;
 	}
 }
 
 void Player::Finalize()
 {
+	
 	delete targetSphere_;
 	targetWorldTransform_.constBuff_.ReleaseAndGetAddressOf();
 	shadowPlane_->Finalize();
@@ -93,13 +103,13 @@ void Player::Move()
 {
 	float length = Length(Distance(worldTransform_.GetWorldPos(), {target_->matWorld_.m[3][0],target_->matWorld_.m[3][1],target_->matWorld_.m[3][2] }));
 	if (target_) {
-		Vector3 VecOffset = { offset,offset,offset };
+		/*Vector3 VecOffset = { offset,offset,offset };
 
 
 		Matrix4x4 rotateMatrix = MakeRotateMatrix(worldTransform_.rotation_);
 
 		VecOffset = TransformNormal(VecOffset, rotateMatrix);
-		worldTransform_.translation_ = Add(target_->translation_, VecOffset);
+		worldTransform_.translation_ = Add(target_->translation_, VecOffset);*/
 	
 	ImGui::Begin("player");
 	ImGui::DragFloat3("pos", &worldTransform_.translation_.x, 0.1f);
@@ -150,7 +160,7 @@ void Player::BehaviorFlyUpdate()
 		worldTransform_.translation_ = Add(worldTransform_.translation_, velocity);
 	}
 	
-		const float KBulletSped = 30.0f;
+		const float KBulletSped = 50.0f;
 		Vector3  velocitytarget = { 0.0f, 0.0f, KBulletSped };
 
 		velocitytarget = Subtract( GetWorldPos(),
