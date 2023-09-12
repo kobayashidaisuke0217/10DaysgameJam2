@@ -40,6 +40,11 @@ void Stage5Scene::Initialize()
 
 void Stage5Scene::Update()
 {
+	if (input_->PushKey(DIK_Q))
+	{
+		sceneNum = TITLE_SCENE;
+	}
+
 	int hitCount = 0;
 	count++;
 	directionalLight_.direction = Normalise(directionalLight_.direction);

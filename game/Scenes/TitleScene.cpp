@@ -6,54 +6,19 @@ TitleScene::~TitleScene()
 void TitleScene::Initialize()
 {	
 	input = Input::GetInstance();
-	count = 0;
-
 }
 
 void TitleScene::Update()
 {
-	
 	ImGui::Begin("SceneManager");
 	ImGui::InputInt("SceneNum", &sceneNum);
-	ImGui::Text("count %d",count);
+	ImGui::Text("Push To Space");
 	ImGui::End();
-	//if (input->PushKey(DIK_SPACE)) {
-	//	sceneNum = GAME_SCENE;
-	//	count++;
-	//}
 
-	if (input->PushKey(DIK_1))
+	if (input->PushKey(DIK_SPACE))
 	{
-		sceneNum = STAGE1_SCENE;
+		sceneNum = GAME_SCENE;
 	}
-
-	if (input->PushKey(DIK_2))
-	{
-		sceneNum = STAGE2_SCENE;
-	}
-
-	if (input->PushKey(DIK_3))
-	{
-		sceneNum = STAGE3_SCENE;
-	}
-
-	if (input->PushKey(DIK_4))
-	{
-		sceneNum = STAGE4_SCENE;
-	}
-
-	if (input->PushKey(DIK_5))
-	{
-		sceneNum = STAGE5_SCENE;
-	}
-
-	if (sceneNum < 0) {
-		sceneNum = 0;
-		
-	}
-	/*if (count >= 60) {
-		sceneNum=GAME_SCENE;
-	}*/
 }
 
 void TitleScene::Draw()
