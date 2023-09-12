@@ -23,6 +23,11 @@ void camera::SetTarget(const WorldTransform* target) {
 	target_ = target;
 }
 
+void camera::SetPlayer(const WorldTransform* player)
+{
+	this->player = player;
+}
+
 void camera::Move() {
 	if (target_) {
 
@@ -34,6 +39,7 @@ void camera::Move() {
 		
 	}
 	
+
 }
 
 void camera::Rotate() {

@@ -27,6 +27,7 @@ public:
 	void  SetCamera(FlytargetCamera* camera) { camera_ = camera; }
 	void isHit() { isHit_ = true; }
 	void SetReflectRotate(Vector3 rotate) { ReflectRotate_ = rotate; };
+	bool GetGameOver() { return GameOverFlag; }
 private:
 	enum class Behavior {
 		kMove,
@@ -36,6 +37,8 @@ private:
 	//const ViewProjection* viewProjection_ = nullptr;
 	const WorldTransform* target_ = nullptr;
 	Input* input_ = nullptr;
+	Model* playerModel_;
+
 	Sphere* sphere_;
 	Sphere* targetSphere_;
 	Texturemanager* textureManager_;
@@ -52,6 +55,7 @@ private:
 	WorldTransform targetWorldTransform_;
 	bool isHit_;
 	Vector3 ReflectRotate_;
+	bool GameOverFlag = false;
 private:
 	void Move();
 	void Fly();

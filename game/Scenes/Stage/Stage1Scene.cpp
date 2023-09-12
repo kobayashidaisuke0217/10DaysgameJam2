@@ -29,7 +29,7 @@ void Stage1Scene::Initialize()
 	camera_ = new camera();
 	camera_->Initialize();
 	camera_->SetTarget(&ground_->GetWorldTransform());
-
+	camera_->SetPlayer(&player_->GetWorldTransform());
 	stage1Object_ = new Stage1Object();
 	stage1Object_->SetGround(ground_);
 	stage1Object_->Initialize();
