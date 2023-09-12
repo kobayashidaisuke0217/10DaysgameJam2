@@ -76,7 +76,9 @@ void Stage5Scene::Update()
 						hitCount++;
 						player_->isHit();
 						isPlayerHit = true;
-						Vector3 v1 = Subtract( { 0.0f,0.0f,0.0f }, stage5Object_->GetWorldTransform(i).translation_);
+						Vector3/* v1 = Subtract( ground_->GetWorldTransform().translation_, stage5Object_->GetWorldTransform(i).translation_);
+						v1 = Normalise(v1);*/
+						v1 = Cross(ground_->GetWorldTransform().translation_, stage5Object_->GetWorldTransform(i).translation_);
 						v1 = Normalise(v1);
 						player_->SetReflectRotate(v1);
 					}
