@@ -4,7 +4,7 @@ void Stage1Object::Initialize()
 {
 
 	textureManager_ = Texturemanager::GetInstance();
-	textureHandle_[0] = textureManager_->Load("Resource/uvChecker.png");
+	textureHandle_[0] = textureManager_->Load("Resource/Wall.png");
 	textureHandle_[1] = textureManager_->Load("Resource/checkerBoard.png");
 	for (int i = 0; i < 7; i++)
 	{
