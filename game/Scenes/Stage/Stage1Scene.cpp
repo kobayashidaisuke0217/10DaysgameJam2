@@ -29,7 +29,7 @@ void Stage1Scene::Initialize()
 	camera_ = new camera();
 	camera_->Initialize();
 	camera_->SetTarget(&ground_->GetWorldTransform());
-
+	camera_->SetPlayer(&player_->GetWorldTransform());
 	stage1Object_ = new Stage1Object();
 	stage1Object_->SetGround(ground_);
 	stage1Object_->Initialize();
@@ -124,9 +124,9 @@ void Stage1Scene::Draw()
 
 void Stage1Scene::Draw3D()
 {
-	/*if (!input_->PressKey(DIK_SPACE)) {
+	if (!input_->PressKey(DIK_SPACE)) {
 		ground_->Draw(viewProjection_, directionalLight_);
-	}*/
+	}
 
 	
 	player_->Draw(viewProjection_, directionalLight_);

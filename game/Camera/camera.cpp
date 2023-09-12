@@ -23,8 +23,13 @@ void camera::SetTarget(const WorldTransform* target) {
 	target_ = target;
 }
 
+void camera::SetPlayer(const WorldTransform* player)
+{
+	this->player = player;
+}
+
 void camera::Move() {
-	if (target_) {
+	/*if (target_) {
 
 		Vector3 offset = { 0.0f, 2.0f, -280.0f };
 		Matrix4x4 rotateMatrix = MakeRotateMatrix(viewprojection_.rotation_);
@@ -32,8 +37,11 @@ void camera::Move() {
 		offset = TransformNormal(offset, rotateMatrix);
 		viewprojection_.translation_ = Add(target_->translation_, offset);
 		
-	}
-	
+	}*/
+	viewprojection_.translation_ = Subtract( player->translation_,{0.0f,0.0f,0.0f});
+	viewprojection_.translation_ = Normalise(viewprojection_.translation_);
+	viewprojection_.translation_ = Multiply(230.0f, viewprojection_.translation_);
+	viewprojection_.rotation_ = Subtract( player->translation_, { 0.0f,0.0f,0.0f });
 }
 
 void camera::Rotate() {
