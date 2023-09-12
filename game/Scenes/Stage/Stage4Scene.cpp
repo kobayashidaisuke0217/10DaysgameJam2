@@ -35,7 +35,9 @@ void Stage4Scene::Initialize()
 	stage4Object_->Initialize();
 	DrawFlag = true;
 	playerHitCount = 0;
-	isPlayerHit = false;
+	for (int i = 0; i < 8; i++) {
+		isPlayerHit[i] = false;
+	}
 	count = 0;
 }
 
@@ -65,7 +67,7 @@ void Stage4Scene::Update()
 	ground_->SetPlayerMoveFlag(player_->GetCameraFlag());
 	if (count >= 10) {
 		if (IsCollision(stage4Object_->GetObbGoal(), player_->GetStructSphere())) {
-		//	sceneNum = CLEAR_SCENE;
+		sceneNum = CLEAR_SCENE;
 
 			return;
 		}
@@ -73,25 +75,34 @@ void Stage4Scene::Update()
 			for (int i = 0; i < 8; i++) {
 
 				if (IsCollision(stage4Object_->GetObb(i), player_->GetStructSphere())) {
-					if (isPlayerHit == false) {
+					if (isPlayerHit[i] == false) {
 						hitCount++;
 						player_->isHit();
-						isPlayerHit = true;
-						Vector3 v1 = Subtract({ 0.0f,0.0f,0.0f }, stage4Object_->GetWorldTransform(i).translation_);
+						isPlayerHit[i] = true;
+
+						Vector3 v1 = Subtract(stage4Object_->GetWorldTransform(i).GetWorldPos(), { ground_->GetWorldTransform().matWorld_.m[3][0],ground_->GetWorldTransform().matWorld_.m[3][1],ground_->GetWorldTransform().matWorld_.m[3][2] });
+
 						v1 = Normalise(v1);
+
 						player_->SetReflectRotate(v1);
+
+						for (int j = 0; j < 8; j++) {
+							if (i != j) {
+								isPlayerHit[j] = false;
+							}
+						}
+					}
+				}
+				for (int i = 6; i < 8; i++) {
+					if (IsCollision(stage4Object_->GetObb(i), player_->GetStructSphere())) {
+						sceneNum = TITLE_SCENE;
 					}
 				}
 
 			}
 		}
 	}
-	if (isPlayerHit == true) {
-		playerHitCount++;
-	}
-	if (playerHitCount >= 10) {
-		isPlayerHit = false;
-	}
+	
 
 
 

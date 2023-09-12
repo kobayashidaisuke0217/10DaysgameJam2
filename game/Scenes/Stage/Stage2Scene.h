@@ -45,7 +45,7 @@ private:
 	bool cameraChangeFlag;
 	int count = 0;
 	int playerHitCount;
-	bool isPlayerHit;
+	bool isPlayerHit[6];
 	void Draw2D();
 	void Draw3D();
 };

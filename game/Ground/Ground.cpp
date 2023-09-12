@@ -18,6 +18,7 @@ void Ground::Initialize()
 	textureManager_ = Texturemanager::GetInstance();
 	texturehandle_ =textureManager_ ->Load("Resource/uvChecker.png");
 	worldTransform_.scale_ = /*{42.0f,42.0f,42.0f}; */{ 100.0f,100.0f,100.0f };
+	worldTransform_.translation_ = { 7.0f,7.0f,7.0f };
 	moveFlag = true;
 }
 
@@ -27,7 +28,7 @@ void Ground::Update()
 		Scale = 1.0f;
 		ImGui::Begin("Ground");
 		ImGui::DragFloat3("Translate", &worldTransform_.translation_.x, 0.1f);
-		ImGui::DragFloat3("Scale", &worldTransform_.scale_.x, 0.1f);
+		ImGui::DragFloat3("rotate", &worldTransform_.rotation_.x, 0.1f);
 		ImGui::DragFloat("Scale", &Scale, 0.01f);
 		ImGui::End();
 		worldTransform_.scale_ = Multiply(Scale, worldTransform_.scale_);
