@@ -3,8 +3,6 @@
 #include "Input.h"
 class TitleScene:public Iscene
 {
-private:
-	int count;
 public:
 	~TitleScene()override;
 	 void Initialize() override;

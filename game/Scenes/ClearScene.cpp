@@ -7,12 +7,13 @@ void ClearScene::Initialize()
 	input = Input::GetInstance();
 	Texhandle_=textureManager_->Load("Resource/uvChecker.png");
 	sprite_ = new Sprite();
-      	sprite_->Initialize({ 0.0f,0.0f,0.0f,1.0f }, { 1280.0f,720.0f,0.0f,1.0f });
+    sprite_->Initialize({ 0.0f,0.0f,0.0f,1.0f }, { 1280.0f,720.0f,0.0f,1.0f });
 }
 
 void ClearScene::Update()
 {
-	if (input->PushKey(DIK_0)) {
+	if (input->PushKey(DIK_SPACE)) 
+	{
 		sceneNum = TITLE_SCENE;
 	}
 }
