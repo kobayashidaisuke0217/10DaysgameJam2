@@ -6,6 +6,7 @@
 #include "Texturemanager.h"
 #include "Ground.h"
 #include "Plane.h"
+#include "Skydome.h"
 
 class Stage3Object
 {
@@ -29,6 +30,9 @@ private:
 	Ground* ground_;
 	OBB obb_[8];
 	OBB obbGoal_;
+
+	Skydome skyDome_;
+
 private:
 	void SetParent(const WorldTransform* parent);
 };

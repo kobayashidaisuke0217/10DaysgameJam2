@@ -219,6 +219,9 @@
     <ClCompile Include="game\Scenes\Stage\StageObject\Stage5Object.cpp">
       <Filter>ソース ファイル\Scenes\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="game\Skydome\Skydome.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector4.h">
@@ -364,6 +367,9 @@
     </ClInclude>
     <ClInclude Include="game\Scenes\Stage\StageObject\Stage5Object.h">
       <Filter>ヘッダー ファイル\Scenes\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="game\Skydome\Skydome.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

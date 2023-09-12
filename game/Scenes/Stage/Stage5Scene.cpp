@@ -138,9 +138,9 @@ void Stage5Scene::Draw()
 
 void Stage5Scene::Draw3D()
 {
-	//if (!input_->PressKey(DIK_SPACE)) {
-	//	ground_->Draw(viewProjection_, directionalLight_);
-	//}
+	if (!input_->PressKey(DIK_SPACE)) {
+		ground_->Draw(viewProjection_, directionalLight_);
+	}
 
 	
 	player_->Draw(viewProjection_, directionalLight_);

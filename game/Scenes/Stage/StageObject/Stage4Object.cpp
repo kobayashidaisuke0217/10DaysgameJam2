@@ -2,6 +2,7 @@
 
 void Stage4Object::Initialize()
 {
+	skyDome_.Initialize();
 
 	textureManager_ = Texturemanager::GetInstance();
 	textureHandle_[0] = textureManager_->Load("Resource/uvChecker.png");
@@ -70,6 +71,8 @@ void Stage4Object::Initialize()
 
 void Stage4Object::Update()
 {
+	skyDome_.Update();
+
 	for (int i = 0; i < 8; i++)
 	{
 		worldTransformWall_[i].UpdateMatrix();
@@ -113,7 +116,8 @@ void Stage4Object::Update()
 
 void Stage4Object::Draw(const ViewProjection& viewprojection, const DirectionalLight& light)
 {
-	
+	skyDome_.Draw(viewprojection, light);
+
 	plane_->Draw(worldTransformPlane_, viewprojection, { 1.0f,1.0f,1.0f,1.0f }, light, textureHandle_[0]);
 
 	for (int i = 0; i < 5; i++)
