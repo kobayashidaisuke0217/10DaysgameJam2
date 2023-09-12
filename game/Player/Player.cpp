@@ -72,14 +72,14 @@ void Player::Draw(const ViewProjection& viewprojection, const DirectionalLight& 
 		targetSphere_->Draw({ 1.0f,1.0f,1.0f,1.0f }, targetWorldTransform_, texturehandle_, viewprojection, light);
 	}
 	
-	/*switch (behavior_) {
+	switch (behavior_) {
 	case Behavior::kMove:
 		shadowPlane_->Draw(viewprojection, light);
 		break;
 	case Behavior::kFly:
 		
 		break;
-	}*/
+	}
 }
 
 void Player::Finalize()
@@ -158,9 +158,10 @@ void Player::BehaviorFlyUpdate()
 	}
 	if (flayFlag == true) {
 		if (isHit_ == true) {
+			const float KBulletSped = 1.0f;
 			//velocity = Multiply(-1.0f, velocity);
 			velocity = Reflect(velocity, ReflectRotate_);
-			//velocity = Normalise(velocity);
+			velocity = velocity * 1.0f;
 			isHit_ = false;
 		}
 		worldTransform_.translation_ = Add(worldTransform_.translation_, velocity);
@@ -173,6 +174,8 @@ void Player::BehaviorFlyUpdate()
 		velocitytarget = Subtract( GetWorldPos(),
 			camera_->GetViewProjection().translation_);
 		velocitytarget = Multiply(KBulletSped, Normalise(velocitytarget));
+
+
 		targetWorldTransform_.translation_ = Add(worldTransform_.translation_, velocitytarget);
 		ImGui::Begin("ret");
 		ImGui::DragFloat3("", &targetWorldTransform_.translation_.x);

@@ -36,7 +36,9 @@ void Stage1Scene::Initialize()
 	DrawFlag = true;
 	count = 0;
 	playerHitCount = 0;
-	isPlayerHit = false;
+	for (int i = 0; i < 6; i++) {
+		isPlayerHit[i] = false;
+	}
 }
 
 void Stage1Scene::Update()
@@ -75,15 +77,22 @@ void Stage1Scene::Update()
 			for (int i = 0; i < 6; i++) {
 
 				if (IsCollision(stage1Object_->GetObb(i), player_->GetStructSphere())) {
-					if (isPlayerHit == false) {
+					if (isPlayerHit[i] == false) {
 						hitCount++;
 						player_->isHit();
-						isPlayerHit = true;
-						Vector3 v1 = Subtract(  stage1Object_->GetWorldTransform(i).translation_, { 0.0f,0.0f,0.0f });
-						
+						isPlayerHit[i] = true;
+
+						Vector3 v1 = Subtract(stage1Object_->GetWorldTransform(i).GetWorldPos(), { ground_->GetWorldTransform().matWorld_.m[3][0],ground_->GetWorldTransform().matWorld_.m[3][1],ground_->GetWorldTransform().matWorld_.m[3][2] });
+
 						v1 = Normalise(v1);
-						
+
 						player_->SetReflectRotate(v1);
+
+						for (int j = 0; j < 6; j++) {
+							if (i != j) {
+								isPlayerHit[j] = false;
+							}
+						}
 					}
 				}
 
@@ -91,12 +100,7 @@ void Stage1Scene::Update()
 		}
 	}
 	
-	if (isPlayerHit==true) {
-		playerHitCount++;
-	}
-	if (playerHitCount >= 10) {
-		isPlayerHit = false;
-	}
+	
 	viewProjection_.UpdateMatrix();
 	
 	//viewProjection_.TransferMatrix();

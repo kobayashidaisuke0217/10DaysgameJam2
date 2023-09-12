@@ -80,6 +80,9 @@ struct StructSphere {
 inline Vector3 operator-(const Vector3& v) {
 	return { -v.x, -v.y, -v.z };
 }
+inline Vector3 operator+(const Vector3& v1, const Vector3& v2) {
+	return { v1.x + v2.x, v1.y + v2.y, v1.z + v2.z };
+}
 
 inline Vector3 operator-(const Vector3& v1, const Vector3& v2) {
 	return { v1.x - v2.x, v1.y - v2.y, v1.z - v2.z };
@@ -205,6 +208,12 @@ inline Matrix4x4 MakeRotateXYZMatrix(const Vector3& rotate) {
 inline Vector3 Reflect(const Vector3& input, const Vector3& normal) {
 	Vector3 r;
 	r = input - 2 * Dot(input, normal) * normal;
-
+	r = r * 0.8f;
 	return r;
 }
+//inline Vector3 Reflect(const Vector3& input, const Vector3& normal) {
+//	Vector3 r;
+//	r = input + normal*2*Dot(input,normal);
+//
+//	return r;
+//}
