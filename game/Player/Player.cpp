@@ -29,7 +29,7 @@ void Player::Initialize()
 void Player::Update()
 {
 	structSphere_.center = worldTransform_.GetWorldPos();
-	structSphere_.radius = 5.0f;
+	structSphere_.radius = 3.0f;
 	
 	
 
@@ -163,6 +163,7 @@ void Player::BehaviorFlyUpdate()
 			const float KBulletSped = 1.0f;
 			//velocity = Multiply(-1.0f, velocity);
 			velocity = Reflect(velocity, ReflectRotate_);
+			velocity = Normalise(velocity);
 			velocity = velocity * 1.0f;
 			isHit_ = false;
 		}
