@@ -58,6 +58,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalIncludeDirectories>$(ProjectDir)game/Skydome;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -80,6 +81,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalIncludeDirectories>$(ProjectDir)game/Skydome;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -137,6 +139,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="game\Scenes\Stage\StageObject\Stage4Object.cpp" />
     <ClCompile Include="game\Scenes\Stage\StageObject\Stage5Object.cpp" />
     <ClCompile Include="game\Scenes\TitleScene.cpp" />
+    <ClCompile Include="game\Skydome\Skydome.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mymath.cpp" />
     <ClCompile Include="ObjectBale.cpp" />
@@ -188,6 +191,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="game\Scenes\Stage\StageObject\Stage4Object.h" />
     <ClInclude Include="game\Scenes\Stage\StageObject\Stage5Object.h" />
     <ClInclude Include="game\Scenes\TitleScene.h" />
+    <ClInclude Include="game\Skydome\Skydome.h" />
     <ClInclude Include="ObjectBale.h" />
     <ClInclude Include="Vector4.h" />
   </ItemGroup>

@@ -29,14 +29,16 @@ void Stage1Scene::Initialize()
 	camera_ = new camera();
 	camera_->Initialize();
 	camera_->SetTarget(&ground_->GetWorldTransform());
-
+	camera_->SetPlayer(&player_->GetWorldTransform());
 	stage1Object_ = new Stage1Object();
 	stage1Object_->SetGround(ground_);
 	stage1Object_->Initialize();
 	DrawFlag = true;
 	count = 0;
 	playerHitCount = 0;
-	isPlayerHit = false;
+	for (int i = 0; i < 6; i++) {
+		isPlayerHit[i] = false;
+	}
 }
 
 void Stage1Scene::Update()
@@ -75,15 +77,22 @@ void Stage1Scene::Update()
 			for (int i = 0; i < 6; i++) {
 
 				if (IsCollision(stage1Object_->GetObb(i), player_->GetStructSphere())) {
-					if (isPlayerHit == false) {
+					if (isPlayerHit[i] == false) {
 						hitCount++;
 						player_->isHit();
-						isPlayerHit = true;
-						Vector3 v1 = Subtract(  stage1Object_->GetWorldTransform(i).translation_, { 0.0f,0.0f,0.0f });
-						
+						isPlayerHit[i] = true;
+
+						Vector3 v1 = Subtract(stage1Object_->GetWorldTransform(i).GetWorldPos(), { ground_->GetWorldTransform().matWorld_.m[3][0],ground_->GetWorldTransform().matWorld_.m[3][1],ground_->GetWorldTransform().matWorld_.m[3][2] });
+
 						v1 = Normalise(v1);
-						
+
 						player_->SetReflectRotate(v1);
+
+						for (int j = 0; j < 6; j++) {
+							if (i != j) {
+								isPlayerHit[j] = false;
+							}
+						}
 					}
 				}
 
@@ -91,12 +100,7 @@ void Stage1Scene::Update()
 		}
 	}
 	
-	if (isPlayerHit==true) {
-		playerHitCount++;
-	}
-	if (playerHitCount >= 10) {
-		isPlayerHit = false;
-	}
+	
 	viewProjection_.UpdateMatrix();
 	
 	//viewProjection_.TransferMatrix();
@@ -120,9 +124,11 @@ void Stage1Scene::Draw()
 
 void Stage1Scene::Draw3D()
 {
-	/*if (!input_->PressKey(DIK_SPACE)) {
-		ground_->Draw(viewProjection_, directionalLight_);
-	}*/
+	if (player_->GetBehavior() == Behavior::kMove) {
+		if (!input_->PressKey(DIK_SPACE)) {
+			ground_->Draw(viewProjection_, directionalLight_);
+		}
+	}
 
 	
 	player_->Draw(viewProjection_, directionalLight_);

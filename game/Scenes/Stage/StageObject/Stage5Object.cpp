@@ -2,6 +2,7 @@
 
 void Stage5Object::Initialize()
 {
+	skyDome_.Initialize();
 
 	textureManager_ = Texturemanager::GetInstance();
 	textureHandle_[0] = textureManager_->Load("Resource/uvChecker.png");
@@ -43,10 +44,10 @@ void Stage5Object::Initialize()
 
 	//横
 	worldTransformWall_[2].translation_ = { -0.15f,0.0030f,-0.1f };
-	worldTransformWall_[2].scale_ = { 0.03f,0.18f,0.4f };
+	worldTransformWall_[2].scale_ = { 0.03f,0.12f,0.4f };
 
 	worldTransformWall_[3].translation_ = { 0.15f,0.0030f,-0.1f };
-	worldTransformWall_[3].scale_ = { 0.03f,0.18f,0.4f };
+	worldTransformWall_[3].scale_ = { 0.03f,0.12f,0.4f };
 
 	//反射する壁
 	worldTransformWall_[4].translation_ = { 0.0f,0.11f,0.44f };
@@ -81,6 +82,8 @@ void Stage5Object::Initialize()
 
 void Stage5Object::Update()
 {
+	skyDome_.Update();
+
 	for (int i = 0; i < 8; i++) {
 		obb_[i].center = worldTransformWall_[i].GetWorldPos();
 
@@ -115,6 +118,8 @@ void Stage5Object::Update()
 
 void Stage5Object::Draw(const ViewProjection& viewprojection, const DirectionalLight& light)
 {
+	skyDome_.Draw(viewprojection, light);
+
 	for (int i = 0; i < 2; i++)
 	{
 		plane_[i]->Draw(worldTransformPlane_[i], viewprojection, {1.0f,1.0f,1.0f,1.0f}, light, textureHandle_[0]);

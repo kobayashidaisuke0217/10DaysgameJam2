@@ -10,7 +10,7 @@ void Player::Initialize()
 	textureManager_ = Texturemanager::GetInstance();
 	texturehandle_ = textureManager_->Load("Resource/wi.png");
 	worldTransform_.Initialize();
-	worldTransform_.scale_ = { 4.0f,4.0f,4.0f };
+	worldTransform_.scale_ = { 5.0f,5.0f,5.0f };
 	worldTransform_.translation_ = { 1.0f,1.0f,1.0f };
 	offset = 61.0f;
 	 shadowPlane_ = new ShadowPlane();
@@ -23,12 +23,13 @@ void Player::Initialize()
 	 targetWorldTransform_.Initialize();
 	 targetWorldTransform_.scale_ = {4.0f,4.0f,4.0f};
 	// BehaviorMoveInitialize();
+	 playerModel_ = Model::CreateModelFromObj("Resource", "Player.obj");
 }
 
 void Player::Update()
 {
 	structSphere_.center = worldTransform_.GetWorldPos();
-	structSphere_.radius = 5.0f;
+	structSphere_.radius = 3.0f;
 	
 	
 
@@ -66,25 +67,25 @@ void Player::Draw(const ViewProjection& viewprojection, const DirectionalLight& 
 {
 	if (cameraChangeFlag == false) {
 		sphere_->Draw({ 1.0f,1.0f,1.0f,1.0f }, worldTransform_, texturehandle_, viewprojection, light);
-		
+		playerModel_->Draw(worldTransform_, viewprojection, light);
 	}
 	else {
 		targetSphere_->Draw({ 1.0f,1.0f,1.0f,1.0f }, targetWorldTransform_, texturehandle_, viewprojection, light);
 	}
 	
-	/*switch (behavior_) {
+	switch (behavior_) {
 	case Behavior::kMove:
 		shadowPlane_->Draw(viewprojection, light);
 		break;
 	case Behavior::kFly:
 		
 		break;
-	}*/
+	}
 }
 
 void Player::Finalize()
 {
-	
+	delete playerModel_;
 	delete targetSphere_;
 	targetWorldTransform_.constBuff_.ReleaseAndGetAddressOf();
 	shadowPlane_->Finalize();
@@ -101,7 +102,8 @@ void Player::Move()
 {
 	float length = Length(Distance(worldTransform_.GetWorldPos(), {target_->matWorld_.m[3][0],target_->matWorld_.m[3][1],target_->matWorld_.m[3][2] }));
 	if (target_) {
-		
+		worldTransform_.rotation_ = Subtract({ target_->matWorld_.m[3][0],target_->matWorld_.m[3][1],target_->matWorld_.m[3][2] }, worldTransform_.GetWorldPos());
+		worldTransform_.rotation_ = Normalise(worldTransform_.rotation_);
 		
 	ImGui::Begin("player");
 	ImGui::DragFloat3("pos", &worldTransform_.translation_.x, 0.1f);
@@ -158,9 +160,11 @@ void Player::BehaviorFlyUpdate()
 	}
 	if (flayFlag == true) {
 		if (isHit_ == true) {
+			const float KBulletSped = 1.0f;
 			//velocity = Multiply(-1.0f, velocity);
 			velocity = Reflect(velocity, ReflectRotate_);
 			velocity = Normalise(velocity);
+			velocity = velocity * 1.0f;
 			isHit_ = false;
 		}
 		worldTransform_.translation_ = Add(worldTransform_.translation_, velocity);
@@ -173,6 +177,8 @@ void Player::BehaviorFlyUpdate()
 		velocitytarget = Subtract( GetWorldPos(),
 			camera_->GetViewProjection().translation_);
 		velocitytarget = Multiply(KBulletSped, Normalise(velocitytarget));
+
+
 		targetWorldTransform_.translation_ = Add(worldTransform_.translation_, velocitytarget);
 		ImGui::Begin("ret");
 		ImGui::DragFloat3("", &targetWorldTransform_.translation_.x);

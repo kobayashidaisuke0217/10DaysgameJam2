@@ -8,6 +8,10 @@
 #include "ShadowPlane.h"
 #include <optional>
 #include "FlytargetCamera.h"
+enum class Behavior {
+	kMove,
+	kFly
+};
 class Player
 {
 public:
@@ -27,15 +31,16 @@ public:
 	void  SetCamera(FlytargetCamera* camera) { camera_ = camera; }
 	void isHit() { isHit_ = true; }
 	void SetReflectRotate(Vector3 rotate) { ReflectRotate_ = rotate; };
+	bool GetGameOver() { return GameOverFlag; }
+	Behavior GetBehavior() { return behavior_; }
 private:
-	enum class Behavior {
-		kMove,
-		kFly
-	};
+	
 	WorldTransform worldTransform_;
 	//const ViewProjection* viewProjection_ = nullptr;
 	const WorldTransform* target_ = nullptr;
 	Input* input_ = nullptr;
+	Model* playerModel_;
+
 	Sphere* sphere_;
 	Sphere* targetSphere_;
 	Texturemanager* textureManager_;
@@ -52,6 +57,7 @@ private:
 	WorldTransform targetWorldTransform_;
 	bool isHit_;
 	Vector3 ReflectRotate_;
+	bool GameOverFlag = false;
 private:
 	void Move();
 	void Fly();

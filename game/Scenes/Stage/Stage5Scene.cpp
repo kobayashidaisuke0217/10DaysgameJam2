@@ -35,7 +35,9 @@ void Stage5Scene::Initialize()
 	DrawFlag = true;
 	count = 0;
 	playerHitCount = 0;
-	isPlayerHit = false;
+	for (int i = 0; i < 8; i++) {
+		isPlayerHit[i] = false;
+	}
 }
 
 void Stage5Scene::Update()
@@ -74,16 +76,25 @@ void Stage5Scene::Update()
 			return;
 		}
 		else {
-			for (int i = 0; i < 6; i++) {
+			for (int i = 0; i < 8; i++) {
 
 				if (IsCollision(stage5Object_->GetObb(i), player_->GetStructSphere())) {
-					if (isPlayerHit == false) {
+					if (isPlayerHit[i] == false) {
 						hitCount++;
 						player_->isHit();
-						isPlayerHit = true;
-						Vector3 v1 = Subtract( { 0.0f,0.0f,0.0f }, stage5Object_->GetWorldTransform(i).translation_);
+						isPlayerHit[i] = true;
+				
+						Vector3 v1= Subtract(stage5Object_->GetWorldTransform(i).GetWorldPos(), { ground_->GetWorldTransform().matWorld_.m[3][0],ground_->GetWorldTransform().matWorld_.m[3][1],ground_->GetWorldTransform().matWorld_.m[3][2] });
+
 						v1 = Normalise(v1);
+						
 						player_->SetReflectRotate(v1);
+
+						for (int j = 0; j < 8; j++) {
+							if (i != j) {
+								isPlayerHit[j] = false;
+							}
+						}
 					}
 				}
 
@@ -93,6 +104,7 @@ void Stage5Scene::Update()
 					sceneNum = TITLE_SCENE;
 				}
 			}
+
 		}
 	}
 	if (hitCount == 0) {
@@ -101,12 +113,7 @@ void Stage5Scene::Update()
 	else {
 		DrawFlag = false;
 	}
-	if (isPlayerHit == true) {
-		playerHitCount++;
-	}
-	if (playerHitCount >= 3) {
-		isPlayerHit = false;
-	}
+	
 
 	viewProjection_.UpdateMatrix();
 
@@ -131,9 +138,9 @@ void Stage5Scene::Draw()
 
 void Stage5Scene::Draw3D()
 {
-	//if (!input_->PressKey(DIK_SPACE)) {
-	//	ground_->Draw(viewProjection_, directionalLight_);
-	//}
+	if (!input_->PressKey(DIK_SPACE)) {
+		ground_->Draw(viewProjection_, directionalLight_);
+	}
 
 	
 	player_->Draw(viewProjection_, directionalLight_);
