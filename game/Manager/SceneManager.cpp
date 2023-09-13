@@ -56,6 +56,7 @@ void SceneManager::Run() {
 	Engine->Finalize();
 	sceneArr_[sceneNum_]->Finalize();
 	delete sprite_;
+	delete spritetutrial_;
 }
 
 void SceneManager::Init()
