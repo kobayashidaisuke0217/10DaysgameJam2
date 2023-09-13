@@ -34,6 +34,19 @@ void SceneManager::Run() {
 
 		
 		sceneArr_[sceneNum_]->Draw();
+		if (sceneNum_ != CLEAR_SCENE && sceneNum_ != TITLE_SCENE) {
+			Engine->SpritePreDraw();
+		if (input->PressKey(DIK_ESCAPE)) {
+			spritetutrial_->Draw({ 1.0f,1.0f,1.0f }, { 0.0f,0.0f,0.0f }, { 1.0f,1.0f,1.0f,1.0f }, texhandeletutrial_);
+				
+				
+		}
+		else {
+           sprite_->Draw({ 1.0f,1.0f,1.0f }, { 0.0f,0.0f,0.0f }, { 1.0f,1.0f,1.0f,1.0f }, texhandele_);
+		}
+
+		}
+		
 		
 
 		Engine->Draw();
@@ -42,7 +55,7 @@ void SceneManager::Run() {
 	CoUninitialize();
 	Engine->Finalize();
 	sceneArr_[sceneNum_]->Finalize();
-	
+	delete sprite_;
 }
 
 void SceneManager::Init()
@@ -69,7 +82,13 @@ void SceneManager::Init()
 
 	sceneNum_ = TITLE_SCENE;
 	sceneArr_[sceneNum_]->Initialize();
-	
+	sprite_ = new Sprite();
+	sprite_->Initialize({ 1100.0f,600.0f,0.0f,0.0f }, { 1280.0f,720.0f,0.0f,0.0f });
+	texhandele_ = textureManager_->Load("Resource/esc.png");
+	spritetutrial_ = new Sprite();
+	spritetutrial_->Initialize({ 0.0f,0.0f,0.0f,0.0f }, { 1280.0f,720.0f,0.0f,0.0f });
+	texhandeletutrial_ = textureManager_->Load("Resource/tutorial.png");
+
 }
 
 

@@ -48,7 +48,9 @@ void Stage1Scene::Update()
 	
 	
 	directionalLight_.direction = Normalise(directionalLight_.direction);
-	ground_->Update();
+	if (player_->GetBehavior() == Behavior::kMove) {
+		ground_->Update();
+	}
 	player_->Update();
 	stage1Object_->Update();
 	
