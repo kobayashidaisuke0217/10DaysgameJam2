@@ -177,7 +177,7 @@ void Stage5Scene::Finalize()
 	ground_->Finaleze();
 	player_->Finalize();
 	stage5Object_->Finalize();
-
+	FlytargetCamera_->Finalize();
 	viewProjection_.constBuff_.ReleaseAndGetAddressOf();
 
 }

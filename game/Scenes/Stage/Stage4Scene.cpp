@@ -170,7 +170,7 @@ void Stage4Scene::Finalize()
 	ground_->Finaleze();
 	player_->Finalize();
 	stage4Object_->Finalize();
-
+	FlytargetCamera_->Finalize();
 	viewProjection_.constBuff_.ReleaseAndGetAddressOf();
 
 }
