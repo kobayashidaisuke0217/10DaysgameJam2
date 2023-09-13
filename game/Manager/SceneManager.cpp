@@ -34,6 +34,19 @@ void SceneManager::Run() {
 
 		
 		sceneArr_[sceneNum_]->Draw();
+		if (sceneNum_ != CLEAR_SCENE && sceneNum_ != TITLE_SCENE) {
+			Engine->SpritePreDraw();
+		if (input->PressKey(DIK_ESCAPE)) {
+			spritetutrial_->Draw({ 1.0f,1.0f,1.0f }, { 0.0f,0.0f,0.0f }, { 1.0f,1.0f,1.0f,1.0f }, texhandeletutrial_);
+				
+				
+		}
+		else {
+           sprite_->Draw({ 1.0f,1.0f,1.0f }, { 0.0f,0.0f,0.0f }, { 1.0f,1.0f,1.0f,1.0f }, texhandele_);
+		}
+
+		}
+		
 		
 
 		Engine->Draw();
@@ -42,7 +55,7 @@ void SceneManager::Run() {
 	CoUninitialize();
 	Engine->Finalize();
 	sceneArr_[sceneNum_]->Finalize();
-	
+	delete sprite_;
 }
 
 void SceneManager::Init()
@@ -51,7 +64,11 @@ void SceneManager::Init()
 	Engine = BlueMoon::GetInstance();
 	Engine->Initialize( 1280, 720);
 	winApp_ = WinApp::GetInstance();
-
+    input=Input::GetInstance();
+	input->Initialize(winApp_);
+	textureManager_ = Texturemanager::GetInstance();
+	textureManager_->Initialize();
+	
 	sceneArr_[TITLE_SCENE] = std::make_unique <TitleScene>();
 	sceneArr_[GAME_SCENE] = std::make_unique <GameScene>();
 	sceneArr_[STAGE1_SCENE] = std::make_unique <Stage1Scene>();
@@ -65,11 +82,12 @@ void SceneManager::Init()
 
 	sceneNum_ = TITLE_SCENE;
 	sceneArr_[sceneNum_]->Initialize();
-	input=Input::GetInstance();
-	input->Initialize(winApp_);
-	textureManager_ = Texturemanager::GetInstance();
-	textureManager_->Initialize();
-	
+	sprite_ = new Sprite();
+	sprite_->Initialize({ 1100.0f,600.0f,0.0f,0.0f }, { 1280.0f,720.0f,0.0f,0.0f });
+	texhandele_ = textureManager_->Load("Resource/esc.png");
+	spritetutrial_ = new Sprite();
+	spritetutrial_->Initialize({ 0.0f,0.0f,0.0f,0.0f }, { 1280.0f,720.0f,0.0f,0.0f });
+	texhandeletutrial_ = textureManager_->Load("Resource/tutorial.png");
 }
 
 

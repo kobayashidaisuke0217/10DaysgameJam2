@@ -12,6 +12,7 @@ public:
 	 void Draw() override;
 	 void Finalize()override;
 private:
-	Input* input=nullptr;
+	Input* input = nullptr;
+	
 };
 

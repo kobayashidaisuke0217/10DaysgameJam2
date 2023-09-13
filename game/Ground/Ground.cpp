@@ -24,7 +24,7 @@ void Ground::Initialize()
 
 void Ground::Update()
 {
-	if (moveFlag == false) {
+	//if (moveFlag == false) {
 		Scale = 1.0f;
 		ImGui::Begin("Ground");
 		ImGui::DragFloat3("Translate", &worldTransform_.translation_.x, 0.1f);
@@ -48,7 +48,7 @@ void Ground::Update()
 			const float kRotateSpeed = 0.01f;
 			worldTransform_.rotation_.x += kRotateSpeed;
 		}
-	}
+	//}
 	worldTransform_.UpdateMatrix();
 }
 
