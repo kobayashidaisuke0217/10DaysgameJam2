@@ -205,16 +205,6 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
       <Project>{371b9fa9-4c90-4ac6-a123-aced756d6c77}</Project>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="Resource\hlsl\Object2d.PS.hlsl" />
-    <FxCompile Include="Resource\hlsl\Object2d.VS.hlsl" />
-    <FxCompile Include="Resource\hlsl\Object3d.PS.hlsl" />
-    <FxCompile Include="Resource\hlsl\Object3d.VS.hlsl" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resource\hlsl\Object2D.hlsli" />
-    <None Include="Resource\hlsl\Object3D.hlsli" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

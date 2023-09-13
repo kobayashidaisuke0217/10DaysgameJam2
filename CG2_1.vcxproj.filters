@@ -386,26 +386,4 @@
       <Filter>imgui</Filter>
     </Text>
   </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="Resource\hlsl\Object3d.VS.hlsl">
-      <Filter>Shaders</Filter>
-    </FxCompile>
-    <FxCompile Include="Resource\hlsl\Object3d.PS.hlsl">
-      <Filter>Shaders</Filter>
-    </FxCompile>
-    <FxCompile Include="Resource\hlsl\Object2d.VS.hlsl">
-      <Filter>Shaders</Filter>
-    </FxCompile>
-    <FxCompile Include="Resource\hlsl\Object2d.PS.hlsl">
-      <Filter>Shaders</Filter>
-    </FxCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resource\hlsl\Object3D.hlsli">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="Resource\hlsl\Object2D.hlsli">
-      <Filter>Shaders</Filter>
-    </None>
-  </ItemGroup>
 </Project>
