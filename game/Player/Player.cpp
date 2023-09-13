@@ -24,6 +24,7 @@ void Player::Initialize()
 	 targetWorldTransform_.scale_ = {4.0f,4.0f,4.0f};
 	// BehaviorMoveInitialize();
 	 playerModel_ = Model::CreateModelFromObj("Resource", "Player.obj");
+	 GameOverFlag = false;
 }
 
 void Player::Update()
@@ -31,8 +32,15 @@ void Player::Update()
 	structSphere_.center = worldTransform_.GetWorldPos();
 	structSphere_.radius = 3.0f;
 	
-	
-
+	float length = Length(Distance(worldTransform_.GetWorldPos(), { target_->matWorld_.m[3][0],target_->matWorld_.m[3][1],target_->matWorld_.m[3][2] }));
+	if (length >= 8500.0f&&behavior_==Behavior::kFly) {
+		GameOverFlag = true;
+	}
+	ImGui::Begin("player");
+	ImGui::DragFloat3("pos", &worldTransform_.translation_.x, 0.1f);
+	ImGui::DragFloat3("rot", &worldTransform_.rotation_.x, 0.1f);
+	ImGui::DragFloat("distance", &length, 0.1f);
+	ImGui::End();
 	if (behaviorRequest_) {
 		behavior_ = behaviorRequest_.value();
 
@@ -100,16 +108,12 @@ void Player::SetTarget(const WorldTransform* target)
 
 void Player::Move()
 {
-	float length = Length(Distance(worldTransform_.GetWorldPos(), {target_->matWorld_.m[3][0],target_->matWorld_.m[3][1],target_->matWorld_.m[3][2] }));
+	
 	if (target_) {
 		worldTransform_.rotation_ = Subtract({ target_->matWorld_.m[3][0],target_->matWorld_.m[3][1],target_->matWorld_.m[3][2] }, worldTransform_.GetWorldPos());
 		worldTransform_.rotation_ = Normalise(worldTransform_.rotation_);
 		
-	ImGui::Begin("player");
-	ImGui::DragFloat3("pos", &worldTransform_.translation_.x, 0.1f);
-	ImGui::DragFloat3("rot", &worldTransform_.rotation_.x, 0.1f);
-	ImGui::DragFloat("distance", &length, 0.1f);
-	ImGui::End();
+	
 	}
 }
 

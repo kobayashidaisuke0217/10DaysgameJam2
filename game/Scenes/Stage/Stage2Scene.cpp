@@ -45,7 +45,12 @@ void Stage2Scene::Update()
 	int hitCount = 0;
 	count++;
 	directionalLight_.direction = Normalise(directionalLight_.direction);
-	ground_->Update();
+	if (player_->GetGameOver() == true) {
+		sceneNum = GAME_SCENE;
+	}
+	if (player_->GetBehavior() == Behavior::kMove) {
+		ground_->Update();
+	}
 	player_->Update();
 
 	if (player_->GetCameraFlag() == false) {
