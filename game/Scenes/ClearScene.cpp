@@ -5,7 +5,7 @@ void ClearScene::Initialize()
 	blueMoon_ = BlueMoon::GetInstance();
 	textureManager_ = Texturemanager::GetInstance();
 	input = Input::GetInstance();
-	Texhandle_=textureManager_->Load("Resource/uvChecker.png");
+	Texhandle_=textureManager_->Load("Resource/clear.png");
 	sprite_ = new Sprite();
     sprite_->Initialize({ 0.0f,0.0f,0.0f,1.0f }, { 1280.0f,720.0f,0.0f,1.0f });
 }

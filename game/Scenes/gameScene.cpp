@@ -11,6 +11,9 @@ void GameScene::Initialize()
 	blueMoon_ = BlueMoon::GetInstance();
 	textureManager_ = Texturemanager::GetInstance();
 	input_ = Input::GetInstance();
+	Texhandle_ = textureManager_->Load("Resource/stageSelect.png");
+	sprite_ = new Sprite();
+	sprite_->Initialize({ 0.0f,0.0f,0.0f,1.0f }, { 1280.0f,720.0f,0.0f,1.0f });
 }
 	
 
@@ -50,12 +53,15 @@ void GameScene::Update()
 
 void GameScene::Draw()
 {
-	
+	blueMoon_->SpritePreDraw();
+	sprite_->Draw({ {1.0f,1.0f,1.0f},{0.0f,0.0f,0.0f},{0.0f,0.0f,0.0f} }, { {1.0f,1.0f,1.0f},
+		{0.0f,0.0f,0.0f},
+		{0.0f,0.0f,0.0f}, }, { 1.0f,1.0f,1.0f,1.0f }, Texhandle_);
 }
 
 
 void GameScene::Finalize()
 {
-	
+	delete sprite_;
 }
 

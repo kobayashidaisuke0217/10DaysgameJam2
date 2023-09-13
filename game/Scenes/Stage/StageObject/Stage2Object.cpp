@@ -64,7 +64,7 @@ void Stage2Object::Update()
 	//壁の移動処理
 	if (moveCount_[0] == 0)
 	{
-		worldTransformWall_[0].translation_.z += 0.009f;
+		worldTransformWall_[0].translation_.z += 0.003f;
 		if (worldTransformWall_[0].translation_.z >= 0.6f)
 		{
 			moveCount_[0] = 1;
@@ -73,7 +73,7 @@ void Stage2Object::Update()
 
 	if (moveCount_[0] == 1)
 	{
-		worldTransformWall_[0].translation_.z -= 0.009f;
+		worldTransformWall_[0].translation_.z -= 0.003f;
 		if (worldTransformWall_[0].translation_.z <= -0.6f)
 		{
 			moveCount_[0] = 0;
@@ -83,7 +83,7 @@ void Stage2Object::Update()
 	//
 	if (moveCount_[1] == 0)
 	{
-		worldTransformWall_[1].translation_.z -= 0.009f;
+		worldTransformWall_[1].translation_.z -= 0.003f;
 		if (worldTransformWall_[1].translation_.z <= -0.6f)
 		{
 			moveCount_[1] = 1;
@@ -92,7 +92,7 @@ void Stage2Object::Update()
 
 	if (moveCount_[1] == 1)
 	{
-		worldTransformWall_[1].translation_.z += 0.009f;
+		worldTransformWall_[1].translation_.z += 0.003f;
 		if (worldTransformWall_[1].translation_.z >= 0.6f)
 		{
 			moveCount_[1] = 0;
@@ -102,7 +102,7 @@ void Stage2Object::Update()
 	//
 	if (moveCount_[2] == 0)
 	{
-		worldTransformWall_[2].translation_.x -= 0.009f;
+		worldTransformWall_[2].translation_.x -= 0.003f;
 		if (worldTransformWall_[2].translation_.x <= -0.6f)
 		{
 			moveCount_[2] = 1;
@@ -111,7 +111,7 @@ void Stage2Object::Update()
 
 	if (moveCount_[2] == 1)
 	{
-		worldTransformWall_[2].translation_.x += 0.009f;
+		worldTransformWall_[2].translation_.x += 0.003f;
 		if (worldTransformWall_[2].translation_.x >= 0.6f)
 		{
 			moveCount_[2] = 0;
@@ -121,7 +121,7 @@ void Stage2Object::Update()
 	//
 	if (moveCount_[3] == 0)
 	{
-		worldTransformWall_[3].translation_.x += 0.009f;
+		worldTransformWall_[3].translation_.x += 0.003f;
 		if (worldTransformWall_[3].translation_.x >= 0.6f)
 		{
 			moveCount_[3] = 1;
@@ -130,7 +130,7 @@ void Stage2Object::Update()
 
 	if (moveCount_[3] == 1)
 	{
-		worldTransformWall_[3].translation_.x -= 0.009f;
+		worldTransformWall_[3].translation_.x -= 0.003f;
 		if (worldTransformWall_[3].translation_.x <= -0.6f)
 		{
 			moveCount_[3] = 0;
