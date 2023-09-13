@@ -51,6 +51,10 @@ void SceneManager::Init()
 	Engine = BlueMoon::GetInstance();
 	Engine->Initialize( 1280, 720);
 	winApp_ = WinApp::GetInstance();
+	input = Input::GetInstance();
+	input->Initialize(winApp_);
+	textureManager_ = Texturemanager::GetInstance();
+	textureManager_->Initialize();
 
 	sceneArr_[TITLE_SCENE] = std::make_unique <TitleScene>();
 	sceneArr_[GAME_SCENE] = std::make_unique <GameScene>();
@@ -65,10 +69,6 @@ void SceneManager::Init()
 
 	sceneNum_ = TITLE_SCENE;
 	sceneArr_[sceneNum_]->Initialize();
-	input=Input::GetInstance();
-	input->Initialize(winApp_);
-	textureManager_ = Texturemanager::GetInstance();
-	textureManager_->Initialize();
 	
 }
 

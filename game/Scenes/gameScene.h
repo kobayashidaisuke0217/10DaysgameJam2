@@ -24,7 +24,6 @@ private:
 	BlueMoon* blueMoon_;
 	Sprite* sprite_;
 	DirectionalLight directionalLight_;
-	uint32_t textureHandle_;
-
+	int Texhandle_;
 };
 
