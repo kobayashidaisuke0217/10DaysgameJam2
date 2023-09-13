@@ -66,6 +66,7 @@ void SceneManager::Init()
 	sceneArr_[STAGE5_SCENE] = std::make_unique <Stage5Scene>();
 
 	sceneArr_[CLEAR_SCENE] = std::make_unique <ClearScene>();
+	sceneArr_[GAMEOVER_SCENE] = std::make_unique <GameOverScene>();
 
 	sceneNum_ = TITLE_SCENE;
 	sceneArr_[sceneNum_]->Initialize();

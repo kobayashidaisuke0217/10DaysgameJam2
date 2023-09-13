@@ -11,6 +11,7 @@
 #include "Stage4Scene.h"
 #include "stage5Scene.h"
 #include "ClearScene.h"
+#include "GameOverScene.h"
 
 class SceneManager
 {
@@ -27,7 +28,7 @@ private:
 	
 	Texturemanager* textureManager_;
 
-	std::unique_ptr<Iscene> sceneArr_[8];
+	std::unique_ptr<Iscene> sceneArr_[9];
 
 
 
