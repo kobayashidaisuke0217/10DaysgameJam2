@@ -4,8 +4,8 @@ void FlytargetCamera::Initialize()
 {
 	input_ = Input::GetInstance();
 	viewProjection_.Initialize();
-	viewProjection_.rotation_ = { -4.08f,0.0f,-0.8f };
-	viewProjection_.translation_ = { 66.786f,67.120f,66.911f };
+	viewProjection_.rotation_ = { -6.52f,0.0f,-12.56f };
+	viewProjection_.translation_ = { 18.286f,35.763f,-105.097f };
 }
 
 void FlytargetCamera::Update()

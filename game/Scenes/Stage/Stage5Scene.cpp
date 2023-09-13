@@ -51,7 +51,7 @@ void Stage5Scene::Update()
 	count++;
 	directionalLight_.direction = Normalise(directionalLight_.direction);
 	if (player_->GetGameOver() == true) {
-		sceneNum = GAME_SCENE;
+		sceneNum = GAMEOVER_SCENE;
 	}
 	if (player_->GetBehavior() == Behavior::kMove) {
 		ground_->Update();
@@ -106,7 +106,7 @@ void Stage5Scene::Update()
 			}
 			for (int i = 6; i < 8; i++) {
 				if (IsCollision(stage5Object_->GetObb(i), player_->GetStructSphere())) {
-					sceneNum = TITLE_SCENE;
+					sceneNum = GAMEOVER_SCENE;
 				}
 			}
 
@@ -143,8 +143,10 @@ void Stage5Scene::Draw()
 
 void Stage5Scene::Draw3D()
 {
-	if (!input_->PressKey(DIK_SPACE)) {
-		ground_->Draw(viewProjection_, directionalLight_);
+	if (player_->GetBehavior() == Behavior::kMove) {
+		if (!input_->PressKey(DIK_SPACE)) {
+			ground_->Draw(viewProjection_, directionalLight_);
+		}
 	}
 
 	

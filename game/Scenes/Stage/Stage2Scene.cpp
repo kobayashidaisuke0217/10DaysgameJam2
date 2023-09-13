@@ -50,7 +50,7 @@ void Stage2Scene::Update()
 	count++;
 	directionalLight_.direction = Normalise(directionalLight_.direction);
 	if (player_->GetGameOver() == true) {
-		sceneNum = GAME_SCENE;
+		sceneNum = GAMEOVER_SCENE;
 	}
 	if (player_->GetBehavior() == Behavior::kMove) {
 		ground_->Update();
@@ -128,8 +128,10 @@ void Stage2Scene::Draw()
 
 void Stage2Scene::Draw3D()
 {
-	if (!input_->PressKey(DIK_SPACE)) {
-		ground_->Draw(viewProjection_, directionalLight_);
+	if (player_->GetBehavior() == Behavior::kMove) {
+		if (!input_->PressKey(DIK_SPACE)) {
+			ground_->Draw(viewProjection_, directionalLight_);
+		}
 	}
 	
 	
