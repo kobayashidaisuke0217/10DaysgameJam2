@@ -42,15 +42,20 @@ void Stage5Scene::Initialize()
 
 void Stage5Scene::Update()
 {
-	if (input_->PushKey(DIK_Q))
+	if (input_->PushKey(DIK_TAB))
 	{
-		sceneNum = TITLE_SCENE;
+		sceneNum = GAME_SCENE;
 	}
 
 	int hitCount = 0;
 	count++;
 	directionalLight_.direction = Normalise(directionalLight_.direction);
-	ground_->Update();
+	if (player_->GetGameOver() == true) {
+		sceneNum = GAME_SCENE;
+	}
+	if (player_->GetBehavior() == Behavior::kMove) {
+		ground_->Update();
+	}
 	player_->Update();
 	stage5Object_->Update();
 	if (player_->GetCameraFlag() == false) {

@@ -42,10 +42,19 @@ void Stage2Scene::Initialize()
 
 void Stage2Scene::Update()
 {
+	if (input_->PushKey(DIK_TAB))
+	{
+		sceneNum = GAME_SCENE;
+	}
 	int hitCount = 0;
 	count++;
 	directionalLight_.direction = Normalise(directionalLight_.direction);
-	ground_->Update();
+	if (player_->GetGameOver() == true) {
+		sceneNum = GAME_SCENE;
+	}
+	if (player_->GetBehavior() == Behavior::kMove) {
+		ground_->Update();
+	}
 	player_->Update();
 
 	if (player_->GetCameraFlag() == false) {
@@ -126,9 +135,9 @@ void Stage2Scene::Draw3D()
 	
 		player_->Draw(viewProjection_, directionalLight_);
 	
-	if (DrawFlag == true) {
+	
 		stage2Object_->Draw(viewProjection_, directionalLight_);
-	}
+	
 	//ワイヤーフレーム描画準備
 	//ワイヤーフレームで描画したいものはこれより下に描画処理を書く
 	//これより下の3D描画は全てワイヤーフレームになるから注意してね

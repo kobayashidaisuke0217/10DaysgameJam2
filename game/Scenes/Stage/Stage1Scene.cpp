@@ -43,12 +43,20 @@ void Stage1Scene::Initialize()
 
 void Stage1Scene::Update()
 {
+	if (input_->PushKey(DIK_TAB))
+	{
+		sceneNum = GAME_SCENE;
+	}
 	int hitCount = 0;
 	count++;
-	
-	
+	if (player_->GetGameOver() == true) {
+		sceneNum = GAME_SCENE;
+	}
+	if (player_->GetBehavior() == Behavior::kMove) {
+		ground_->Update();
+	}
 	directionalLight_.direction = Normalise(directionalLight_.direction);
-	ground_->Update();
+	
 	player_->Update();
 	stage1Object_->Update();
 	
