@@ -42,15 +42,20 @@ void Stage5Scene::Initialize()
 
 void Stage5Scene::Update()
 {
-	if (input_->PushKey(DIK_Q))
+	if (input_->PushKey(DIK_TAB))
 	{
-		sceneNum = TITLE_SCENE;
+		sceneNum = GAME_SCENE;
 	}
 
 	int hitCount = 0;
 	count++;
 	directionalLight_.direction = Normalise(directionalLight_.direction);
-	ground_->Update();
+	if (player_->GetGameOver() == true) {
+		sceneNum = GAMEOVER_SCENE;
+	}
+	if (player_->GetBehavior() == Behavior::kMove) {
+		ground_->Update();
+	}
 	player_->Update();
 	stage5Object_->Update();
 	if (player_->GetCameraFlag() == false) {
@@ -101,7 +106,7 @@ void Stage5Scene::Update()
 			}
 			for (int i = 6; i < 8; i++) {
 				if (IsCollision(stage5Object_->GetObb(i), player_->GetStructSphere())) {
-					sceneNum = TITLE_SCENE;
+					sceneNum = GAMEOVER_SCENE;
 				}
 			}
 
@@ -138,8 +143,10 @@ void Stage5Scene::Draw()
 
 void Stage5Scene::Draw3D()
 {
-	if (!input_->PressKey(DIK_SPACE)) {
-		ground_->Draw(viewProjection_, directionalLight_);
+	if (player_->GetBehavior() == Behavior::kMove) {
+		if (!input_->PressKey(DIK_SPACE)) {
+			ground_->Draw(viewProjection_, directionalLight_);
+		}
 	}
 
 	
@@ -170,7 +177,7 @@ void Stage5Scene::Finalize()
 	ground_->Finaleze();
 	player_->Finalize();
 	stage5Object_->Finalize();
-
+	FlytargetCamera_->Finalize();
 	viewProjection_.constBuff_.ReleaseAndGetAddressOf();
 
 }

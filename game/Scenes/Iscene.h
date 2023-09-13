@@ -7,9 +7,10 @@ enum  Scene {
 	STAGE3_SCENE,
 	STAGE4_SCENE,
 	STAGE5_SCENE,
-	CLEAR_SCENE
-
+	CLEAR_SCENE,
+	GAMEOVER_SCENE
 };
+
 class Iscene
 {
 public:

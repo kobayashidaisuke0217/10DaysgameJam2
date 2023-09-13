@@ -8,10 +8,10 @@ void ShadowPlane::Initialize()
 	textureManager_ = Texturemanager::GetInstance();
 	texturehandle_ = textureManager_->Load("Resource/castShadow.png");
 	//offset = 42.1f;
-	offset = 114.1f;
+	offset = 97.7f;
 	//offset = 2.0f;
 	worldTransform_.scale_ = { 10.0f,6.0f,0.0f };
-	worldTransform_.rotation_ = { -0.1f,4.0f,1.2f, };
+	worldTransform_.rotation_ = { -0.1f,6.0f,19.2f, };
 	//worldTransform_.translation_ = { 24.4f,23.9f,24.7f };
 	
 worldTransform_.Initialize();
