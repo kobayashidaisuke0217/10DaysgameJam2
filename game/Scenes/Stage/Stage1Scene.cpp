@@ -59,20 +59,26 @@ void Stage1Scene::Update()
 	
 	player_->Update();
 	stage1Object_->Update();
-	
-	if (player_->GetCameraFlag() == false) {
-		camera_->Update();
-		viewProjection_.rotation_ = camera_->GetViewProjection().rotation_;
-		viewProjection_.translation_ = camera_->GetViewProjection().translation_;
-		viewProjection_.matView = camera_->GetViewProjection().matView;
-		viewProjection_.matProjection = camera_->GetViewProjection().matProjection;
+	if (player_->GetFlyFlag() == false) {
+		if (player_->GetCameraFlag() == false) {
+			camera_->Update();
+			viewProjection_.rotation_ = camera_->GetViewProjection().rotation_;
+			viewProjection_.translation_ = camera_->GetViewProjection().translation_;
+			viewProjection_.matView = camera_->GetViewProjection().matView;
+			viewProjection_.matProjection = camera_->GetViewProjection().matProjection;
+		}
+		else {
+			FlytargetCamera_->Update();
+			viewProjection_.rotation_ = FlytargetCamera_->GetViewProjection().rotation_;
+			viewProjection_.translation_ = FlytargetCamera_->GetViewProjection().translation_;
+			viewProjection_.matView = FlytargetCamera_->GetViewProjection().matView;
+			viewProjection_.matProjection = FlytargetCamera_->GetViewProjection().matProjection;
+		}
 	}
 	else {
-		FlytargetCamera_->Update();
-		viewProjection_.rotation_ = FlytargetCamera_->GetViewProjection().rotation_;
-		viewProjection_.translation_ = FlytargetCamera_->GetViewProjection().translation_;
-		viewProjection_.matView = FlytargetCamera_->GetViewProjection().matView;
-		viewProjection_.matProjection = FlytargetCamera_->GetViewProjection().matProjection;
+		viewProjection_.rotation_ = {0.0f,0.0f,0.0f};
+		viewProjection_.translation_ = {0.0f,0.0f,0.0f};
+		
 	}
 	ground_->SetPlayerMoveFlag(player_->GetCameraFlag());
 	if (count >= 10) {

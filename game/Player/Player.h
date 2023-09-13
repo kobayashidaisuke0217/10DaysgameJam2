@@ -33,6 +33,7 @@ public:
 	void SetReflectRotate(Vector3 rotate) { ReflectRotate_ = rotate; };
 	bool GetGameOver() { return GameOverFlag; }
 	Behavior GetBehavior() { return behavior_; }
+	bool GetFlyFlag() { return flayFlag; }
 private:
 	
 	WorldTransform worldTransform_;
