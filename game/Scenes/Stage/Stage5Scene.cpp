@@ -42,7 +42,7 @@ void Stage5Scene::Initialize()
 
 void Stage5Scene::Update()
 {
-	if (input_->PushKey(DIK_TAB))
+	if (input_->PushKey(DIK_T))
 	{
 		sceneNum = GAME_SCENE;
 	}

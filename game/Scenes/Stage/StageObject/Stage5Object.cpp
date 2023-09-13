@@ -36,7 +36,7 @@ void Stage5Object::Initialize()
 
 	//上
 	worldTransformWall_[0].translation_ = { 0.0f,0.15f,-0.1f };
-	worldTransformWall_[0].scale_ = { 0.2f,0.01f,0.4f };
+	worldTransformWall_[0].scale_ = { 0.2f,0.01f,0.6f };
 
 	//下
 	worldTransformWall_[1].translation_ = { 0.0f,-0.15f,-0.1f };

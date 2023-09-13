@@ -7,7 +7,7 @@ void Stage3Object::Initialize()
 	textureManager_ = Texturemanager::GetInstance();
 	textureHandle_[0] = textureManager_->Load("Resource/uvChecker.png");
 	textureHandle_[1] = textureManager_->Load("Resource/goal.png");
-	textureHandle_[2] = textureManager_->Load("Resource/monsterBall.png");
+	textureHandle_[2] = textureManager_->Load("Resource/enemy.png");
 
 	for (int i = 0; i < 9; i++)
 	{
