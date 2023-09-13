@@ -50,7 +50,7 @@ void Stage2Scene::Update()
 	count++;
 	directionalLight_.direction = Normalise(directionalLight_.direction);
 	if (player_->GetGameOver() == true) {
-		sceneNum = GAME_SCENE;
+		sceneNum = GAMEOVER_SCENE;
 	}
 	if (player_->GetBehavior() == Behavior::kMove) {
 		ground_->Update();

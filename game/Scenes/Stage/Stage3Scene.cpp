@@ -52,7 +52,7 @@ void Stage3Scene::Update()
 
 	directionalLight_.direction = Normalise(directionalLight_.direction);
 	if (player_->GetGameOver() == true) {
-		sceneNum = GAME_SCENE;
+		sceneNum = GAMEOVER_SCENE;
 	}
 	if (player_->GetBehavior() == Behavior::kMove) {
 		ground_->Update();
@@ -82,7 +82,7 @@ void Stage3Scene::Update()
 			return;
 		}
 		else {
-			for (int i = 0; i < 8; i++) {
+			for (int i = 0; i < 4; i++) {
 
 				if (IsCollision(stage3Object_->GetObb(i), player_->GetStructSphere())) {
 					if (isPlayerHit[i] == false) {
@@ -102,6 +102,11 @@ void Stage3Scene::Update()
 							}
 						}
 					}
+				}
+			}
+			for (int i = 4; i < 8; i++) {
+				if (IsCollision(stage3Object_->GetObb(i), player_->GetStructSphere())) {
+					sceneNum = GAMEOVER_SCENE;
 				}
 			}
 		}

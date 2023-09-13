@@ -50,7 +50,7 @@ void Stage1Scene::Update()
 	int hitCount = 0;
 	count++;
 	if (player_->GetGameOver() == true) {
-		sceneNum = GAME_SCENE;
+		sceneNum = GAMEOVER_SCENE;
 	}
 	if (player_->GetBehavior() == Behavior::kMove) {
 		ground_->Update();
