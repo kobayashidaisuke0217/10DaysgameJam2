@@ -77,7 +77,7 @@ void Stage1Scene::Update()
 	}
 	else {
 		viewProjection_.rotation_ = {0.0f,0.0f,0.0f};
-		viewProjection_.translation_ = {0.0f,0.0f,0.0f};
+		viewProjection_.translation_ = { 7.0f,9.0f,-273.0f };
 		
 	}
 	ground_->SetPlayerMoveFlag(player_->GetCameraFlag());

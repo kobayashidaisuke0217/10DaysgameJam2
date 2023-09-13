@@ -130,10 +130,11 @@ void Stage3Scene::Draw()
 
 void Stage3Scene::Draw3D()
 {
-	if (!input_->PressKey(DIK_SPACE)) {
-		ground_->Draw(viewProjection_, directionalLight_);
+	if (player_->GetBehavior() == Behavior::kMove) {
+		if (!input_->PressKey(DIK_SPACE)) {
+			ground_->Draw(viewProjection_, directionalLight_);
+		}
 	}
-
 	
 		player_->Draw(viewProjection_, directionalLight_);
 	
