@@ -5,7 +5,7 @@ void Stage5Object::Initialize()
 	skyDome_.Initialize();
 
 	textureManager_ = Texturemanager::GetInstance();
-	textureHandle_[0] = textureManager_->Load("Resource/uvChecker.png");
+	textureHandle_[0] = textureManager_->Load("Resource/wall.png");
 	textureHandle_[1] = textureManager_->Load("Resource/goal.png");
 	textureHandle_[2] = textureManager_->Load("Resource/enemy.png");
 
