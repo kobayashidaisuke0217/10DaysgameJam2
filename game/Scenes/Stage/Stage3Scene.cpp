@@ -43,7 +43,10 @@ void Stage3Scene::Initialize()
 
 void Stage3Scene::Update()
 {
-
+	if (input_->PushKey(DIK_TAB))
+	{
+		sceneNum = GAME_SCENE;
+	}
 	int hitCount = 0;
 	count++;
 

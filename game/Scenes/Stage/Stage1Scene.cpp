@@ -43,6 +43,10 @@ void Stage1Scene::Initialize()
 
 void Stage1Scene::Update()
 {
+	if (input_->PushKey(DIK_TAB))
+	{
+		sceneNum = GAME_SCENE;
+	}
 	int hitCount = 0;
 	count++;
 	if (player_->GetGameOver() == true) {

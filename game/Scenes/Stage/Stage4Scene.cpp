@@ -43,6 +43,10 @@ void Stage4Scene::Initialize()
 
 void Stage4Scene::Update()
 {
+	if (input_->PushKey(DIK_TAB))
+	{
+		sceneNum = GAME_SCENE;
+	}
 	int hitCount = 0;
 	count++;
 	directionalLight_.direction = Normalise(directionalLight_.direction);

@@ -42,9 +42,9 @@ void Stage5Scene::Initialize()
 
 void Stage5Scene::Update()
 {
-	if (input_->PushKey(DIK_Q))
+	if (input_->PushKey(DIK_TAB))
 	{
-		sceneNum = TITLE_SCENE;
+		sceneNum = GAME_SCENE;
 	}
 
 	int hitCount = 0;
